@@ -1,0 +1,22 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Mixins
+@import 'mixins';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// slick-carousel
+@import '~slick-carousel/slick/slick';
+
+@import 'global/**/*';
+
+//@import 'components/**/*';
+
+//@import 'blocks/**/*';
+
+//@import 'templates/**/*';

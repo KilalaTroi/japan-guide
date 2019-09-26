@@ -1,0 +1,23 @@
+{
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    }
+  ],
+  "extra": {
+    "installer-paths": {
+      "wp-content/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "wp-content/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "require": {
+    "wpackagist-plugin/advanced-custom-fields": "^5.8.1",
+    "wpackagist-plugin/classic-editor": "^1.5"
+  }
+}

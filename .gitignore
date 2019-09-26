@@ -1,0 +1,15 @@
+*.log
+/*
+!/.gitignore
+!/wp-cli.phar
+!composer.json
+!readme.md
+!LICENSE
+!package.json
+!webpack.mix.js
+!/src
+
+#wp-content
+!wp-content/
+wp-content/*
+!wp-content/themes/

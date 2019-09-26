@@ -1,0 +1,7 @@
+#main-content {
+	position: relative;
+}
+
+.is-firstload {
+	@include firstAnimation;
+}

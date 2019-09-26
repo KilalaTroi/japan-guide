@@ -1,0 +1,52 @@
+//============================================================
+// Placeholder
+//============================================================
+
+@mixin placeholder {
+	@at-root #{&}::-webkit-input-placeholder {
+		@content
+	}
+	@at-root #{&}:-moz-placeholder {
+		@content
+	}
+	@at-root #{&}::-moz-placeholder {
+		@content
+	}
+	@at-root #{&}:-ms-input-placeholder {
+		@content
+	}
+	@at-root #{&}::placeholder {
+		@content
+	}
+}
+
+//============================================================
+// Spin
+//============================================================
+
+@-webkit-keyframes spin {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+//============================================================
+// FirstAnimation
+//============================================================
+
+@mixin firstAnimation {
+	opacity: 0;
+	visibility: hidden;
+}

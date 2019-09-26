@@ -1,0 +1,70 @@
+html,
+body {
+	&.disableScroll {
+		overflow: hidden;
+	}
+}
+
+[data-animate] {
+	visibility: hidden;
+}
+
+/*-----------------------------------------------------*/
+/*-------------------   link   --------------------*/
+/*-----------------------------------------------------*/
+
+a {
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+/*-----------------------------------------------------*/
+/*-------------------   loadmore   --------------------*/
+/*-----------------------------------------------------*/
+
+.loadmore {
+	text-align: center;
+	overflow: hidden;
+	margin-top: $spacer * 3;
+	min-height: $spacer * 2;
+
+	&.loadding {
+		a {
+			display: none;
+		}
+
+		&:after {
+			top: $spacer;
+		}
+	}
+
+	a {
+		position: relative;
+		display: inline-block;
+
+		&:before {
+			content: '';
+			width: 50vw;
+			height: 1px;
+			background-color: $blue;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		&:after {
+			content: '';
+			width: 50vw;
+			height: 1px;
+			background-color: $blue;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		i {
+			font-size:  $spacer * 2;
+		}
+	}
+}
