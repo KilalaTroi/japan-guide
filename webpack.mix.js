@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const browserSync = require("browser-sync").create();
 
 /*
  |--------------------------------------------------------------------------
@@ -14,6 +15,9 @@ const mix = require('laravel-mix');
 // publicPath
 // mix.config.publicPath = 'wp-content/themes/japanguide';
 const public_path = 'wp-content/themes/japanguide/';
+const html_path = 'html/wp-content/themes/japanguide/';
+
+console.log(mix.config.publicPath);
 
 // resourceRoot
 mix.config.resourceRoot = 'src';
@@ -46,8 +50,12 @@ if ( mix.config.production ) {
     mix.js(mix.config.resourceRoot + '/assets/js/app.js', public_path + 'assets/js')
         .js(mix.config.resourceRoot + '/assets/js/landing.js', public_path + 'assets/js')
         .sass(mix.config.resourceRoot + '/assets/sass/app.scss', public_path + 'assets/css')
-        .sass(mix.config.resourceRoot + '/assets/sass/landing.scss', public_path + 'assets/css').sourceMaps()
-        .browserSync({
-            proxy: 'http://japanguide.cetus.net'
-        });
+        .sass(mix.config.resourceRoot + '/assets/sass/landing.scss', public_path + 'assets/css').sourceMaps();
+
+    mix.copyDirectory(public_path + '/assets', html_path + '/assets');
+
+    browserSync.init({
+        watch: true,
+        server: "./html"
+    });
 }

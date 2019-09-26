@@ -14,8 +14,8 @@ import 'slick-carousel';
         /* ########################################################################################### */
         /* -------------------------------------- K Slider  --------------------------------------- */
         /* ########################################################################################### */
-        let slider = $('.hkt-slider');
-        let slide = $('.hkt-slider .hkt-item');
+        let slider = $('.kilala-slider');
+        let slide = $('.kilala-slider .kilala-item');
 
         if (slide.length > 1) {
             slider.not('.slick-initialized').slick(
@@ -26,8 +26,8 @@ import 'slick-carousel';
                     slidesToScroll: 1,
                     // variableWidth: true,
                     swipeToSlide: true,
-                    prevArrow : slider.siblings('.slider-nav').find('.hkt-prev'),
-                    nextArrow : slider.siblings('.slider-nav').find('.hkt-next'),
+                    prevArrow : slider.siblings('.slider-nav').find('.kilala-prev'),
+                    nextArrow : slider.siblings('.slider-nav').find('.kilala-next'),
                     responsive: [
                         {
                             breakpoint: 1024,

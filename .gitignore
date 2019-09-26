@@ -8,6 +8,7 @@
 !package.json
 !webpack.mix.js
 !/src
+!/html
 
 #wp-content
 !wp-content/

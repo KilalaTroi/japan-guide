@@ -7,9 +7,6 @@ appFunctions = (function ($, window, undefined) {
     /*-----------------------------------------------------*/
 
     function _initFunction() {
-        console.log(undefined);
-        console.log($win.width());
-        console.log('init function');
     }
 
     /*-----------------------------------------------------*/

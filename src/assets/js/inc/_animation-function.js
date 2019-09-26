@@ -15,12 +15,12 @@ ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
 		/* ---------------------------------- Animate || fadeInUp ------------------------------------ */
 		/* ########################################################################################### */
 
-		let $kAnimation = ['.hkt-animation .hkt-animation-title', '.hkt-animation .hkt-animation-des', '.hkt-animation .hkt-animation-img'];
-        let $kAnimationItem = '.hkt-animation .hkt-animation-item';
+		let $kAnimation = ['.kilala-animation .kilala-animation-title', '.kilala-animation .kilala-animation-des', '.kilala-animation .kilala-animation-img'];
+        let $kAnimationItem = '.kilala-animation .kilala-animation-item';
 
-        if($('.hkt-animation').length) {
-			_tweenStepByStep($kAnimation,'.hkt-animation', 1.5, 0.15);
-            _tweenStepByStep($kAnimationItem,'.hkt-animation', 1.5, 0.35);
+        if($('.kilala-animation').length) {
+			_tweenStepByStep($kAnimation,'.kilala-animation', 1.5, 0.15);
+            _tweenStepByStep($kAnimationItem,'.kilala-animation', 1.5, 0.35);
 		}
 
 		function _tweenStepByStep(blockList, blockParent, duration, delay) {
