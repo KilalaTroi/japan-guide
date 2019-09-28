@@ -29,5 +29,8 @@ function default_setup(){
 
     add_theme_support( 'post-thumbnails' );
     add_post_type_support( 'page', 'excerpt' );
+
+    // add_image_size
+    add_image_size('feature-image', 280, 200, true);
 }
 add_action('init', 'default_setup');
