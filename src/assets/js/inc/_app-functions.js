@@ -7,6 +7,20 @@ appFunctions = (function ($, window, undefined) {
     /*-----------------------------------------------------*/
 
     function _initFunction() {
+        handleNav();
+        $(window).scroll(function () {
+            handleNav();
+        });
+    }
+
+    function handleNav(){
+        var scroll = $(window).scrollTop();
+        if (scroll == 0) {
+            $("header").removeClass("sticky");
+        }
+        if (scroll >= 30) {
+            $("header").addClass("sticky");
+        }
     }
 
     /*-----------------------------------------------------*/
