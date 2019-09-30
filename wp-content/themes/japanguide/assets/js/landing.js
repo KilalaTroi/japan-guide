@@ -137,7 +137,7 @@ eval("window._ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodas
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\Troi\projects\wordpress\japan-guide\src\assets\js\landing.js */"./src/assets/js/landing.js");
+module.exports = __webpack_require__(/*! D:\_Phong\_KILALA DATA\1.project\1.KilalaJapanGuide\work\japan-guide\src\assets\js\landing.js */"./src/assets/js/landing.js");
 
 
 /***/ })
