@@ -9,6 +9,7 @@
 !webpack.mix.js
 !/src
 !/html
+/html/wp-content
 
 #wp-content
 !wp-content/
