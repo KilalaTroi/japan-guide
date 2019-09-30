@@ -1,24 +1,7 @@
 {
     "key": "group_5d0f261d3d816",
     "title": "Home Page",
-    "fields": [
-        {
-            "key": "field_5d8d8d5337c90",
-            "label": "Slider",
-            "name": "slider",
-            "type": "group",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "layout": "block",
-            "sub_fields": []
-        }
-    ],
+    "fields": [],
     "location": [
         [
             {
@@ -36,5 +19,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1569558161
+    "modified": 1569816505
 }

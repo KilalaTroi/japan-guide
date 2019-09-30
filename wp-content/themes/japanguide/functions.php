@@ -7,5 +7,9 @@ include APP_PATH.'/inc/define.php';
 include APP_PATH.'/inc/setup.php';
 include APP_PATH.'/inc/admin/functions.php';
 include APP_PATH.'/inc/admin/cpt.php';
+require_once APP_PATH.'/ReduxCore/framework.php';
+require_once APP_PATH.'/option.php';
 include APP_PATH.'/inc/plugins/acf/functions.php';
 include APP_PATH.'/inc/frontend/functions.php';
+require_once APP_PATH.'/inc/frontend/class-wp-bootstrap-navwalker.php';
+

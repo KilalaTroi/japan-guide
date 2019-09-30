@@ -37,5 +37,24 @@ function default_login_logo_url_title()
 }
 add_filter('login_headertext', 'default_login_logo_url_title');
 
+/**
+ * Save post delete cache when a post is saved.
+ *
+ * @param int $post_id The post ID.
+ */
+function save_post_delete_cache( $post_id ) {
+    $post_type = get_post_type($post_id);
+    foreach(pll_languages_list() as $v){
+        switch ($post_type) {
+            case "post":
+                delete_transient('post_home_'.$v);
+                break;
+            default:
+                break;
+        }
+    }
+    return;
+}
+add_action( 'save_post', 'save_post_delete_cache' );
 
 

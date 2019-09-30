@@ -9,7 +9,7 @@ get_header();
         <?php get_template_part('template-parts/blocks/home/slider') ?>
         <?php get_template_part('template-parts/blocks/home/appointments') ?>
         <?php get_template_part('template-parts/blocks/home/information') ?>
-        <?php get_template_part('template-parts/blocks/global/five-events') ?>
+        <?php get_template_part('template-parts/blocks/global/five-news') ?>
     </main>
     <!--END  Pull HTML here-->
 <?php get_footer();

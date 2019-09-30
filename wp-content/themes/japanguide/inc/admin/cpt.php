@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined('APP_PATH')) die ('Bad requested!');
 
 if (!function_exists('create_destinations')) {
 
