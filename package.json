@@ -27,6 +27,7 @@
     "vue-template-compiler": "^2.6.10"
   },
   "dependencies": {
+    "browsersync-ssi": "^0.2.4",
     "gsap": "^2.1.3",
     "scrollmagic": "^2.0.7",
     "scrollmagic-plugin-gsap": "^1.0.3",
