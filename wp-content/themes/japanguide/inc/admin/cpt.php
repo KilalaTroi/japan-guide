@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined('APP_PATH')) die ('Bad requested!');
 
 if (!function_exists('create_destinations')) {
 
@@ -29,7 +29,7 @@ if (!function_exists('create_destinations')) {
             'capability_type' => 'post',
             'hierarchical' => true,
             'menu_position' => 5,
-            'supports' => array('title', 'revisions'),
+            'supports' => array('title', 'revisions', 'editor'),
             'menu_icon' => 'dashicons-location-alt',
             'rewrite' => array('slug' => __('destination', DOMAIN))
         );
@@ -39,3 +39,26 @@ if (!function_exists('create_destinations')) {
 }
 
 add_action('init', 'create_destinations');
+
+
+if (!function_exists('create_destination_taxonomies')) {
+    function create_destination_taxonomies() {
+        register_taxonomy(
+            'regions',
+            'destinations',
+            array(
+                'labels' => array(
+                    'name' => 'Regions of Japan',
+                    'add_new_item' => 'Add New Region',
+                    'new_item_name' => "New Region"
+                ),
+                'show_ui' => true,
+                'show_tagcloud' => false,
+                'hierarchical' => true
+            )
+        );
+    }
+
+
+    add_action( 'init', 'create_destination_taxonomies', 0 );
+}

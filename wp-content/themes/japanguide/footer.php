@@ -9,5 +9,6 @@
   </div>
 </footer>
 <?php wp_footer(); ?>
+<?= wpedu_get_option('option_footer_code') ?>
 </body>
 </html>

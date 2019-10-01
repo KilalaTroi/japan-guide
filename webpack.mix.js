@@ -1,5 +1,6 @@
 const mix = require('laravel-mix');
 const browserSync = require("browser-sync").create();
+const ssi = require('browsersync-ssi');
 
 /*
  |--------------------------------------------------------------------------
@@ -56,6 +57,14 @@ if ( mix.config.production ) {
 
     browserSync.init({
         watch: true,
-        server: "./html"
+        server: {
+            baseDir: ['html'],
+            middleware: ssi({
+                baseDir: __dirname + '/html',
+                ext: '.html'
+            })
+        },
     });
+
+    console.log(__dirname);
 }
