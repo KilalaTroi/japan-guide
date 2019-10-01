@@ -3,6 +3,23 @@ body {
 	&.disableScroll {
 		overflow: hidden;
 	}
+
+	font-family: "Be Vietnam";
+	font-weight: 400;
+	font-style: normal;
+	font-size: 0.83em;
+
+	bolder {
+		font-weight: 900;
+	}
+
+	bold {
+		font-weight: 600;
+	}
+	
+	thin {
+		font-weight: 300;
+	}
 }
 
 [data-animate] {

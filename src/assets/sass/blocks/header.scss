@@ -1,0 +1,112 @@
+header {
+  background: #33333378;
+  color: #fff;
+
+  &.sticky {
+    #nav-top-line {
+      height: 0;
+      opacity: 0;
+      transition: height 0.3s;
+    }
+
+    nav {
+      &.navbar-dark {
+        background: #3333339e;
+        @media (min-width: 768px) {
+          height: 50px !important;
+        }
+        padding: 0;
+        .container {
+          height: 100%;
+          .navbar-brand {
+            height: 100%;
+            padding: 0;
+            img {
+              max-height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #nav-top-line {
+    height: 42px;
+    > .container {
+      border-bottom: 1px solid #ffffff33;
+      ul {
+        margin: 0;
+        padding: 10px 0;
+      }
+      input,
+      button {
+        background: transparent;
+        border: none;
+        color: #fff;
+      }
+      input {
+        &::placeholder {
+          color: #ffffffed;
+        }
+        max-width: 100px;
+      }
+    }
+  }
+
+  nav {
+    &.navbar-dark {
+      @media (min-width: 768px) {
+        height: 70px;
+      }
+    }
+
+    .navbar-brand {
+      img {
+        max-width: 110px;
+        max-height: 65px;
+        transition: all 0.3s;
+      }
+    }
+
+    ul {
+      &.navbar-nav {
+        .nav-item {
+          a {
+            &.nav-link {
+              color: #fff !important;
+              font-size: 18px;
+              text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+            }
+            &:after {
+              position: absolute;
+              content: "";
+              border-bottom: 1px solid #fff;
+              bottom: 2px;
+              width: 0;
+              left: 0;
+              margin: 0 auto;
+              position: relative;
+              display: block;
+            }
+          }
+          &.active,
+          &:hover {
+            a::after {
+              width: 100%;
+              transition: all 0.4s ease;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  @media screen and (max-width: 767px) {
+    #nav-top-line {
+      display: none;
+    }
+    #nav-top-line2 {
+      display: block;
+    }
+  }
+}
