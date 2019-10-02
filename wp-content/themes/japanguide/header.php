@@ -9,12 +9,41 @@
   <?php if (is_singular() && pings_open(get_queried_object())) : ?>
     <link rel="pingback" href="<?= get_bloginfo('pingback_url'); ?>">
   <?php endif; ?>
+
+  <style type="text/css" media="screen">
+    .frame000 {
+      width: 510px;
+      height: 320px;
+    }
+
+    #js_progressLoading {
+      background: #fff;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      z-index: 99;
+      position: fixed;
+      z-index: 999999;
+    }
+
+    #js_progressLoading svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -160px;
+      margin-left: -255px;
+    }
+  </style>
+
   <?php wp_head(); ?>
   <?= wpedu_get_option('option_head_code') ?>
 </head>
 
 <body <?php body_class(); ?>>
 <?= wpedu_get_option('option_body_code') ?>
+<?php do_action('progress_loading'); ?>
+
 <header id="header" class="block-header">
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container">

@@ -44,14 +44,13 @@ add_filter('login_headertext', 'default_login_logo_url_title');
  */
 function save_post_delete_cache( $post_id ) {
     $post_type = get_post_type($post_id);
-    foreach(pll_languages_list() as $v){
-        switch ($post_type) {
-            case "post":
-                delete_transient('post_home_'.$v);
-                break;
-            default:
-                break;
-        }
+    global $wpdb;
+    switch ($post_type) {
+        case "post":
+            $wpdb->query("DELETE FROM `$wpdb->options` WHERE `option_name` LIKE ('\_transient\_post\_%') OR `option_name` LIKE ('\_transient\_timeout\_post\_%')");
+            break;
+        default:
+            break;
     }
     return;
 }

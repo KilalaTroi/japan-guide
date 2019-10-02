@@ -12,7 +12,7 @@ function special_nav_class($classes, $item)
 {
     if ( in_array('current-menu-item', $classes) )
     {
-        $classes[] = 'is-active';
+        $classes[] = 'active';
     }
     return $classes;
 }
