@@ -23,6 +23,20 @@ body {
 	input, button, textarea, select{
 		outline: none;
 	}
+
+	&.admin-bar{
+		.fixed-top {
+			top: 46px;
+			@media screen and (min-width:783px){
+				top: 32px;
+			}
+		}
+		#main-content{
+			@media screen and (min-width:768px){
+				margin-top: 70px;
+			}
+		}
+	}
 }
 
 [data-animate] {
