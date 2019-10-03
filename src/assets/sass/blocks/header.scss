@@ -1,6 +1,12 @@
 header {
   background: #33333378;
   color: #fff;
+  a {
+    color: #fff;
+    &:hover{
+      color: #ff1945;
+    }
+  }
 
   &.sticky {
     #nav-top-line {
@@ -15,7 +21,6 @@ header {
         @media (min-width: 768px) {
           height: 50px !important;
         }
-        padding: 0;
         .container {
           height: 100%;
           .navbar-brand {
@@ -26,6 +31,13 @@ header {
             }
           }
         }
+      }
+      .nav-link {
+        // width: fit-content;
+        // margin-left: auto;
+        // margin-right: auto;
+        // padding: 0 15px;
+        padding: 0px 25px;
       }
     }
   }
@@ -100,7 +112,7 @@ header {
       }
     }
   }
-  
+
   @media screen and (max-width: 767px) {
     #nav-top-line {
       display: none;
