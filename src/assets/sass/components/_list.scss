@@ -1,5 +1,13 @@
 .list-inline {
     .lang-item {
         display: inline-block;
+
+        +.lang-item {
+            margin-left: 10px;
+        }
+
+        img {
+            margin-top: -2px;
+        }
     }
 }
