@@ -17,10 +17,20 @@ ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
 
 		let $kAnimation = ['.kilala-animation .kilala-animation-title', '.kilala-animation .kilala-animation-des', '.kilala-animation .kilala-animation-img'];
         let $kAnimationItem = '.kilala-animation .kilala-animation-item';
+        let $kAnimationItem1 = '.kilala-animation-1 .kilala-animation-item';
+        let $kAnimationItem2 = '.kilala-animation-2 .kilala-animation-item';
+        let $kAnimationItem3 = '.kilala-animation-3 .kilala-animation-item';
+        let $kAnimationItem4 = '.kilala-animation-4 .kilala-animation-item';
+        let $kAnimationItem5 = '.kilala-animation-5 .kilala-animation-item';
 
         if($('.kilala-animation').length) {
 			_tweenStepByStep($kAnimation,'.kilala-animation', 1.5, 0.15);
             _tweenStepByStep($kAnimationItem,'.kilala-animation', 1.5, 0.35);
+            _tweenStepByStep($kAnimationItem1,'.kilala-animation-1', 1.5, 0.35);
+            _tweenStepByStep($kAnimationItem2,'.kilala-animation-2', 1.5, 0.35);
+            _tweenStepByStep($kAnimationItem3,'.kilala-animation-3', 1.5, 0.35);
+            _tweenStepByStep($kAnimationItem4,'.kilala-animation-4', 1.5, 0.35);
+            _tweenStepByStep($kAnimationItem5,'.kilala-animation-5', 1.5, 0.35);
 		}
 
 		function _tweenStepByStep(blockList, blockParent, duration, delay) {

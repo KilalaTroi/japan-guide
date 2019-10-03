@@ -15,9 +15,15 @@ $arraySetSection = array(
 	'fields' => array(
 
 		array(
+			'id'    => 'option_logo_kilala',
+			'type'  => 'media',
+			'title' => 'Logo Kilala',
+		),
+
+		array(
 			'id'    => 'option_logo',
 			'type'  => 'media',
-			'title' => 'Logo',
+			'title' => 'Logo Japan Guide',
 		),
 
 		array(

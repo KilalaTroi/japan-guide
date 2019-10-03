@@ -12,4 +12,5 @@ require_once APP_PATH.'/option.php';
 include APP_PATH.'/inc/plugins/acf/functions.php';
 include APP_PATH.'/inc/frontend/functions.php';
 include APP_PATH.'/inc/frontend/cookie.php';
+include APP_PATH.'/inc/frontend/map.php';
 require_once APP_PATH.'/inc/frontend/class-wp-bootstrap-navwalker.php';
