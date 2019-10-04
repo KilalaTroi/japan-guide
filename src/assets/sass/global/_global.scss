@@ -26,29 +26,36 @@ body {
   select {
     outline: none;
   }
-  h2 {
-    .main-title {
-      font-size: 18px;
-      font-weight: 900;
-      margin: 15px 0;
-    }
+
+  .main-title {
+    font-size: 18px;
+    font-weight: 900;
+    margin: 15px 0;
     @media (min-width: 768px) {
-      margin: 20px 0 25px;
+      font-size: 24px;
+      margin: 20px 0;
+    }
+    @media (min-width: 992px) {
+      font-size: 26px;
+      margin: 25px 0 20px;
+    }
+    @media (min-width: 1200px) {
+      font-size: 28px;
     }
   }
 
-  &.admin-bar{
-      .fixed-top {
-          top: 46px;
-          &.sticky {
-            @media screen and (max-width: 600px) {
-              top: 0;
-            }
-          }
-          @media screen and (min-width:783px){
-              top: 32px;
-          }
+  &.admin-bar {
+    .fixed-top {
+      top: 46px;
+      &.sticky {
+        @media screen and (max-width: 600px) {
+          top: 0;
+        }
       }
+      @media screen and (min-width: 783px) {
+        top: 32px;
+      }
+    }
   }
 }
 
