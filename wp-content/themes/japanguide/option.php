@@ -15,15 +15,33 @@ $arraySetSection = array(
 	'fields' => array(
 
 		array(
+			'id'    => 'option_logo_kilala',
+			'type'  => 'media',
+			'title' => 'Logo Kilala',
+		),
+
+		array(
 			'id'    => 'option_logo',
 			'type'  => 'media',
-			'title' => 'Logo',
+			'title' => 'Logo Japan Guide',
 		),
 
 		array(
 			'id'    => 'option_icon_logo',
 			'type'  => 'media',
 			'title' => 'Favicon Logo',
+		),
+
+		array(
+			'id'    => 'option_logo_footer',
+			'type'  => 'media',
+			'title' => 'Footer logo',
+		),
+
+		array(
+			'id'    => 'option_text_copyright',
+			'type'  => 'text',
+			'title' => 'Footer copyright text',
 		),
 	),
 );

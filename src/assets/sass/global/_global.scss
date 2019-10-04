@@ -36,6 +36,20 @@ body {
       margin: 20px 0 25px;
     }
   }
+
+  &.admin-bar{
+      .fixed-top {
+          top: 46px;
+          &.sticky {
+            @media screen and (max-width: 600px) {
+              top: 0;
+            }
+          }
+          @media screen and (min-width:783px){
+              top: 32px;
+          }
+      }
+  }
 }
 
 [data-animate] {
@@ -50,55 +64,5 @@ a {
   &:hover {
     text-decoration: none;
     color: #ff1945;
-  }
-}
-
-/*-----------------------------------------------------*/
-/*-------------------   loadmore   --------------------*/
-/*-----------------------------------------------------*/
-
-.loadmore {
-  text-align: center;
-  overflow: hidden;
-  margin-top: $spacer * 3;
-  min-height: $spacer * 2;
-
-  &.loadding {
-    a {
-      display: none;
-    }
-
-    &:after {
-      top: $spacer;
-    }
-  }
-
-  a {
-    position: relative;
-    display: inline-block;
-
-    &:before {
-      content: "";
-      width: 50vw;
-      height: 1px;
-      background-color: $blue;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    &:after {
-      content: "";
-      width: 50vw;
-      height: 1px;
-      background-color: $blue;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    i {
-      font-size: $spacer * 2;
-    }
   }
 }
