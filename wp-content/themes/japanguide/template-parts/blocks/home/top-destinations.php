@@ -1,7 +1,7 @@
 <section id="destination" class="py-3 py-md-5 kilala-animation-3">
   <div class="container">
     <div class="row main-title">
-      <h1 class="kilala-animation-item">
+      <h1 class="kilala-animation-item" data-animate>
         <bold>Điểm đến</bold>
         <thin> được yêu thích nhất</thin>
       </h1>
@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-12 col-md-8 col-lg-7 mx-auto">
         <!-- map -->
-        <div id="svg-map" class="kilala-animation-item"></div>
+        <div id="svg-map" class="kilala-animation-item" data-animate></div>
         <script type="text/javascript" charset="utf-8" async defer>
           jQuery(document).ready(function($) {
             $.ajax({
@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="row gallery-cards">
-      <div class="col-md-6 col-lg-3 gallery kilala-animation-item">
+      <div class="col-md-6 col-lg-3 gallery kilala-animation-item" data-animate>
         <a class="link-gallery" href="">
           <div class="link-gallery-image">
             <figure class="image">
@@ -49,7 +49,7 @@
           </div>
         </a>
       </div>
-      <div class="col-md-6 col-lg-3 gallery kilala-animation-item">
+      <div class="col-md-6 col-lg-3 gallery kilala-animation-item" data-animate>
         <a class="link-gallery" href="">
           <div class="link-gallery-image">
             <figure class="image">
@@ -71,7 +71,7 @@
           </div>
         </a>
       </div>
-      <div class="col-md-6 col-lg-3 gallery kilala-animation-item">
+      <div class="col-md-6 col-lg-3 gallery kilala-animation-item" data-animate>
         <a class="link-gallery" href="">
           <div class="link-gallery-image">
             <figure class="image">
@@ -95,7 +95,7 @@
           </div>
         </a>
       </div>
-      <div class="col-md-6 col-lg-3 gallery kilala-animation-item">
+      <div class="col-md-6 col-lg-3 gallery kilala-animation-item" data-animate>
         <a class="link-gallery" href="">
           <div class="link-gallery-image">
             <figure class="image">
