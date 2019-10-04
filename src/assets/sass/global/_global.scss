@@ -39,9 +39,11 @@ body {
 
   &.admin-bar{
       .fixed-top {
-          top: 0;
-          @media screen and (min-width: 601px){
-              top: 46px;
+          top: 46px;
+          &.sticky {
+            @media screen and (max-width: 600px) {
+              top: 0;
+            }
           }
           @media screen and (min-width:783px){
               top: 32px;
