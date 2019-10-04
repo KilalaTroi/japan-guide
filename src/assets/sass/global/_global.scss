@@ -1,32 +1,45 @@
 html,
 body {
-	&.disableScroll {
-		overflow: hidden;
-	}
+  &.disableScroll {
+    overflow: hidden;
+  }
 
-	font-family: "Be Vietnam";
-	font-weight: 400;
-	font-style: normal;
-	font-size: 14px;
+  font-family: "Be Vietnam";
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
 
-	bolder {
-		font-weight: 900;
-	}
+  bolder {
+    font-weight: 900;
+  }
 
-	bold {
-		font-weight: 600;
-	}
-	
-	thin {
-		font-weight: 300;
-	}
-	input, button, textarea, select{
-		outline: none;
-	}
+  bold {
+    font-weight: 600;
+  }
+
+  thin {
+    font-weight: 300;
+  }
+  input,
+  button,
+  textarea,
+  select {
+    outline: none;
+  }
+  h2 {
+    .main-title {
+      font-size: 18px;
+      font-weight: 900;
+      margin: 15px 0;
+    }
+    @media (min-width: 768px) {
+      margin: 20px 0 25px;
+    }
+  }
 }
 
 [data-animate] {
-	visibility: hidden;
+  visibility: hidden;
 }
 
 /*-----------------------------------------------------*/
@@ -34,9 +47,10 @@ body {
 /*-----------------------------------------------------*/
 
 a {
-	&:hover {
-		text-decoration: none;
-	}
+  &:hover {
+    text-decoration: none;
+    color: #ff1945;
+  }
 }
 
 /*-----------------------------------------------------*/
@@ -44,47 +58,47 @@ a {
 /*-----------------------------------------------------*/
 
 .loadmore {
-	text-align: center;
-	overflow: hidden;
-	margin-top: $spacer * 3;
-	min-height: $spacer * 2;
+  text-align: center;
+  overflow: hidden;
+  margin-top: $spacer * 3;
+  min-height: $spacer * 2;
 
-	&.loadding {
-		a {
-			display: none;
-		}
+  &.loadding {
+    a {
+      display: none;
+    }
 
-		&:after {
-			top: $spacer;
-		}
-	}
+    &:after {
+      top: $spacer;
+    }
+  }
 
-	a {
-		position: relative;
-		display: inline-block;
+  a {
+    position: relative;
+    display: inline-block;
 
-		&:before {
-			content: '';
-			width: 50vw;
-			height: 1px;
-			background-color: $blue;
-			position: absolute;
-			top: 50%;
-			transform: translateY(-50%);
-		}
+    &:before {
+      content: "";
+      width: 50vw;
+      height: 1px;
+      background-color: $blue;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
-		&:after {
-			content: '';
-			width: 50vw;
-			height: 1px;
-			background-color: $blue;
-			position: absolute;
-			top: 50%;
-			transform: translateY(-50%);
-		}
+    &:after {
+      content: "";
+      width: 50vw;
+      height: 1px;
+      background-color: $blue;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
-		i {
-			font-size:  $spacer * 2;
-		}
-	}
+    i {
+      font-size: $spacer * 2;
+    }
+  }
 }

@@ -3,7 +3,7 @@ header {
   color: #fff;
   a {
     color: #fff;
-    &:hover{
+    &:hover {
       color: #ff1945;
     }
   }
@@ -33,11 +33,8 @@ header {
         }
       }
       .nav-link {
-        // width: fit-content;
-        // margin-left: auto;
-        // margin-right: auto;
-        // padding: 0 15px;
-        padding: 0px 25px;
+        padding: 10px 25px;
+        text-align: center;
       }
     }
   }
