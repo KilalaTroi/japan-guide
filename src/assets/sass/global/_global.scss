@@ -1,44 +1,57 @@
 html,
 body {
-	&.disableScroll {
-		overflow: hidden;
-	}
+  &.disableScroll {
+    overflow: hidden;
+  }
 
-	font-family: "Be Vietnam";
-	font-weight: 400;
-	font-style: normal;
-	font-size: 14px;
+  font-family: "Be Vietnam";
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
 
-	bolder {
-		font-weight: 900;
-	}
+  bolder {
+    font-weight: 900;
+  }
 
-	bold {
-		font-weight: 600;
-	}
+  bold {
+    font-weight: 600;
+  }
 
-	thin {
-		font-weight: 300;
-	}
-	input, button, textarea, select{
-		outline: none;
-	}
+  thin {
+    font-weight: 300;
+  }
+  input,
+  button,
+  textarea,
+  select {
+    outline: none;
+  }
+  h2 {
+    .main-title {
+      font-size: 18px;
+      font-weight: 900;
+      margin: 15px 0;
+    }
+    @media (min-width: 768px) {
+      margin: 20px 0 25px;
+    }
+  }
 
-	&.admin-bar{
-		.fixed-top {
-			top: 0;
-			@media screen and (min-width: 601px){
-				top: 46px;
-			}
-			@media screen and (min-width:783px){
-				top: 32px;
-			}
-		}
-	}
+  &.admin-bar{
+      .fixed-top {
+          top: 0;
+          @media screen and (min-width: 601px){
+              top: 46px;
+          }
+          @media screen and (min-width:783px){
+              top: 32px;
+          }
+      }
+  }
 }
 
 [data-animate] {
-	visibility: hidden;
+  visibility: hidden;
 }
 
 /*-----------------------------------------------------*/
@@ -46,7 +59,8 @@ body {
 /*-----------------------------------------------------*/
 
 a {
-	&:hover {
-		text-decoration: none;
-	}
+  &:hover {
+    text-decoration: none;
+    color: #ff1945;
+  }
 }
