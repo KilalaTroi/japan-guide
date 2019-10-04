@@ -17,7 +17,7 @@
       </div>
       <div class="col-lg-3">
         <ul>
-          <li><img alt="Cầu nối Văn hóa Việt - Nhật" title="Cầu nối Văn hóa Việt - Nhật" src="wp-content/themes/japanguide/assets/images/logo-kilala.png"></li>
+          <li><img alt="Cầu nối Văn hóa Việt - Nhật" title="Cầu nối Văn hóa Việt - Nhật" src="/wp-content/uploads/2019/10/logo-kilala.png"></li>
           <li><a href="http://www.kilala.com.vn" target="_blank">www.kilala.com.vn</a></li>
           <li><a href="http://www.kilala.vn" target="_blank">www.kilala.vn</a></li>
           <li><a href="http://www.feeljapan.vn" target="_blank">www.feeljapan.vn</a></li>

@@ -16,7 +16,7 @@ body {
 	bold {
 		font-weight: 600;
 	}
-	
+
 	thin {
 		font-weight: 300;
 	}
@@ -26,7 +26,10 @@ body {
 
 	&.admin-bar{
 		.fixed-top {
-			top: 46px;
+			top: 0;
+			@media screen and (min-width: 601px){
+				top: 46px;
+			}
 			@media screen and (min-width:783px){
 				top: 32px;
 			}
@@ -45,55 +48,5 @@ body {
 a {
 	&:hover {
 		text-decoration: none;
-	}
-}
-
-/*-----------------------------------------------------*/
-/*-------------------   loadmore   --------------------*/
-/*-----------------------------------------------------*/
-
-.loadmore {
-	text-align: center;
-	overflow: hidden;
-	margin-top: $spacer * 3;
-	min-height: $spacer * 2;
-
-	&.loadding {
-		a {
-			display: none;
-		}
-
-		&:after {
-			top: $spacer;
-		}
-	}
-
-	a {
-		position: relative;
-		display: inline-block;
-
-		&:before {
-			content: '';
-			width: 50vw;
-			height: 1px;
-			background-color: $blue;
-			position: absolute;
-			top: 50%;
-			transform: translateY(-50%);
-		}
-
-		&:after {
-			content: '';
-			width: 50vw;
-			height: 1px;
-			background-color: $blue;
-			position: absolute;
-			top: 50%;
-			transform: translateY(-50%);
-		}
-
-		i {
-			font-size:  $spacer * 2;
-		}
 	}
 }

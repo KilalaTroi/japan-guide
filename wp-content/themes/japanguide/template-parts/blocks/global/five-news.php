@@ -34,7 +34,7 @@ global $post;
         <div class="col-md-6">
           <div class="row">
             <?php foreach ($postHome as $post) { setup_postdata($post); ?>
-              <div class="col-md-6 kilala-animation-item" data-animate>
+              <div class="col-sm-6 kilala-animation-item" data-animate>
                 <?php get_template_part('template-parts/components/article'); ?>
               </div>
             <?php } wp_reset_postdata(); ?>

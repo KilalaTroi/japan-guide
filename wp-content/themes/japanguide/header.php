@@ -18,8 +18,15 @@
 
   <style type="text/css" media="screen">
     .frame000 {
-      width: 510px;
-      height: 320px;
+      width: 255px;
+      height: 160px;
+    }
+
+    @media (min-width: 768px) {
+      .frame000 {
+        width: 510px;
+        height: 320px;
+      }
     }
 
     #js_progressLoading {
@@ -37,8 +44,9 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      margin-top: -160px;
-      margin-left: -255px;
+      -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+      transform: translate(-50%,-50%);
     }
   </style>
 
