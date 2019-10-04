@@ -1,0 +1,120 @@
+article {
+  margin-bottom: 20px;
+  &:hover {
+    .feature-img {
+      &:after {
+        opacity: 0.8 !important;
+      }
+    }
+  }
+  .post {
+    display: block;
+    overflow: hidden;
+    background-size: cover;
+    background-position: 50%;
+    position: relative;
+    &-lg {
+      height: 205px;
+
+      .entry {
+        padding: 10px;
+        .post-category {
+          font-size: 12px;
+        }
+        .entry-title {
+          font-size: 18px;
+          font-weight: bolder;
+        }
+        .entry-desc {
+          font-size: 14px;
+        }
+      }
+      @media (min-width: 768px) {
+        height: 430px;
+        .entry {
+          padding: 15px;
+          .post-category {
+            font-size: 14px;
+          }
+          .entry-title {
+            font-size: 36px;
+            font-weight: bolder;
+          }
+          .entry-desc {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+    &-md {
+      height: 205px;
+      .entry {
+        padding: 10px;
+        .post-category {
+          font-size: 13px;
+        }
+        .entry-title {
+          font-size: 16px;
+          font-weight: bolder;
+        }
+        .entry-desc {
+          font-size: 10px;
+          display: none;
+        }
+      }
+    }
+    &-sm {
+      height: 100px;
+    }
+    &.feature-img {
+      z-index: 100;
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+                        45deg,
+                        rgba(25, 25, 25, 0.88) 10%,
+                        rgba(190, 190, 190, 0.19) 90%,
+                        rgba(25, 25, 25, 0.05) 100%
+        );
+        transition: opacity 0.45s;
+        opacity: 0.5;
+        z-index: 101;
+      }
+    }
+    .entry {
+      z-index: 102;
+      position: absolute;
+      bottom: 0;
+      color: #fff;
+    }
+  }
+}
+
+article-2 {
+  .post-normal {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    .feature-img {
+      width: 125px;
+      height: 90px;
+      background-size: cover;
+    }
+    .entry {
+      width: calc(100% - 125px);
+      padding: 0 10px;
+      .post-category {
+      }
+      .entry-title {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 900;
+      }
+    }
+  }
+}

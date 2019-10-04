@@ -1,0 +1,30 @@
+footer {
+  &#footer {
+    background-color: #f6f6f6;
+  }
+  &#copyright {
+    background-color: #dfdfdf;
+  }
+  h4 {
+    font-size: 18px;
+    font-weight: 900;
+  }
+  ul {
+    font-size: 13px;
+    list-style-type: none;
+    padding-left: 0;
+    li {
+      margin-bottom: 10px;
+    }
+    .input-group {
+      .form-control {
+        font-size: 13px;
+      }
+      .input-group-append {
+        button {
+          padding: 0 10px;
+        }
+      }
+    }
+  }
+}
