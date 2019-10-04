@@ -29,13 +29,19 @@ appFunctions = (function ($, window, undefined) {
             var _id = $(this).attr('id');
             var _idText = _id.replace('mask', 'text');
             $('#' + _id + ', #' + _idText).addClass('is-active').siblings().removeClass('is-active');
-        })
+        });
         
         $(document).on('mouseenter mouseleave','#map-text .map-spot',function (e) {
             var _id = $(this).attr('id');
             var _idMask = _id.replace('text', 'mask');
             $('#' + _id + ', #' + _idMask).addClass('is-active').siblings().removeClass('is-active');
-        })
+        });
+
+        $(document).on('click touch','#area-mask path',function (e) {
+            var _id = $(this).attr('id');
+            var _idText = _id.replace('mask', 'text');
+            $('#' + _idText).trigger('click');
+        });
     }
 
     /*-----------------------------------------------------*/
