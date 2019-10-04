@@ -7,11 +7,27 @@ appFunctions = (function ($, window, undefined) {
     /*-----------------------------------------------------*/
 
     function _initFunction() {
-        _handleNav();
-        $(window).scroll(function () {
-            _handleNav();
-        });
+        // _handleNav();
+        _handleNav2();
+        // $(window).scroll(function () {
+        //     _handleNav();
+        // });
         _mapHover();
+    }
+
+    function _handleNav2(){
+        let navbar = $("#header-menu");
+        let sticky = navbar.offset().top;
+
+        $(window).scroll(function () {
+            console.log(window.pageYOffset);
+            console.log(sticky);
+            if (window.pageYOffset >= (sticky + 100)) {
+                navbar.addClass("sticky")
+            } else {
+                navbar.removeClass("sticky");
+            }
+        });
     }
 
     function _handleNav(){

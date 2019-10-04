@@ -21,4 +21,10 @@
       }
     }
   }
+  >.container {
+    @include media-breakpoint-down(sm) {
+      padding: 0;
+      max-width: 100%;
+    }
+  }
 }
