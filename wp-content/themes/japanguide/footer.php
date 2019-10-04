@@ -2,22 +2,22 @@
 <footer id="footer" class="block-footer py-3 py-md-5">
   <div class="container">
     <div class="row text-center mb-3 mb-md-5">
-      <img alt="" class="mx-auto" style="max-width: 110px;"
-        src="wp-content/themes/japanguide/assets/images/logo-black.png">
+      <img title="<?php bloginfo('name') ?>" alt="<?php bloginfo('name') ?>" class="mx-auto" style="max-width: 110px;"
+        src="<?php echo wpedu_get_option('option_logo_footer')['url'] ?>">
     </div>
     <div class="row">
       <div class="col-lg-4">
         <h4>Liên hệ</h4>
         <ul>
           <li><i class="fa fa-map-marker mr-2"></i>Lầu 9, tòa nhà Capital Place, số 6 Thái Văn Lung, Quận 1, TP. Hồ Chí Minh
-           
+
             </li>
           <li><i class="fa fa-phone mr-2"></i>(+84)28 3827 7722 Thứ 2 – thứ 6 | 8:30 – 18:30</li>
         </ul>
       </div>
       <div class="col-lg-3">
         <ul>
-          <li><img alt="" src="wp-content/themes/japanguide/assets/images/logo-kilala.png"></li>
+          <li><img alt="Cầu nối Văn hóa Việt - Nhật" title="Cầu nối Văn hóa Việt - Nhật" src="wp-content/themes/japanguide/assets/images/logo-kilala.png"></li>
           <li><a href="http://www.kilala.com.vn" target="_blank">www.kilala.com.vn</a></li>
           <li><a href="http://www.kilala.vn" target="_blank">www.kilala.vn</a></li>
           <li><a href="http://www.feeljapan.vn" target="_blank">www.feeljapan.vn</a></li>
@@ -46,7 +46,10 @@
   <div class="container">
     <div class="row copyright">
       <div class="col">
-        <p class="m-0">Copyright © 2018-2019 KILALA COMMUNICATION CO.,LTD All rights reserved.</p>
+        <?php
+          $copyrightFooter = str_replace('%y%',date('Y'),wpedu_get_option('option_text_copyright'));
+        ?>
+        <p class="m-0"><?php echo $copyrightFooter; ?></p>
       </div>
     </div>
   </div>

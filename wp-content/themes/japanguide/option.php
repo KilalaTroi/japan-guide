@@ -31,6 +31,18 @@ $arraySetSection = array(
 			'type'  => 'media',
 			'title' => 'Favicon Logo',
 		),
+
+		array(
+			'id'    => 'option_logo_footer',
+			'type'  => 'media',
+			'title' => 'Footer logo',
+		),
+
+		array(
+			'id'    => 'option_text_copyright',
+			'type'  => 'text',
+			'title' => 'Footer copyright text',
+		),
 	),
 );
 Redux::setSection( $opt_name, $arraySetSection );

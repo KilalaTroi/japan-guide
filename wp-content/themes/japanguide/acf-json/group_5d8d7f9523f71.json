@@ -28,7 +28,7 @@
             "key": "field_5d8dd1a2f243e",
             "label": "Credit",
             "name": "credit",
-            "type": "text",
+            "type": "textarea",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -39,9 +39,9 @@
             },
             "default_value": "",
             "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": "br"
         },
         {
             "key": "field_5d9559e02f072",
@@ -80,5 +80,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1570069298
+    "modified": 1570159651
 }
