@@ -1,0 +1,105 @@
+#map {
+  filter: drop-shadow(1px 1px 0.7px rgba(0, 0, 0, 0.5));
+  #area-color {
+    path {
+      stroke: rgba(247, 56, 56, 0.47);
+      stroke-width: 0.325;
+    }
+  }
+  #area-mask {
+    path {
+      opacity: 0;
+      cursor: pointer;
+      transition-duration: 0.3s;
+      &:hover,
+      &.is-active {
+        stroke: #522c0c;
+        opacity: 0.8;
+        stroke-width: 0.6;
+        fill: transparent;
+      }
+    }
+  }
+}
+#map-text {
+  font-size: 12.5px;
+  @media (min-width: 576px) {
+    font-size: 14px;
+  }
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+  a {
+    &.map-spot {
+      font-weight: bold;
+      cursor: pointer;
+      transition-duration: 0.3s;
+      text-shadow: 2px 0 1px rgba(255, 255, 255, 0.3);
+      position: absolute;
+      &.is-active {
+        transform: scale(1.1);
+      }
+      &.hokkaido {
+        color: #3c688e;
+        top: 10%;
+        left: 50%;
+        @media (min-width: 576px) {
+          left: 59%;
+        }
+      }
+      &.tohoku {
+        color: #1390b9;
+        top: 40%;
+        left: 77%;
+      }
+      &.kanto {
+        color: #437b5d;
+        top: 60%;
+        left: 71%;
+        @media (min-width: 768px) {
+          left: 73%;
+        }
+      }
+      &.chubu {
+        color: #83903f;
+        top: 50%;
+        left: 36%;
+        @media (min-width: 576px) {
+          left: 40%;
+        }
+        @media (min-width: 768px) {
+          left: 46%;
+          top: 47%;
+        }
+      }
+      &.shikoku {
+        color: #fa876e;
+        top: 75%;
+        left: 35%;
+      }
+      &.kinki {
+        color: #c39e4e;
+        top: 69%;
+        left: 50%;
+      }
+      &.chugoku {
+        color: #bd7f4c;
+        top: 57%;
+        left: 14%;
+        @media (min-width: 576px) {
+          top: 59%;
+          left: 18%;
+        }
+      }
+      &.kyushu-okinawa {
+        color: #ce5786;
+        bottom: 4%;
+        left: 6%;
+        @media (min-width: 576px) {
+          bottom: 12%;
+          left: 4%;
+        }
+      }
+    }
+  }
+}
