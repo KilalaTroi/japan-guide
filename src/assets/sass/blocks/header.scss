@@ -282,6 +282,7 @@ header {
         max-width: calc(100% - 30px);
         width: 100%;
         border-bottom: 1px solid #4e4e4e;
+        border-radius: 0;
       }
 
       @include media-breakpoint-down(md) {
