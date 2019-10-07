@@ -3,10 +3,10 @@
     "title": "Post Custom fields",
     "fields": [
         {
-            "key": "field_5d8d803da8ba0",
-            "label": "Location",
-            "name": "location",
-            "type": "post_object",
+            "key": "field_5d9559e02f072",
+            "label": "Top",
+            "name": "top",
+            "type": "true_false",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -15,14 +15,11 @@
                 "class": "",
                 "id": ""
             },
-            "post_type": [
-                "destinations"
-            ],
-            "taxonomy": "",
-            "allow_null": 0,
-            "multiple": 0,
-            "return_format": "object",
-            "ui": 1
+            "message": "Yes",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
             "key": "field_5d8dd1a2f243e",
@@ -42,25 +39,6 @@
             "maxlength": "",
             "rows": 3,
             "new_lines": "br"
-        },
-        {
-            "key": "field_5d9559e02f072",
-            "label": "Top",
-            "name": "top",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "Yes",
-            "default_value": 0,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
         }
     ],
     "location": [
@@ -80,5 +58,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1570159651
+    "modified": 1570175363
 }

@@ -1,16 +1,6 @@
 <?php
-$destinationsL = 'destination_home_' . LANGUAGE_SLUG;
-if (false === ($destinations  = get_transient($destinationsL))) {
-$include_ja = array(1021, 1022, 1023, 1024, 1025, 1026, 1027, 1028);
-$include_vi = array(1219, 1221, 1223, 1225, 1227, 1229, 1231, 1233);
-$args = array(
-  'hide_empty' => false,
-  'orderby' => 'term_id',
-  'order' => 'ASC',
-  'include'       => array_merge($include_vi, $include_ja),
-);
-$destinations = get_terms('destinations', $args);
-set_transient($destinationsL, $destinations, 30 * DAY_IN_SECONDS);
+if (empty($destinations) || NULL === $destinations) {
+  $destinations = get_destinations_map();
 }
 ?>
 <my-map>
