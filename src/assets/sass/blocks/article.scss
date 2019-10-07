@@ -1,5 +1,6 @@
 article {
   margin-bottom: 20px;
+  cursor: pointer;
   &:hover {
     .feature-img {
       &:after {
@@ -76,10 +77,10 @@ article {
         width: 100%;
         height: 100%;
         background-image: linear-gradient(
-                        45deg,
-                        rgba(25, 25, 25, 0.88) 10%,
-                        rgba(190, 190, 190, 0.19) 90%,
-                        rgba(25, 25, 25, 0.05) 100%
+          45deg,
+          rgba(25, 25, 25, 0.88) 10%,
+          rgba(190, 190, 190, 0.19) 90%,
+          rgba(25, 25, 25, 0.05) 100%
         );
         transition: opacity 0.45s;
         opacity: 0.5;
