@@ -81,6 +81,10 @@ body {
         @media screen and (min-width: 783px) {
           top: 32px;
         }
+
+        @media screen and (max-width: 600px) {
+          top: 0;
+        }
       }
     }
   }
