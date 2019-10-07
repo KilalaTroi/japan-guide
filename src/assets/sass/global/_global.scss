@@ -89,3 +89,42 @@ a {
     color: #ff1945;
   }
 }
+
+/*-----------------------------------------------------*/
+/*-------------------   breadcrumb   --------------------*/
+/*-----------------------------------------------------*/
+.breadcrumb {
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  li {
+    &:not(.active) {
+      &:hover {
+        cursor: pointer;
+        color: red;
+      }
+    }
+    &:last-child {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 120px;
+
+      @media (min-width: 576px) {
+        max-width: 120px;
+      }
+      @media (min-width: 768px) {
+        max-width: 200px;
+      }
+      @media (min-width: 992px) {
+        max-width: 300px;
+      }
+      @media (min-width: 1200px) {
+        max-width: 400px;
+      }
+      @media (min-width: 1400px) {
+        max-width: 500px;
+      }
+    }
+  }
+}
