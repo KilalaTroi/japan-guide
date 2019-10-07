@@ -1,9 +1,9 @@
 <section id="destination" class="py-3 py-md-5 kilala-animation-3">
 <div class="container">
 <div class="row main-title main-title-lg">
-<h2 class="kilala-animation-item" data-animate>
-<bold>Điểm đến</bold>
-<thin> được yêu thích nhất</thin>
+<h2 class="kilala-animation-item font-weight-light" data-animate>
+<strong><?php echo pll__('Điểm đến'); ?></strong>
+<?php echo pll__('được yêu thích nhất'); ?>
 </h2>
 </div>
 <div class="row">

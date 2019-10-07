@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Template Name: Destination Page
  */
@@ -14,8 +13,8 @@ get_header();
         <div class="container">
           <div class="carousel-caption text-left">
             <h1 class="text-center">
-              <bold>Japan</bold><br>
-              <thin>TÌM ĐIỂM ĐẾN YÊU THÍCH CỦA BẠN</thin>
+              <bold><?php echo pll__('Japan'); ?></bold><br>
+              <thin><?php echo pll__('TÌM ĐIỂM ĐẾN YÊU THÍCH CỦA BẠN'); ?></thin>
             </h1>
           </div>
         </div>

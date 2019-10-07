@@ -27,7 +27,7 @@ global $post;
 <?php
 $post = array_shift($postHome);
 setup_postdata($post);
-get_template_part('template-parts/components/article-big');
+get_template_part('template-parts/components/article_big');
 wp_reset_postdata();
 ?>
 </div>

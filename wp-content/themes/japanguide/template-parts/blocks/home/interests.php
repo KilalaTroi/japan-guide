@@ -6,9 +6,9 @@ if (empty($categories) || NULL === $categories) {
 <section id="interests" class="py-3 py-md-5 kilala-animation-2">
 <div class="container">
 <div class="row main-title main-title-lg">
-<h2 class="kilala-animation-item" data-animate>
-<bold>Chủ đề</bold>
-<thin> phổ biến</thin>
+<h2 class="kilala-animation-item font-weight-light" data-animate>
+<strong><?php echo pll__('Chủ đề'); ?></strong>
+<?php echo pll__('phổ biến'); ?>
 </h2>
 </div>
 <div class="row galleries">

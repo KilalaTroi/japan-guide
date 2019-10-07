@@ -6,11 +6,9 @@ $taxonomy_destination = get_the_terms($post->ID, 'destinations');
 <article>
 <a href="<?php the_permalink(); ?>" class="post post-md feature-img" style="background-image: url(<?php echo $img; ?>)">
 <div class="entry">
-<?php if (isset($taxonomy_destination) && !empty($taxonomy_destination)) { ?>
-<label class="post-category">
-<i class="fa fa-map-marker mr-1" style="color: #ff1945"></i><?php echo  array_shift($taxonomy_destination)->name; ?>
-</label>
-<?php } ?>
+<?php if (isset($taxonomy_destination) && !empty($taxonomy_destination)) {
+printf('<label class="post-category"><i class="fa fa-map-marker mr-1" style="color: #ff1945"></i>%s</label>', array_shift($taxonomy_destination)->name);
+} ?>
 <h3 class="entry-title"><?php the_title(); ?></h3>
 </div>
 </a>
