@@ -62,7 +62,7 @@ body {
   }
 
   &.admin-bar {
-    .fixed-top {
+    .fixed-top, #header-menu {
       top: 46px;
       &.sticky {
         @media screen and (max-width: 600px) {
