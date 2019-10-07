@@ -71,24 +71,11 @@
 
   <?php do_action('progress_loading_script'); ?>
 
-  <header id="header">
-    <div id="header-top">
+  <header id="header" class="fixed-top">
+    <div id="nav-top-line">
       <div class="container">
         <div class="row">
-          <div class="col-sm-auto col-12 text-center">
-            <ul class="list-inline top-contact">
-              <li class="list-inline-item mr-4">
-                <i class="fa fa-phone" aria-hidden="true"></i>
-                <a href="tel:+842838277722">(+84) 28 3827 7722</a>
-              </li>
-              <li class="list-inline-item">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-                <a href="mailto:support@kilala.vn">support@kilala.vn</a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-auto ml-auto d-none d-sm-block">
+          <div class="col text-right">
             <ul class="list-inline">
               <li class="list-inline-item mr-4">
                 <div class="search-container">
@@ -111,13 +98,13 @@
       </div>
     </div>
 
-    <nav id="header-menu" class="navbar navbar-expand-md shadow-lg">
+    <nav class="navbar navbar-expand-md navbar-dark">
       <div class="container">
         <?php $urlKilala = LANGUAGE_SLUG === 'ja' ? 'http://www.kilala.vn/ja/cam-nang-nhat-ban.html' : 'http://www.kilala.vn/cam-nang-nhat-ban.html'; ?>
         <a target="_blank" class="navbar-brand mr-0" href="<?php echo $urlKilala ?>">
           <img alt="Cầu nối Văn hóa Việt - Nhật" title="Cầu nối Văn hóa Việt - Nhật" src="<?php echo wpedu_get_option('option_logo_kilala')['url']; ?>">
         </a>
-        <a class="navbar-brand mr-0" href="<?php echo home_url(); ?>">
+        <a class="navbar-brand" href="<?php echo home_url(); ?>">
           <?php if (is_home() && is_front_page()) { ?><h1 class="d-none"><?php bloginfo('name'); ?></h1><?php } ?>
           <img src="<?php echo wpedu_get_option('option_logo')['url'] ?>" title="<?php bloginfo('name') ?>" alt="<?php bloginfo('name') ?>">
         </a>
@@ -132,7 +119,7 @@
             'container'       => '',
             'container_class' => '',
             'container_id'    => '',
-            'menu_class'      => 'navbar-nav',
+            'menu_class'      => 'navbar-nav ml-auto',
             'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
             'walker'          => new WP_Bootstrap_Navwalker(),
           ));
@@ -140,6 +127,5 @@
         </div>
       </div>
     </nav>
-    <div class="placeholder-content"></div>
   </header>
   <main role="main" id="main-content">
