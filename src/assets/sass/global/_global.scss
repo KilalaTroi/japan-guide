@@ -27,35 +27,34 @@ body {
   }
 
   .main-title {
-    h2 {
-      font-size: 18px;
-      font-weight: 900;
+    font-size: 18px;
+    font-weight: 900;
+    margin: 15px 0;
+    @media (min-width: 768px) {
+      font-size: 24px;
+      margin: 20px 0;
+    }
+    @media (min-width: 992px) {
+      font-size: 23px;
+      margin: 25px 0 20px;
+    }
+    @media (min-width: 1200px) {
+      font-size: 26px;
+    }
+    &-lg {
+      font-size: 20px;
       margin: 15px 0;
+      font-weight: 300;
       @media (min-width: 768px) {
         font-size: 24px;
-        margin: 20px 0;
+        margin: 24px 0;
       }
       @media (min-width: 992px) {
-        font-size: 23px;
+        font-size: 30px;
         margin: 25px 0 20px;
       }
       @media (min-width: 1200px) {
-        font-size: 26px;
-      }
-      &-lg {
-        font-size: 20px;
-        margin: 15px 0;
-        @media (min-width: 768px) {
-          font-size: 24px;
-          margin: 24px 0;
-        }
-        @media (min-width: 992px) {
-          font-size: 30px;
-          margin: 25px 0 20px;
-        }
-        @media (min-width: 1200px) {
-          font-size: 36px;
-        }
+        font-size: 36px;
       }
     }
   }
@@ -97,6 +96,13 @@ a {
   background: transparent;
   font-size: 13px;
   font-weight: 500;
+  margin: 10px 0 15px;
+  @media (min-width: 768px) {
+    margin: 15px 0 30px;
+  }
+  @media (min-width: 992px) {
+    margin: 20px 0 50px;
+  }
   li {
     &:not(.active) {
       &:hover {
