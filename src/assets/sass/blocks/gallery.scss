@@ -23,6 +23,7 @@
           margin: 0;
           .image-mask {
             position: relative;
+            background-position: center;
             img {
               filter: brightness(85%);
             }
