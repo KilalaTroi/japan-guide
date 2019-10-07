@@ -27,33 +27,35 @@ body {
   }
 
   .main-title {
-    font-size: 18px;
-    font-weight: 900;
-    margin: 15px 0;
-    @media (min-width: 768px) {
-      font-size: 24px;
-      margin: 20px 0;
-    }
-    @media (min-width: 992px) {
-      font-size: 26px;
-      margin: 25px 0 20px;
-    }
-    @media (min-width: 1200px) {
-      font-size: 28px;
-    }
-    &-lg {
-      font-size: 20px;
+    h2 {
+      font-size: 18px;
+      font-weight: 900;
       margin: 15px 0;
       @media (min-width: 768px) {
         font-size: 24px;
-        margin: 24px 0;
+        margin: 20px 0;
       }
       @media (min-width: 992px) {
-        font-size: 30px;
+        font-size: 23px;
         margin: 25px 0 20px;
       }
       @media (min-width: 1200px) {
-        font-size: 36px;
+        font-size: 26px;
+      }
+      &-lg {
+        font-size: 20px;
+        margin: 15px 0;
+        @media (min-width: 768px) {
+          font-size: 24px;
+          margin: 24px 0;
+        }
+        @media (min-width: 992px) {
+          font-size: 30px;
+          margin: 25px 0 20px;
+        }
+        @media (min-width: 1200px) {
+          font-size: 36px;
+        }
       }
     }
   }
