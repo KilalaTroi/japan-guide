@@ -23,7 +23,6 @@
           margin: 0;
           .image-mask {
             position: relative;
-            background-position: center;
             img {
               filter: brightness(85%);
             }
@@ -275,6 +274,7 @@
             background-size: cover !important;
             -webkit-filter: brightness(90%);
             filter: brightness(90%);
+            background-position: center;
           }
         }
         &-text {
