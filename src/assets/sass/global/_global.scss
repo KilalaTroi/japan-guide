@@ -62,7 +62,7 @@ body {
   }
 
   &.admin-bar {
-    .fixed-top, #header-menu {
+    .fixed-top {
       top: 46px;
       &.sticky {
         @media screen and (max-width: 600px) {
@@ -71,6 +71,16 @@ body {
       }
       @media screen and (min-width: 783px) {
         top: 32px;
+      }
+    }
+
+    #header-menu {
+      &.sticky {
+        top: 46px;
+
+        @media screen and (min-width: 783px) {
+          top: 32px;
+        }
       }
     }
   }
