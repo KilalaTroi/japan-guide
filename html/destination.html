@@ -14,17 +14,32 @@
   <!--#include virtual="./inc/header-2.html" -->
 
   <main role="main" id="main-content">
+    <section id="breadcrumb">
+      <div class="container">
+        <div class="row">
+          <ul class="breadcrumb">
+            <li><a title="Home" href=""><i class="fa fa-home mr-2"></i>Trang chủ</a></li>
+            <li class="active"><a title="Điểm đến"><i class="fa fa-angle-right mx-2"></i>Điểm đến</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
     <section id="banner">
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <div id="myCarousel" class="carousel slide has-cap" data-ride="carousel">
         <div class="carousel-inner">
-          <div class="carousel-item text-center active">
-            <img src="wp-content/themes/japanguide/assets/images/banner/sub_banner_destination.jpg" alt="">
+          <div class="carousel-item active">
             <div class="container">
-              <div class="carousel-caption text-left">
-                <h1 class="text-center">
-                  <bold>Japan</bold><br>
-                  TÌM ĐIỂM ĐẾN YÊU THÍCH CỦA BẠN
+              <img class="img-fluid d-none d-lg-block"
+                src="wp-content/themes/japanguide/assets/images/banner/sub_banner_destination.jpg" alt="">
+              <img class="img-fluid d-block d-lg-none"
+                src="wp-content/themes/japanguide/assets/images/banner/sub_banner_destination_sp.jpg" alt="">
+              <div class="carousel-caption">
+                <h1>
+                  Japan
                 </h1>
+                <p>
+                  TÌM ĐIỂM ĐẾN YÊU THÍCH CỦA BẠN
+                </p>
               </div>
             </div>
           </div>
