@@ -25,7 +25,7 @@ add_action( 'wp_enqueue_scripts', 'setup_scripts' );
 function default_setup(){
     register_nav_menus( array(
         'default_main_menu' => __('Main Menu', DOMAIN),
-        'footer_destinations_menu' => __('Footer Destinations Menu', DOMAIN)
+        'helpful_menu' => __('helpful links', DOMAIN)
     ) );
 
     add_theme_support( 'post-thumbnails' );

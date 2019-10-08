@@ -1,18 +1,17 @@
 </main>
 <footer id="footer" class="block-footer py-3 py-md-5">
   <div class="container">
-    <div class="row text-center mb-3 mb-md-5">
+    <div class="text-center mb-3 mb-md-5">
       <img title="<?php bloginfo('name') ?>" alt="<?php bloginfo('name') ?>" class="mx-auto" style="max-width: 110px;"
         src="<?php echo wpedu_get_option('option_logo_footer')['url'] ?>">
     </div>
     <div class="row">
       <div class="col-lg-4">
-        <h4>Liên hệ</h4>
+        <h4>Contact</h4>
         <ul>
-          <li><i class="fa fa-map-marker mr-2"></i>Lầu 9, tòa nhà Capital Place, số 6 Thái Văn Lung, Quận 1, TP. Hồ Chí Minh
-
+          <li><i class="fa fa-map-marker mr-2"></i>9th Floor, Capital Place Bldg., No.6, Thai Van Lung St., Dist 1, HCMC, VietNam
             </li>
-          <li><i class="fa fa-phone mr-2"></i>(+84)28 3827 7722 Thứ 2 – thứ 6 | 8:30 – 18:30</li>
+          <li><i class="fa fa-phone mr-2"></i>(+84)28 3827 7722 Monday – Friday | 8:30 – 18:30</li>
         </ul>
       </div>
       <div class="col-lg-3">

@@ -8,11 +8,12 @@ body {
   font-weight: 400;
   font-style: normal;
   font-size: 14px;
+  
   bolder {
     font-weight: 900;
   }
 
-  bold {
+  bold, strong {
     font-weight: 600;
   }
 
@@ -69,6 +70,20 @@ body {
       }
       @media screen and (min-width: 783px) {
         top: 32px;
+      }
+    }
+
+    #header-menu {
+      &.sticky {
+        top: 46px;
+
+        @media screen and (min-width: 783px) {
+          top: 32px;
+        }
+
+        @media screen and (max-width: 600px) {
+          top: 0;
+        }
       }
     }
   }

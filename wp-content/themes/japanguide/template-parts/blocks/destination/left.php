@@ -1,47 +1,49 @@
-<section class="row kilala-animation">
-  <div class="col-12">
-    <!-- map -->
-    <?php get_template_part('template-parts/blocks/global/map') ?>
+<section class="kilala-animation">
+  <div class="row">
+    <div class="col-12">
+      <!-- map -->
+      <?php get_template_part('template-parts/blocks/global/map') ?>
+    </div>
   </div>
 </section>
-<section class="row gallery-small-cards">
-  <div class="col-12 main-title">
-    <h2>
-      <bold>Điểm đến</bold>
-      <thin> được yêu thích nhất</thin>
-    </h2>
-  </div>
-  <?php
-  if (empty($destinations_top) || NULL === $destinations_top) {
-    $destinations_top = get_destinations_top();
-  }
-
-  foreach ($destinations_top as $k => $v) :
-    if($k > 5) break;
-    $thumbnail = get_field('feature_image', $v->taxonomy . '_' . $v->term_id);
-    $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['sizes']['thumbnail']  : no_img('8151');
-    ?>
-    <div class="col-sm-6 col-md-4 gallery">
-      <a class="link-gallery" alt="<?php echo $v->name; ?>" title="<?php echo $v->name; ?>" href="<?php echo get_term_link($v->term_id); ?>">
-        <div class="link-gallery-image">
-          <figure class="image">
-            <div class="image-mask" style="background: url(<?php echo $thumbnail; ?>)">
-            </div>
-          </figure>
-          <div class="link-gallery-image-text">
-            <div class="link-gallery-image-text-content">
-              <?php echo $v->description; ?>
+<section class="gallery-cards sm">
+  <div class="row">
+    <div class="col-12 ">
+      <h2 class="main-title-lg">
+        <?php printf('%s <thin>%s</thin>',pll__('Điểm đến'),pll__('được yêu thích nhất')); ?>
+      </h2>
+    </div>
+    <?php
+    if (empty($destinations_top) || NULL === $destinations_top) {
+      $destinations_top = get_destinations_top();
+    }
+    foreach ($destinations_top as $k => $v) :
+      if ($k > 5) break;
+      $thumbnail = get_field('feature_image', $v->taxonomy . '_' . $v->term_id);
+      $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['sizes']['thumbnail']  : no_img('8151');
+      ?>
+      <div class="col-sm-6 col-md-4 gallery">
+        <a class="link-gallery" alt="<?php echo $v->name; ?>" title="<?php echo $v->name; ?>" href="<?php echo get_term_link($v->term_id); ?>">
+          <div class="link-gallery-image">
+            <figure class="image">
+              <div class="image-mask" style="background-image: url(<?php echo $thumbnail; ?>)">
+              </div>
+            </figure>
+            <div class="link-gallery-image-text">
+              <div class="link-gallery-image-text-content">
+                <?php echo $v->description; ?>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="link-gallery-desc">
-          <h3><i class="fa fa-map-marker mr-2"></i><?php echo $v->name; ?></h3>
-        </div>
-      </a>
-    </div>
-  <?php endforeach; ?>
+          <div class="link-gallery-desc">
+            <h3><i class="fa fa-map-marker mr-2"></i><?php echo $v->name; ?></h3>
+          </div>
+        </a>
+      </div>
+    <?php endforeach; ?>
+  </div>
 </section>
-<section class="top-dest">
+<section class="top-dest mt-5">
   <?php
   if (empty($destinations) || NULL === $destinations) {
     $destinations = get_destinations_map();

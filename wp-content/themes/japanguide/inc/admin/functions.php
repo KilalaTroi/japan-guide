@@ -90,3 +90,9 @@ function default_login_logo()
         return $file_types;
     }
     add_action('upload_mimes', 'add_file_types_to_uploads');
+    add_filter('logout_url', 'fix_logout_url');
+    function fix_logout_url($url)
+    {
+        $redirect = admin_url();
+        return $url . '&redirect_to=' . $redirect;
+    }

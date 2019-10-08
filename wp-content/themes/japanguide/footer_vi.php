@@ -1,7 +1,7 @@
 </main>
 <footer id="footer" class="block-footer py-3 py-md-5">
   <div class="container">
-    <div class="row text-center mb-3 mb-md-5">
+    <div class="text-center mb-3 mb-md-5">
       <img title="<?php bloginfo('name') ?>" alt="<?php bloginfo('name') ?>" class="mx-auto" style="max-width: 110px;"
         src="<?php echo wpedu_get_option('option_logo_footer')['url'] ?>">
     </div>
