@@ -164,7 +164,7 @@ a {
     }
   }
 
-  span:first-child > span > a:before {
+  > span:first-child > span > a:before {
     content: "\f015";
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
