@@ -8,12 +8,13 @@ body {
   font-weight: 400;
   font-style: normal;
   font-size: 14px;
-  
+  color: #333;
   bolder {
     font-weight: 900;
   }
 
-  bold, strong {
+  bold,
+  strong {
     font-weight: 600;
   }
 
@@ -98,9 +99,13 @@ body {
 /*-----------------------------------------------------*/
 
 a {
+  color: #333;
   &:hover {
     text-decoration: none;
     color: #ff1945;
+  }
+  &.abc {
+    color: $link-color;
   }
 }
 
@@ -112,12 +117,18 @@ a {
   font-size: 13px;
   font-weight: 500;
   margin: 10px 0 15px;
+  margin: 0;
+
   @media (min-width: 768px) {
-    margin: 15px 0 30px;
+    margin: 0 0 5px;
   }
   @media (min-width: 992px) {
-    margin: 20px 0 50px;
+    margin: 0 0 10px;
   }
+  @media (min-width: 1200px) {
+    margin: 0 0 20px;
+  }
+
   li {
     &:not(.active) {
       &:hover {
