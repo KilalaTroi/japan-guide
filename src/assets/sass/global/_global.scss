@@ -94,6 +94,10 @@ body {
   visibility: hidden;
 }
 
+.font-default {
+  font-size: 1rem!important;
+}
+
 /*-----------------------------------------------------*/
 /*-------------------   link   --------------------*/
 /*-----------------------------------------------------*/
@@ -158,5 +162,16 @@ a {
         max-width: 500px;
       }
     }
+  }
+
+  span:first-child > span > a:before {
+    content: "\f015";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-right: 5px;
   }
 }

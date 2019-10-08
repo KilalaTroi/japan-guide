@@ -56,7 +56,7 @@ $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['url'] : no_im
               <a class="link-gallery" title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
                 <div class="link-gallery-image">
                   <figure class="image">
-                    <div class="image-mask" style="background: url('<?php echo $img; ?>')">
+                    <div class="image-mask" style="background-image: url('<?php echo $img; ?>')">
                     </div>
                   </figure>
                   <div class="link-gallery-image-text">
