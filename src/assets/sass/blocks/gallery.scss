@@ -1,4 +1,8 @@
 .galleries {
+  &.row {
+    margin-right: -10px;
+    margin-left: -10px;
+  }
   .gallery {
     padding: 10px;
     .link-gallery {
@@ -78,6 +82,10 @@
   }
 }
 .gallery-cards {
+  &.row {
+    margin-right: -10px;
+    margin-left: -10px;
+  }
   .gallery {
     padding: 10px;
     .link-gallery {
@@ -196,6 +204,10 @@
   }
 }
 .gallery-small-cards {
+  &.row {
+    margin-right: -10px;
+    margin-left: -10px;
+  }
   .gallery {
     padding: 10px;
     .link-gallery {
