@@ -54,11 +54,9 @@ if (!function_exists('create_destination_taxonomies')) {
                 ),
                 'show_ui' => true,
                 'show_tagcloud' => false,
-                'hierarchical' => true
+                'hierarchical' => true,
             )
         );
     }
-
-
     add_action( 'init', 'create_destination_taxonomies', 0 );
 }

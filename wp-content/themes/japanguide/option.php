@@ -33,6 +33,19 @@ $arraySetSection = array(
 		),
 
 		array(
+			'id'    => 'option_phone',
+			'type'  => 'text',
+			'title' => 'Phone number',
+		),
+
+		array(
+			'id'    => 'option_email',
+			'type'  => 'text',
+			'validate' => 'email',
+			'title' => 'Email',
+		),
+
+		array(
 			'id'    => 'option_logo_footer',
 			'type'  => 'media',
 			'title' => 'Footer logo',

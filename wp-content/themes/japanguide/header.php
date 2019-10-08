@@ -111,7 +111,7 @@
       </div>
     </div>
 
-    <nav id="header-menu" class="navbar navbar-expand-md shadow-lg">
+    <nav id="header-menu" class="navbar navbar-light navbar-expand-md shadow-sm">
       <div class="container">
         <?php $urlKilala = LANGUAGE_SLUG === 'ja' ? 'http://www.kilala.vn/ja/cam-nang-nhat-ban.html' : 'http://www.kilala.vn/cam-nang-nhat-ban.html'; ?>
         <a target="_blank" class="navbar-brand mr-0" href="<?php echo $urlKilala ?>">
@@ -137,6 +137,24 @@
             'walker'          => new WP_Bootstrap_Navwalker(),
           ));
           ?>
+
+          <ul class="navbar-nav d-block d-md-none my-2">
+            <li class="nav-item mb-3">
+              <div class="search-container">
+                <form action="<?= esc_url(home_url('/')) ?>" method="get" class="d-flex">
+                  <input type="text" name="s" placeholder="Tìm kiếm..." name="search">
+                  <button type="submit" class="ml-auto"><i class="fa fa-search"></i></button>
+                </form>
+              </div>
+            </li>
+            <?php
+            pll_the_languages(array(
+              'hide_current' => 1,
+              'show_flags' => 1,
+            ));
+
+            ?>
+          </ul>
         </div>
       </div>
     </nav>

@@ -5,17 +5,15 @@ if (empty($categories) || NULL === $categories) {
 ?>
 <section id="interests" class="py-3 py-md-5 kilala-animation-2">
 <div class="container">
-<div class="row main-title main-title-lg">
-<h2 class="kilala-animation-item font-weight-light" data-animate>
-<strong><?php echo pll__('Chủ đề'); ?></strong>
-<?php echo pll__('phổ biến'); ?>
+<h2 class="kilala-animation-item main-title-lg" data-animate>
+<?php printf('%s <thin>%s</thin>',pll__('Chủ đề'),pll__('phổ biến')); ?>
 </h2>
-</div>
 <div class="row galleries">
 <?php
 foreach ($categories as $category) :
+
 $thumbnail = get_field('feature_image', $category->taxonomy . '_' . $category->term_id);
-$thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['sizes']['medium']  : no_img('8151', 'medium');
+$thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['sizes']['feature-image']  : no_img('8151', 'feature-image');
 ?>
 <div class="col-6 col-md-3 gallery kilala-animation-item" data-animate>
 <a class="link-gallery" title="<?php echo $category->name; ?>" href="<?php echo get_term_link($category->term_id); ?>">

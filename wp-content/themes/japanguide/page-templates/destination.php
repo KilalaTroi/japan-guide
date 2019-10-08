@@ -13,8 +13,7 @@ get_header();
         <div class="container">
           <div class="carousel-caption text-left">
             <h1 class="text-center">
-              <bold><?php echo pll__('Japan'); ?></bold><br>
-              <thin><?php echo pll__('TÌM ĐIỂM ĐẾN YÊU THÍCH CỦA BẠN'); ?></thin>
+              <?php printf('%s <br><thin>%s</thin>',pll__('Japan'),pll__('TÌM ĐIỂM ĐẾN YÊU THÍCH CỦA BẠN')); ?>
             </h1>
           </div>
         </div>
