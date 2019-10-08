@@ -42,9 +42,9 @@ $term_id = !empty($term) ? $term->id : '';
   wp_reset_postdata(); ?>
 </div>
 <div id="exploreCanvasNav" class="overlaynav"></div>
-<section>
+<section id="breadcrumb">
   <div class="container">
-      <?php echo get_breadcrumb(); ?>
+  <?php echo get_breadcrumb(); ?>
   </div>
 </section>
 <section>

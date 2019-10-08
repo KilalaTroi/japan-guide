@@ -85,7 +85,7 @@ function get_categories_top()
 function get_breadcrumb()
 {
     if (function_exists('yoast_breadcrumb')) {
-        return yoast_breadcrumb('<div id="breadcrumb" class="mb-5">','</div>',false);
+        return yoast_breadcrumb('<div id="breadcrumb" class="my-5">','</div>',false);
     }
     return '';
 }
