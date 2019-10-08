@@ -141,5 +141,8 @@
       </div>
     </nav>
     <div class="placeholder-content"></div>
+    <div class="container">
+      <hr class="header-border m-0">
+    </div>
   </header>
   <main role="main" id="main-content">

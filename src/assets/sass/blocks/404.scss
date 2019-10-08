@@ -1,0 +1,61 @@
+._404-content {
+  h1 {
+    font-size: 110px;
+    color: #222222;
+    font-weight: 900;
+  }
+
+  h2 {
+    font-size: 36px;
+    font-weight: 900;
+  }
+
+  .btn-go-home {
+    background: #ff1944;
+    color: #ffffff;
+    font-size: 14px;
+    padding-bottom: 8px;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      background: rgba(255, 25, 69, 0.7);
+    }
+  }
+}
+
+.help-link {
+  h4 {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  ul {
+    li {
+      @include media-breakpoint-up(md) {
+        display: inline-block;
+      }
+
+      +li {
+        @include media-breakpoint-up(md) {
+          margin-left: 70px;
+        }
+      }
+
+      a:before {
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        content: "\f054";
+        margin-right: 5px;
+        font-size: 12px;
+      }
+
+      a:not(:hover) {
+        color: #ff1944;
+      }
+    }
+  }
+}
