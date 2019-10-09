@@ -121,10 +121,32 @@ article {
       }
     }
   }
+  .post-normal-verical {
+  }
 }
 
 article-2 {
-  .post-normal-verical {
+  .post-normal {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    .feature-img {
+      width: 125px;
+      height: 90px;
+      background-size: cover;
+      background-position: center;
+    }
+    .entry {
+      width: calc(100% - 125px);
+      padding: 0 10px;
+      .post-category {
+      }
+      .entry-title {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 900;
+      }
+    }
   }
 }
 
