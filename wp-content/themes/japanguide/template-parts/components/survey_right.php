@@ -7,7 +7,7 @@
     }
 
     ?>
-    <div class="d-flex flex-wrap justify-content-center">
+    <div class="d-flex flex-wrap justify-content-between">
       <?php foreach ($destinations_top as $v) :
         $thumbnail = get_field('feature_image', $v->taxonomy . '_' . $v->term_id);
         $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['sizes']['thumbnail']  : no_img('8151');
