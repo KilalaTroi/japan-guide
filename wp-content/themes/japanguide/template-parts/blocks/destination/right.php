@@ -1,5 +1,5 @@
-<section class="py-4">
-  <h2 class="main-title"><?php echo pll__('Japan Travel News'); ?></h2>
+<section class="block kilala-animation">
+  <h2 class="main-title kilala-animation-item" data-animate><?php echo pll__('Japan travel news'); ?></h2>
   <div class="row">
     <?php
     $postRight = new WP_Query(
@@ -17,20 +17,20 @@
         $thumb = isset($thumb) && !empty($thumb) ? $thumb : no_img('8151', 'thumbnail');
         $taxonomy_destination = get_the_terms(get_the_ID(), 'destinations');
         ?>
-        <article-2 class="col-md-6 col-lg-12">
-          <a href="<?php echo the_permalink(); ?>" title="<?php the_title(); ?>" class="post-normal">
-            <div class="feature-img" style="background-image: url(<?php echo $thumb; ?>);">
-            </div>
+        <article class="col-md-6 col-lg-12 kilala-animation-item" data-animate>
+          <div class="post-normal">
+            <a href="<?php echo the_permalink(); ?>" title="<?php the_title(); ?>" class="feature-img d-block" style="background-image: url(<?php echo $thumb; ?>);">
+            </a>
             <div class="entry">
-              <?php if (isset($taxonomy_destination) && !empty($taxonomy_destination)) { ?>
-                <label class="post-category">
-                  <i class="fa fa-map-marker mr-1" style="color: #ff1945"></i><?php echo  array_shift($taxonomy_destination)->name; ?>
-                </label>
-              <?php } ?>
-              <p class="entry-title"><?php the_title(); ?></p>
+              <?php
+                if (isset($taxonomy_destination) && !empty($taxonomy_destination)) {
+                  printf('<a class="post-category d-block" title="%1$s" href="%2$s"><i class="fa fa-map-marker mr-1"></i>%1$s</a>', $taxonomy_destination[0]->name, get_term_link($taxonomy_destination[0]->term_id));
+                }
+                printf('<a class="entry-title d-block" title="%1$s" href="%2$s">%1$s</a>', get_the_title(), get_the_permalink());
+                ?>
             </div>
-          </a>
-        </article-2>
+          </div>
+        </article>
     <?php endwhile;
     } ?>
   </div>

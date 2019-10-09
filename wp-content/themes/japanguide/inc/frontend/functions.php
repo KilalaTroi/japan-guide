@@ -85,7 +85,48 @@ function get_categories_top()
 function get_breadcrumb()
 {
     if (function_exists('yoast_breadcrumb')) {
-        return yoast_breadcrumb('<section id="breadcrumb"><div class="container"><div class="row"><div class="breadcrumb" class="my-5">','</div></div></div></section>',false);
+        return yoast_breadcrumb('<section id="breadcrumb"><div class="container"><div class="row"><div class="breadcrumb" class="my-5">', '</div></div></div></section>', false);
     }
     return '';
 }
+
+function get_short_text($obj, $length)
+{
+    $str = $obj;
+    if ($length < strlen($str)) {
+        $count = strpos($str, ' ', $length) === false ? strlen($str) : strpos($str, ' ', $length);
+        $str = substr($str, 0, $count) . '...';
+    }
+    return $str;
+}
+
+function wpedu_translate(){
+	/**
+	 * Key = Name
+	 * Value = String
+	 */
+	$arr = array(
+        'Điểm đến' 	                    => 'Destination',
+        'Các điểm đến'                  => 'Destinations',
+        'được yêu thích nhất' 	        => 'interests',
+        'Chủ đề'                        => 'Topic',
+        'phổ biến'                      => 'popular',
+        'Tin tức du lịch Nhật Bản'      => 'Japan travel news',
+        'Chủ đề phổ biến'               => 'Popular topic',
+        'Bạn yêu thích điểm đến nào ở Nhật Bản?'  => 'What is your favorite destination in Japan?',
+        'Bài viết'                      => 'Post',
+        'về'                            => 'about',
+        'Khám phá'                      => 'Discover',
+        'Bài viết cùng chủ đề'          => 'Posts same topic',
+        'Không tìm thấy trang'          => 'Page not found',
+        'Trang bạn đang tìm kiếm không thể tìm thấy.' => 'The page you were looking for could not be found.',
+        'Trở về trang chủ'              => 'Go back to home',
+        'Dưới đây là một số liên kết hữu ích'   => 'Here are some helpful links',
+        'Xem thêm'   => 'More',
+	);
+
+	foreach( $arr as $key => $value ) {
+		pll_register_string($key, $value, 'translate-custom');
+	}
+}
+add_action( 'after_setup_theme', 'wpedu_translate' );

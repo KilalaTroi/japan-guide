@@ -50,7 +50,7 @@ $term_id = !empty($term) ? $term->id : '';
     <div class="row">
       <div class="col-12">
         <a id="openExploreNav" href="javascript:void(0)"><i class="fa fa-map-marker mr-2"></i>
-          <?php printf('%s %s', pll__('Khám phá'), $term_name); ?></a>
+          <?php printf('%s %s', pll__('Discover'), $term_name); ?></a>
       </div>
     </div>
   </div>
@@ -59,7 +59,7 @@ $term_id = !empty($term) ? $term->id : '';
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
-        <section class="article-content">
+        <section class="article-content block">
           <h1><?php the_title(); ?></h1>
           <div class="row">
             <div class="col-12 py-2 py-lg-3">
@@ -93,6 +93,7 @@ $term_id = !empty($term) ? $term->id : '';
           'post_type'      => 'post',
           'posts_per_page' => 3,
           'post_status' => 'publish',
+          'orderby' => 'rand',
           'exclude' => get_the_ID(),
           'tax_query' => array(
             array(
@@ -103,50 +104,21 @@ $term_id = !empty($term) ? $term->id : '';
           ),
         ));
         if ($relate_category->have_posts()) { ?>
-          <section class="row py-4">
-            <div class="col-12">
-              <h2 class="main-title"><?php echo pll__('Bài viết cùng chủ đề'); ?></h2>
-            </div>
-            <div class="col-12">
+          <section class="block">
+            <h2 class="main-title"><?php echo pll__('Posts same topic'); ?></h2>
+            <div class="row">
+              <div class="col-12">
 
-              <div class="row gallery-cards sm">
-                <?php
-                  while ($relate_category->have_posts()) {
-                    $relate_category->the_post();
-                    $img = get_the_post_thumbnail_url($post->ID, 'feature-image');
-                    $img = isset($img) && !empty($img) ? $img : no_img('8151', 'thumbnail');
-                    $sort_excerpt = '';
-                    $destinations = wp_get_post_terms(get_the_ID(), 'destinations');
-                    if (NULL !== get_the_excerpt() && !empty(get_the_excerpt())) {
-                      $sort_excerpt = explode('.', get_the_excerpt());
-                      $sort_excerpt = $sort_excerpt[0] . '.';
-                    }
-                    ?>
-                  <div class="col-sm-6 col-md-4 gallery">
-                    <a class="link-gallery" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-                      <div class="link-gallery-image">
-                        <figure class="image">
-                          <div class="image-mask" style="background: url(<?php echo $img; ?>)">
-                          </div>
-                        </figure>
-                        <div class="link-gallery-image-text">
-                          <div class="link-gallery-image-text-content">
-                            <?php echo $sort_excerpt; ?>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="link-gallery-desc">
-                        <?php
-                          if(isset($destinations) && !empty($destinations)){
-                            printf('<h3><i class="fa fa-map-marker mr-2"></i>%s</h3>',array_shift($destinations)->name);
-                          }
-                        ?>
-                        <p><?php the_title(); ?></p>
-                      </div>
-                    </a>
-                  </div>
-                <?php }
-                  wp_reset_postdata(); ?>
+                <div class="row gallery-cards sm">
+                  <?php
+                    while ($relate_category->have_posts()) {
+                      $relate_category->the_post();
+                      $img = get_the_post_thumbnail_url(get_the_ID(), 'feature-image');
+                      $img = isset($img) && !empty($img) ? $img : no_img('8151', 'thumbnail');
+                      $destinations = wp_get_post_terms(get_the_ID(), 'destinations');
+                      include(APP_PATH.'/template-parts/components/article_col_3.php');
+                    } wp_reset_postdata(); ?>
+                </div>
               </div>
             </div>
           </section>

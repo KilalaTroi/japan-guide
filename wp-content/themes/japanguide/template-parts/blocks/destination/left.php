@@ -1,4 +1,4 @@
-<section class="kilala-animation">
+<section class="block kilala-animation-1">
   <div class="row">
     <div class="col-12">
       <!-- map -->
@@ -7,24 +7,20 @@
   </div>
 </section>
 
-<section id="stop-dest">
+<section class="block" id="stop-dest">
   <h2 class="main-title-lg">
-    <?php printf('%s <thin>%s</thin>', pll__('Điểm đến'), pll__('được yêu thích nhất')); ?>
+    <?php printf('%s', pll__('Destinations')); ?>
   </h2>
-  <div class="row gallery-cards sm kilala-animation-1">
+  <div class="row gallery-cards kilala-animation-2">
     <?php
     if (empty($destinations_top) || NULL === $destinations_top) {
       $destinations_top = get_destinations_top();
     }
     foreach ($destinations_top as $k => $v) :
-      if ($k > 5) break;
       $thumbnail = get_field('feature_image', $v->taxonomy . '_' . $v->term_id);
-      $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['sizes']['feature-image']  : no_img('8151');
-      $sort_description = '';
-      if (isset($v->description) && !empty($v->description)) {
-        $sort_description = explode('.', $v->description);
-        $sort_description = $sort_description[0] . '.';
-      }
+      $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['sizes']['large']  : no_img('8151');
+      $description_cotnent = get_short_text($v->description, 345);
+      $sort_description = get_short_text($v->description, 70);
       ?>
       <div class="col-sm-6 col-md-4 gallery kilala-animation-item" data-animate>
         <a class="link-gallery" alt="<?php echo $v->name; ?>" title="<?php echo $v->name; ?>" href="<?php echo get_term_link($v->term_id); ?>">
@@ -35,7 +31,7 @@
             </figure>
             <div class="link-gallery-image-text">
               <div class="link-gallery-image-text-content">
-                <?php echo $sort_description; ?>
+                <?php echo $description_cotnent; ?>
               </div>
             </div>
           </div>
@@ -49,7 +45,7 @@
   </div>
 </section>
 
-<section class="top-dest mt-5">
+<section class="top-dest block">
   <?php
   if (empty($destinations) || NULL === $destinations) {
     $destinations = get_destinations_map();
@@ -63,10 +59,10 @@
         <h2 class="main-title">
           <i class="fa fa-map-marker mr-2"></i><?php echo $destination->name; ?></h2>
       </div>
-      <div class="col-md-6 top-dest-map">
+      <div class="col-md-5 top-dest-map">
         <?php printf('<img title="%1$s" alt="%1$s" src="%2$s" />', $destination->name, $sub_image) ?>
       </div>
-      <div class="col-md-6 top-dest-text">
+      <div class="col-md-7 top-dest-text">
         <?php
           $posts = get_posts(array(
             'post_type'      => 'post',
@@ -82,25 +78,25 @@
           ));
           global $post;
           ?>
-        <ul class="kilala-animation-2">
+        <ul>
           <?php foreach ($posts as $post) {
               setup_postdata($post);
               ?>
-            <li class="kilala-animation-item" data-animate>
+            <li>
               <a title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
                 <h3>
                   <img class="rating-icon" src="/wp-content/uploads/2019/10/icon-japanese-flower.svg">
                   <?php the_title(); ?>
                 </h3>
-                <?php the_excerpt(); ?>
               </a>
+              <?php the_excerpt(); ?>
             </li>
           <?php }
             wp_reset_postdata();
             if (isset($posts) && !empty($posts)) { ?>
             <li>
-              <a title="<?php echo $destination->name; ?>" href="<?php echo get_term_link($destination->term_id) ?>" class="kilala-animation-item" data-animate>
-                <?= pll__('Xem thêm') ?><i class="ml-2 fa fa-angle-down"></i>
+              <a title="<?php echo $destination->name; ?>" class="extra-link" href="<?php echo get_term_link($destination->term_id) ?>">
+                <?= pll__('More') ?><i class="ml-2 fa fa-angle-down"></i>
               </a>
             </li>
           <?php } ?>

@@ -55,6 +55,7 @@ if (!function_exists('create_destination_taxonomies')) {
                 'show_ui' => true,
                 'show_tagcloud' => false,
                 'hierarchical' => true,
+                'rewrite' => array('slug' => __('destination', DOMAIN))
             )
         );
     }
