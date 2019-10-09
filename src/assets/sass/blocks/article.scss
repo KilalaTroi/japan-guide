@@ -1,13 +1,13 @@
 article {
-  margin: 15px 0;
-  &:hover {
-    .feature-img {
-      &:after {
-        opacity: 0.8 !important;
+  .post-top {
+    margin: 15px 0;
+    &:hover {
+      .feature-img {
+        &:after {
+          opacity: 0.8 !important;
+        }
       }
     }
-  }
-  .post {
     display: block;
     overflow: hidden;
     background-size: cover;
@@ -99,9 +99,6 @@ article {
       }
     }
   }
-}
-
-article-2 {
   .post-normal {
     margin-bottom: 20px;
     display: flex;
@@ -123,6 +120,11 @@ article-2 {
         font-weight: 900;
       }
     }
+  }
+}
+
+article-2 {
+  .post-normal-verical {
   }
 }
 
