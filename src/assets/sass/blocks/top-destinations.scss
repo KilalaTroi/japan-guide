@@ -1,4 +1,7 @@
 .top-dest {
+  > div:not(:last-child) {
+    margin-bottom: 20px;
+  }
   .top-dest-title {
     h2 {
       border-bottom: 1px solid #dfdfdf;
