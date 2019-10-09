@@ -19,7 +19,7 @@
     foreach ($destinations_top as $k => $v) :
       if ($k > 5) break;
       $thumbnail = get_field('feature_image', $v->taxonomy . '_' . $v->term_id);
-      $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['sizes']['thumbnail']  : no_img('8151');
+      $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['sizes']['feature-image']  : no_img('8151');
       $sort_description = '';
       if (isset($v->description) && !empty($v->description)) {
         $sort_description = explode('.', $v->description);

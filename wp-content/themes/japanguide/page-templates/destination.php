@@ -6,11 +6,8 @@
 get_header();
 ?>
 <!--Start Pull HTML here-->
-<section id="breadcrumb">
-  <div class="container">
-    <?php echo get_breadcrumb(); ?>
-  </div>
-</section>
+<?php echo get_breadcrumb(); ?>
+
 <section id="banner">
   <div id="myCarousel" class="carousel slide has-cap" data-ride="carousel">
     <div class="carousel-inner">
@@ -38,7 +35,7 @@ get_header();
 
 </section>
 
-<section class="mt-3 mt-lg-5">
+<section class="mt-3 mt-lg-5 pb-5">
   <div class="container">
     <div class="row">
       <div class="col-lg-8">

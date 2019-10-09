@@ -4,9 +4,10 @@ $content = get_field('content', $current_term->taxonomy . '_' . $current_term->t
 $thumbnail = get_field('feature_image', $current_term->taxonomy . '_' . $current_term->term_id);
 $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['url'] : no_img('8151');
 ?>
+<?php echo get_breadcrumb(); ?>
 <section id="intro">
   <div class="container">
-    <div class="intro-wrapper py-4">
+    <div class="intro-wrapper pb-4">
       <div class="row">
         <div class="col-md-6 media d-flex align-items-center">
           <?php printf('<img class="mw-100" alt="%1$s" title="%1$s" class="img-fluid" src="%2$s">', $current_term->name, $thumbnail) ?>
@@ -44,7 +45,7 @@ $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['url'] : no_im
         <div class="row gallery-cards sm">
           <?php foreach ($posts as $post) :
             setup_postdata($post);
-            $img = get_the_post_thumbnail_url($post->ID, 'thumbnail');
+            $img = get_the_post_thumbnail_url($post->ID, 'feature-image');
             $img = isset($img) && !empty($img) ? $img : no_img('8151', 'thumbnail');
             $sort_excerpt = '';
             if (NULL !== get_the_excerpt() && !empty(get_the_excerpt())) {
