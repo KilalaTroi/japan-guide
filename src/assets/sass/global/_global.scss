@@ -31,14 +31,14 @@ body {
   .main-title {
     font-size: 18px;
     font-weight: 900;
-    margin: 15px 0;
+    margin: 0 0 15px;
     @media (min-width: 768px) {
       font-size: 24px;
-      margin: 20px 0;
+      margin: 0 0 20px;
     }
     @media (min-width: 992px) {
       font-size: 23px;
-      margin: 25px 0 20px;
+      margin: 0 0 20px;
     }
     @media (min-width: 1200px) {
       font-size: 26px;
@@ -49,11 +49,11 @@ body {
       font-weight: 900;
       @media (min-width: 768px) {
         font-size: 24px;
-        margin: 24px 0;
+        margin: 0 0 24px;
       }
       @media (min-width: 992px) {
         font-size: 30px;
-        margin: 25px 0 20px;
+        margin: 0 0 20px;
       }
       @media (min-width: 1200px) {
         font-size: 36px;
@@ -165,9 +165,27 @@ a {
 /*-------------------   interests   --------------------*/
 /*-----------------------------------------------------*/
 #interests {
-  background-image: url("wp-content/themes/japanguide/assets/images/bg/bg_interest_block.png");
-  background-size: contain;
+  background-image: url(../images/bg/bg_interest_block.jpg);
+  background-size: cover;
   background-repeat: no-repeat;
-  overflow: hidden;
-  background-position: bottom
+  background-position: bottom;
+}
+
+/*-----------------------------------------------------*/
+/*-------------------   section blocks   --------------------*/
+/*-----------------------------------------------------*/
+section.block, footer.block {
+  padding: 1rem 0;
+  @media (min-width: 576px) {
+    padding: 1.5rem 0;
+  }
+  @media (min-width: 768px) {
+    padding: 2rem 0;
+  }
+  @media (min-width: 992px) {
+    padding: 2.5rem 0;
+  }
+  @media (min-width: 1200px) {
+    padding: 3rem 0;
+  }
 }
