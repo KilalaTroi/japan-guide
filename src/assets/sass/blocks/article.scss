@@ -18,7 +18,11 @@ article {
       .entry {
         padding: 10px;
         .post-category {
-          font-size: 12px;
+          font-size: 13px;
+          margin-bottom: 5px;
+          i {
+            color: #ff1944;
+          }
         }
         .entry-title {
           font-size: 18px;
@@ -51,6 +55,10 @@ article {
         padding: 10px;
         .post-category {
           font-size: 13px;
+          margin-bottom: 5px;
+          i {
+            color: #ff1944;
+          }
         }
         .entry-title {
           font-size: 16px;
