@@ -1,25 +1,7 @@
 <?php
 global $current_term;
-$content = get_field('content', $current_term->taxonomy . '_' . $current_term->term_id);
-$thumbnail = get_field('feature_image', $current_term->taxonomy . '_' . $current_term->term_id);
-$thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['url'] : no_img('8151');
 ?>
 <?php echo get_breadcrumb(); ?>
-<section id="intro">
-  <div class="container">
-    <div class="intro-wrapper pb-4">
-      <div class="row">
-        <div class="col-md-6 media d-flex align-items-center">
-          <?php printf('<img class="mw-100" alt="%1$s" title="%1$s" class="img-fluid" src="%2$s">', $current_term->name, $thumbnail) ?>
-        </div>
-        <div class="col-md-6 content text-justify">
-          <h1><i class="icon fa fa-map-marker mr-2"></i><?php echo $current_term->name; ?></h1>
-          <?php echo $content ?>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 <section class="mt-3 mt-lg-5">
   <div class="container">
     <div class="row">
@@ -34,7 +16,7 @@ $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['url'] : no_im
           'post_status' => 'publish',
           'tax_query' => array(
             array(
-              'taxonomy' => 'destinations',
+              'taxonomy' => 'post_tag',
               'field' => 'term_id',
               'terms' => $current_term->term_id,
             )
@@ -48,6 +30,7 @@ $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['url'] : no_im
             $img = get_the_post_thumbnail_url($post->ID, 'feature-image');
             $img = isset($img) && !empty($img) ? $img : no_img('8151', 'thumbnail');
             $sort_excerpt = '';
+            $destinations = wp_get_post_terms($post->ID, 'destinations');
             if (NULL !== get_the_excerpt() && !empty(get_the_excerpt())) {
               $sort_excerpt = explode('.', get_the_excerpt());
               $sort_excerpt = $sort_excerpt[0] . '.';
@@ -67,12 +50,17 @@ $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['url'] : no_im
                   </div>
                 </div>
                 <div class="link-gallery-desc">
-                  <h3><i class="fa fa-map-marker mr-2"></i><?php echo $current_term->name; ?></h3>
+                  <?php
+                    if (isset($destinations) && !empty($destinations)) {
+                      printf('<h3><i class="fa fa-map-marker mr-2"></i>%s</h3>', array_shift($destinations)->name);
+                    }
+                    ?>
                   <p><?php the_title(); ?></p>
                 </div>
               </a>
             </div>
-          <?php endforeach; wp_reset_postdata(); ?>
+          <?php endforeach;
+          wp_reset_postdata(); ?>
         </div>
       </div>
       <div class="col-lg-4 pl-lg-4">

@@ -164,6 +164,7 @@
             height: 400px;
             background-size: cover !important;
             filter: brightness(90%);
+            background-position: center;
           }
         }
         &-text {
@@ -176,10 +177,6 @@
             font-size: 14px;
             text-align: justify;
             visibility: hidden;
-            display: box;
-            line-clamp: 3;
-            box-orient: vertical;
-            overflow: hidden;
           }
           padding: 20px;
           color: #fff;

@@ -30,6 +30,43 @@ a {
   }
 }
 
+#back-to-top {
+  display: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  white-space: nowrap;
+  background: #FF1944;
+  -webkit-transition: opacity .3s 0s, visibility 0s .3s, background-color .3s 0s;
+  transition: opacity .3s 0s, visibility 0s .3s, background-color .3s 0s;
+  opacity: .5;
+  z-index: 999;
+  text-align: center;
+  line-height: 45px;
+
+  i {
+    font-size: 45px;
+    color: #fff;
+  }
+
+  &:hover {
+    -webkit-transition: opacity .3s 0s, visibility 0s 0s, background-color .3s 0s;
+    transition: opacity .3s 0s, visibility 0s 0s, background-color .3s 0s;
+    opacity: 1;
+  }
+
+  @include media-breakpoint-up(md) {
+    right: 30px;
+    bottom: 50px;
+  }
+}
+
 .main-title {
   h1 {
     font-size: 20px;

@@ -30,8 +30,8 @@ function get_destinations_top()
     if (false === ($destinations_top  = get_transient($destinations_topL))) {
         $args = array(
             'hide_empty' => false,
-            // 'orderby' => 'term_id',
-            // 'order' => 'ASC',
+            'orderby' => 'term_order',
+            'order' => 'ASC',
             'number' => 8,
         );
         $destinations_top = get_terms('destinations', $args);
@@ -85,7 +85,7 @@ function get_categories_top()
 function get_breadcrumb()
 {
     if (function_exists('yoast_breadcrumb')) {
-        return yoast_breadcrumb('<div id="breadcrumb" class="mb-5">','</div>',false);
+        return yoast_breadcrumb('<section id="breadcrumb"><div class="container"><div class="row"><div class="breadcrumb" class="my-5">','</div></div></div></section>',false);
     }
     return '';
 }

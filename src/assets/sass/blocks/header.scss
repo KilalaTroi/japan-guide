@@ -149,6 +149,16 @@ header {
     max-width: 100px;
     border-bottom: 1px solid #efefef;
   }
+
+  a,i {
+    transition: all .3s ease-in-out;
+  }
+
+  li:hover {
+    a,i {
+      color: #CCCCCC;
+    }
+  }
 }
 
 .sticky {
@@ -169,6 +179,8 @@ header {
 #header-menu {
   background: #ffffff;
   transition: all .3s ease-in-out;
+  padding-right: 20px;
+  padding-left: 20px;
 
   * {
     transition: all .3s ease-in-out;
@@ -224,10 +236,24 @@ header {
     .navbar-collapse {
       justify-content: center;
       margin-top: 10px;
+
+      @include media-breakpoint-down(sm) {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 80px;
+        background: rgb(255, 255, 255);
+        z-index: 999;
+        padding: 20px;
+
+        >ul {
+          max-width: 540px;
+          margin: 0 auto;
+        }
+      }
     }
 
     .nav-link {
-      font-size: 16px;
       @include media-breakpoint-up(md) {
         padding-left: 20px;
         padding-right: 20px;
@@ -236,8 +262,10 @@ header {
   }
 
   .nav-link {
-    color: #4e4e4e;
+    font-size: 16px;
+    color: #333;
     text-transform: uppercase;
+    letter-spacing: 1.8px;
     font-weight: 600;
   }
 
@@ -245,9 +273,6 @@ header {
     &.navbar-nav {
       .nav-item {
         a {
-          &.nav-link {
-            text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
-          }
           &:after {
             content: "";
             border-bottom: 2px solid #ff1945;

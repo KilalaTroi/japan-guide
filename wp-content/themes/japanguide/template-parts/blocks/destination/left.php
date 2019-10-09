@@ -6,13 +6,12 @@
     </div>
   </div>
 </section>
-<section class="gallery-cards sm">
-  <div class="row">
-    <div class="col-12 ">
-      <h2 class="main-title-lg">
-        <?php printf('%s <thin>%s</thin>',pll__('Điểm đến'),pll__('được yêu thích nhất')); ?>
-      </h2>
-    </div>
+
+<section id="stop-dest">
+  <h2 class="main-title-lg">
+    <?php printf('%s <thin>%s</thin>', pll__('Điểm đến'), pll__('được yêu thích nhất')); ?>
+  </h2>
+  <div class="row gallery-cards sm kilala-animation-1">
     <?php
     if (empty($destinations_top) || NULL === $destinations_top) {
       $destinations_top = get_destinations_top();
@@ -20,9 +19,14 @@
     foreach ($destinations_top as $k => $v) :
       if ($k > 5) break;
       $thumbnail = get_field('feature_image', $v->taxonomy . '_' . $v->term_id);
-      $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['sizes']['thumbnail']  : no_img('8151');
+      $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['sizes']['feature-image']  : no_img('8151');
+      $sort_description = '';
+      if (isset($v->description) && !empty($v->description)) {
+        $sort_description = explode('.', $v->description);
+        $sort_description = $sort_description[0] . '.';
+      }
       ?>
-      <div class="col-sm-6 col-md-4 gallery">
+      <div class="col-sm-6 col-md-4 gallery kilala-animation-item" data-animate>
         <a class="link-gallery" alt="<?php echo $v->name; ?>" title="<?php echo $v->name; ?>" href="<?php echo get_term_link($v->term_id); ?>">
           <div class="link-gallery-image">
             <figure class="image">
@@ -31,18 +35,20 @@
             </figure>
             <div class="link-gallery-image-text">
               <div class="link-gallery-image-text-content">
-                <?php echo $v->description; ?>
+                <?php echo $sort_description; ?>
               </div>
             </div>
           </div>
           <div class="link-gallery-desc">
             <h3><i class="fa fa-map-marker mr-2"></i><?php echo $v->name; ?></h3>
+            <p><?php echo $sort_description; ?></p>
           </div>
         </a>
       </div>
     <?php endforeach; ?>
   </div>
 </section>
+
 <section class="top-dest mt-5">
   <?php
   if (empty($destinations) || NULL === $destinations) {
@@ -76,11 +82,11 @@
           ));
           global $post;
           ?>
-        <ul>
+        <ul class="kilala-animation-2">
           <?php foreach ($posts as $post) {
               setup_postdata($post);
               ?>
-            <li>
+            <li class="kilala-animation-item" data-animate>
               <a title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
                 <h3>
                   <img class="rating-icon" src="/wp-content/uploads/2019/10/icon-japanese-flower.svg">
@@ -93,8 +99,8 @@
             wp_reset_postdata();
             if (isset($posts) && !empty($posts)) { ?>
             <li>
-              <a title="<?php echo $destination->name; ?>" href="<?php echo get_term_link($destination->term_id) ?>">
-                Xem thêm<i class="ml-2 fa fa-angle-down"></i>
+              <a title="<?php echo $destination->name; ?>" href="<?php echo get_term_link($destination->term_id) ?>" class="kilala-animation-item" data-animate>
+                <?= pll__('Xem thêm') ?><i class="ml-2 fa fa-angle-down"></i>
               </a>
             </li>
           <?php } ?>
