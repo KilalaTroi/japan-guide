@@ -97,7 +97,7 @@ body {
 }
 
 .font-default {
-  font-size: 1rem!important;
+  font-size: 1rem !important;
 }
 
 /*-----------------------------------------------------*/
@@ -105,7 +105,7 @@ body {
 /*-----------------------------------------------------*/
 
 a {
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   color: #333;
 
   &:hover {
@@ -191,7 +191,8 @@ a {
 /*-----------------------------------------------------*/
 /*-------------------   section blocks   --------------------*/
 /*-----------------------------------------------------*/
-section.block, footer.block {
+section.block,
+footer.block {
   padding: 1rem 0;
   @media (min-width: 576px) {
     padding: 1.5rem 0;
@@ -205,4 +206,12 @@ section.block, footer.block {
   @media (min-width: 1200px) {
     padding: 3rem 0;
   }
+}
+
+/*-----------------------------------------------------*/
+/*-------------------   FONT SMALL   --------------------*/
+/*-----------------------------------------------------*/
+.extra-link,
+footer a {
+  font-size: 13px;
 }
