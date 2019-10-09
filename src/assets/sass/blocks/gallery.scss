@@ -71,6 +71,7 @@
         width: 100%;
         position: absolute;
         left: 50%;
+        text-transform: uppercase;
         @media (min-width: 768px) {
           font-size: 17px;
         }
@@ -176,6 +177,10 @@
             font-size: 14px;
             text-align: justify;
             visibility: hidden;
+            display: box;
+            line-clamp: 3;
+            box-orient: vertical;
+            overflow: hidden;
           }
           padding: 20px;
           color: #fff;

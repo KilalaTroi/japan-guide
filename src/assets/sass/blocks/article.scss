@@ -1,5 +1,5 @@
 article {
-  margin-bottom: 20px;
+  margin: 15px 0;
   cursor: pointer;
   &:hover {
     .feature-img {
@@ -15,8 +15,7 @@ article {
     background-position: 50%;
     position: relative;
     &-lg {
-      height: 210px;
-
+      height: 200px;
       .entry {
         padding: 10px;
         .post-category {
@@ -31,9 +30,9 @@ article {
         }
       }
       @media (min-width: 768px) {
-        height: 440px;
+        height: 430px;
         .entry {
-          padding: $grid-gutter-width;
+          padding: $grid-gutter-width*0.5;
           .post-category {
             font-size: 14px;
           }
@@ -48,7 +47,7 @@ article {
       }
     }
     &-md {
-      height: 210px;
+      height: 200px;
       .entry {
         padding: 10px;
         .post-category {
@@ -270,7 +269,7 @@ article-2 {
 }
 
 #intro {
-  background-image: url('wp-content/themes/japanguide/assets/images/bg/bg_map_japan.png');
+  background-image: url("wp-content/themes/japanguide/assets/images/bg/bg_map_japan.png");
   background-size: contain;
   background-repeat: no-repeat;
   overflow: hidden;
