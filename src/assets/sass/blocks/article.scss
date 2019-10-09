@@ -121,7 +121,10 @@ article {
       width: calc(100% - 125px);
       padding: 0 10px;
       .post-category {
-        margin-bottom: 5px;
+        margin-bottom: 2px;
+        i {
+          color: #ff1944;
+        }
       }
       .entry-title {
         margin: 0;
@@ -129,8 +132,22 @@ article {
         font-weight: 900;
       }
     }
-  }
-  .post-normal-verical {
+    &-vertical {
+      display: block;
+      .feature-img,
+      .entry {
+        width: auto;
+        max-width: 250px;
+      }
+      .feature-img {
+        height: 180px;
+      }
+      .entry {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        padding: 0;
+      }
+    }
   }
 }
 
