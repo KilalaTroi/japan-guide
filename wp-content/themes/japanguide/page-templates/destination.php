@@ -8,9 +8,9 @@ get_header();
 <!--Start Pull HTML here-->
 <?php echo get_breadcrumb(); ?>
 
-<section id="banner">
+<section id="banner" class="kilala-animation">
   <div id="myCarousel" class="carousel slide has-cap" data-ride="carousel">
-    <div class="carousel-inner">
+    <div class="carousel-inner kilala-animation-item" data-animate>
       <div class="carousel-item active">
         <div class="container">
           <?php
@@ -35,7 +35,7 @@ get_header();
 
 </section>
 
-<section class="mt-3 mt-lg-5 pb-5">
+<section>
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
