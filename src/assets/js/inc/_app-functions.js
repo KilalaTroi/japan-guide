@@ -1,20 +1,21 @@
 appFunctions = (function ($, window, undefined) {
     'use strict';
     let $win = $(window);
+    const mybutton = $("#back-to-top");
 
     /*-----------------------------------------------------*/
     /*------------------------  init function  --------------------*/
     /*-----------------------------------------------------*/
 
     function _initFunction() {
-        // _handleNav();
         _handleNav2();
-        // $(window).scroll(function () {
-        //     _handleNav();
-        // });
         _mapHover();
-
         _handleExploreNav();
+        _clickScrollToTop();
+
+        $(window).scroll(function () {
+            _scrollToTop();
+        });
     }
 
     function _handleNav2() {
@@ -28,6 +29,22 @@ appFunctions = (function ($, window, undefined) {
                 navbar.removeClass("sticky");
             }
         });
+    }
+
+    function _scrollToTop() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.fadeIn();
+        } else {
+            mybutton.fadeOut();
+        }
+    }
+
+    function _clickScrollToTop() {
+        mybutton.on('click touch', function (e) {
+            e.preventDefault();
+            $('html,body').animate({ scrollTop: 0 }, 400);
+            return false;
+        })
     }
 
     function _handleNav() {

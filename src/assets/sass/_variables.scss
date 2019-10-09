@@ -28,3 +28,10 @@ $container-max-widths: (
 
 $grid-columns: 12 !default;
 $grid-gutter-width: 40px !default;/*change from 30px to 40px*/
+
+// Links
+//
+// Style anchor elements.
+
+$link-color:                              #333 !default;
+$link-hover-color:                        #ff1945 !default;
