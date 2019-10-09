@@ -5,7 +5,7 @@
     background-position: center;
     color: #fff;
     padding-left: 3px;
-    margin: 2.5px;
+    margin: 5px 0;
     width: calc(50% - 10px);
     height: 50px;
     display: flex;
@@ -16,6 +16,7 @@
     cursor: pointer;
     @include media-breakpoint-between(sm, lg) {
       max-width: 160px;
+      justify-content: space-between!important;
     }
     @media (min-width: 768px) {
       font-size: 15px;

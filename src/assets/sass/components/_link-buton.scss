@@ -42,23 +42,25 @@ a {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   white-space: nowrap;
-  background: #FF1944;
-  -webkit-transition: opacity .3s 0s, visibility 0s .3s, background-color .3s 0s;
-  transition: opacity .3s 0s, visibility 0s .3s, background-color .3s 0s;
-  opacity: .5;
+  border: 2px solid #FF1945;
   z-index: 999;
   text-align: center;
   line-height: 45px;
 
   i {
-    font-size: 45px;
-    color: #fff;
+    font-size: 13px;
+    display: block;
+    color:#FF1945;
+    line-height: 41px;
   }
 
   &:hover {
-    -webkit-transition: opacity .3s 0s, visibility 0s 0s, background-color .3s 0s;
-    transition: opacity .3s 0s, visibility 0s 0s, background-color .3s 0s;
-    opacity: 1;
+    background: #FF1945;
+    margin-bottom: 5px;
+
+    i {
+      color: #fff;
+    }
   }
 
   @include media-breakpoint-up(md) {
