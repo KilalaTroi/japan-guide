@@ -1,4 +1,13 @@
 #survey {
+  .d-flex {
+    @include media-breakpoint-down(xs) {
+      justify-content: space-between!important;
+    }
+    @include media-breakpoint-up(lg) {
+      justify-content: space-between!important;
+    }
+  }
+
   label {
     background-repeat: no-repeat;
     background-size: cover;
@@ -6,7 +15,7 @@
     color: #fff;
     padding-left: 3px;
     margin: 2.5px 0;
-    width: calc(50% - 10px);
+    width: calc(50% - 5px);
     height: 50px;
     display: flex;
     align-items: center;
@@ -14,10 +23,11 @@
     font-weight: 600;
     text-shadow: 1.5px 1.5px 2px rgba(0, 0, 0, 0.7);
     cursor: pointer;
+
     @include media-breakpoint-between(sm, lg) {
       max-width: 160px;
-      justify-content: space-between!important;
     }
+
     @media (min-width: 768px) {
       font-size: 15px;
       font-weight: 900;
