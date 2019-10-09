@@ -1,6 +1,5 @@
 article {
   margin: 15px 0;
-  cursor: pointer;
   &:hover {
     .feature-img {
       &:after {
@@ -32,7 +31,7 @@ article {
       @media (min-width: 768px) {
         height: 430px;
         .entry {
-          padding: $grid-gutter-width*0.5;
+          padding: $grid-gutter-width * 0.5;
           .post-category {
             font-size: 14px;
           }
@@ -87,10 +86,17 @@ article {
       }
     }
     .entry {
+      cursor: pointer;
       z-index: 102;
       position: absolute;
       bottom: 0;
-      color: #fff;
+      a {
+        color: #fff;
+        cursor: pointer;
+        &:hover {
+          color: #daffd7;
+        }
+      }
     }
   }
 }
