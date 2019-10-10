@@ -58,16 +58,28 @@ appFunctions = (function ($, window, undefined) {
     }
 
     function _mapHover() {
-        $(document).on('mouseenter mouseleave', '#area-mask path', function (e) {
+        $(document).on('mouseenter', '#area-mask path', function (e) {
             let _id = $(this).attr('id');
             let _idText = _id.replace('mask', 'text');
             $('#' + _id + ', #' + _idText).addClass('is-active').siblings().removeClass('is-active');
         });
 
-        $(document).on('mouseenter mouseleave', '#map-text .map-spot', function (e) {
+        $(document).on('mouseenter', '#map-text .map-spot', function (e) {
             let _id = $(this).attr('id');
             let _idMask = _id.replace('text', 'mask');
             $('#' + _id + ', #' + _idMask).addClass('is-active').siblings().removeClass('is-active');
+        });
+
+        $(document).on('mouseleave', '#area-mask path', function (e) {
+            let _id = $(this).attr('id');
+            let _idText = _id.replace('mask', 'text');
+            $('#' + _id + ', #' + _idText).removeClass('is-active');
+        });
+
+        $(document).on('mouseleave', '#map-text .map-spot', function (e) {
+            let _id = $(this).attr('id');
+            let _idMask = _id.replace('text', 'mask');
+            $('#' + _id + ', #' + _idMask).removeClass('is-active');
         });
 
         $(document).on('click touch', '#area-mask path', function (e) {
