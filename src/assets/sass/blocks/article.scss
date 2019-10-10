@@ -128,8 +128,9 @@ article {
       }
       .entry-title {
         margin: 0;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 900;
+        line-height: 22px;
       }
     }
     &-vertical {
@@ -143,7 +144,7 @@ article {
         height: 180px;
       }
       .entry {
-        margin-top: 10px;
+        margin-top: 20px;
         margin-bottom: 20px;
         padding: 0;
       }
