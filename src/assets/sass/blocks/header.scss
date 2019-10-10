@@ -150,13 +150,15 @@ header {
     border-bottom: 1px solid #efefef;
   }
 
-  a,i {
-    transition: all .3s ease-in-out;
+  a,
+  i {
+    transition: all 0.3s ease-in-out;
   }
 
   li:hover {
-    a,i {
-      color: #CCCCCC;
+    a,
+    i {
+      color: #cccccc;
     }
   }
 }
@@ -178,12 +180,12 @@ header {
 
 #header-menu {
   background: #ffffff;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   padding-right: 20px;
   padding-left: 20px;
 
   * {
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 
   .navbar-brand {
@@ -191,7 +193,7 @@ header {
       max-height: 50px;
     }
 
-    +.navbar-brand {
+    + .navbar-brand {
       margin-left: 5px;
     }
   }
@@ -205,7 +207,7 @@ header {
     display: block;
     padding-top: 15px;
     padding-bottom: 10px;
-    box-shadow: none!important;
+    box-shadow: none !important;
 
     @include media-breakpoint-up(md) {
       padding-top: 30px;
@@ -246,7 +248,7 @@ header {
         z-index: 999;
         padding: 20px;
 
-        >ul {
+        > ul {
           max-width: 540px;
           margin: 0 auto;
         }
@@ -267,6 +269,8 @@ header {
     text-transform: uppercase;
     letter-spacing: 1.8px;
     font-weight: 600;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   ul {
@@ -284,7 +288,7 @@ header {
             display: block;
           }
         }
-        
+
         &.active,
         &:hover {
           a::after {
