@@ -9,7 +9,7 @@ body {
   font-style: normal;
   font-size: 14px;
   line-height: 24px;
-  color: #333;
+  color: #333
   bolder {
     font-weight: 900;
   }
@@ -46,15 +46,15 @@ body {
       margin: 0 0 35px;
     }
     &-lg {
-      font-size: 20px;
+      font-size: 30px;
       font-weight: 900;
       margin: 0 0 20px;
       @media (min-width: 768px) {
-        font-size: 24px;
+        font-size: 32px;
         margin: 0 0 25px;
       }
       @media (min-width: 992px) {
-        font-size: 30px;
+        font-size: 34px;
         margin: 0 0 30px;
       }
       @media (min-width: 1200px) {
@@ -194,9 +194,9 @@ a {
 /*-----------------------------------------------------*/
 section.block,
 footer.block {
-  padding: 1rem 0;
+  padding: 2rem 0;
   @media (min-width: 576px) {
-    padding: 1.5rem 0;
+    padding: 2rem 0;
   }
   @media (min-width: 768px) {
     padding: 2rem 0;
