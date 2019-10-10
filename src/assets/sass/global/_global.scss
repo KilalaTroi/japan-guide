@@ -9,8 +9,7 @@ body {
   font-style: normal;
   font-size: 14px;
   line-height: 24px;
-  color: #333
-  bolder {
+  color: #333 bolder {
     font-weight: 900;
   }
 
@@ -30,7 +29,7 @@ body {
   }
 
   .main-title {
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 900;
     margin: 0 0 20px;
     @media (min-width: 768px) {
@@ -38,7 +37,7 @@ body {
       margin: 0 0 25px;
     }
     @media (min-width: 992px) {
-      font-size: 23px;
+      font-size: 26px;
       margin: 0 0 30px;
     }
     @media (min-width: 1200px) {
@@ -215,4 +214,15 @@ footer.block {
 .extra-link,
 footer a {
   font-size: 13px;
+}
+
+/*-----------------------------------------------------*/
+/*-------------------   border top sm-to-md  --------------------*/
+/*-----------------------------------------------------*/
+.has-border-top-sp {
+  section {
+    :is(:first-child) {
+      border-top: 4px solid #ff1944;
+    }
+  }
 }
