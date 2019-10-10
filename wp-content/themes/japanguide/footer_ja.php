@@ -14,7 +14,7 @@
           <li><i class="fa fa-envelope-o mr-2"></i><a href="mailto:support@kilala.vn">support@kilala.vn</a></li>
         </ul>
       </div>
-      <div class="col-lg-3 col-sm-4 mt-sm-3 mt-lg-0">
+      <div class="col-lg-3 col-sm-4 mt-4 mt-lg-0">
         <ul>
           <li><img title="Cầu nói văn hóa Việt - Nhật" alt="Cầu nói văn hóa Việt - Nhật" class="mx-auto" style="max-width: 110px;" src="<?php echo wpedu_get_option('option_logo_kilala')['url'] ?>"></li>
           <li><a href="http://www.kilala.com.vn/jp" target="_blank">www.kilala.com.vn</a></li>
@@ -24,7 +24,7 @@
           <li><a href="http://www.kilala.vn/awards.html" target="_blank">www.kilala.vn/awards.html</a></li>
         </ul>
       </div>
-      <div class="col-lg-5 col-xl-4 offset-xl-1 col-sm-8 mt-sm-3 mt-lg-0">
+      <div class="col-lg-5 col-xl-4 offset-xl-1 col-sm-8 mt-4 mt-lg-0">
         <h4>Đăng ký bản tin</h4>
         <ul>
           <li>Đăng ký bản tin của Japan Guide để cập nhật những thông tin du lịch Nhật Bản mới nhất.</li>

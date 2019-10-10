@@ -41,7 +41,7 @@ get_header();
       <div class="col-lg-8">
         <?php get_template_part('template-parts/blocks/destination/left') ?>
       </div>
-      <div class="col-lg-4 pl-lg-4">
+      <div class="col-lg-4 pl-lg-4 has-border-top-sp">
         <?php get_template_part('template-parts/blocks/destination/right') ?>
       </div>
     </div>

@@ -28,16 +28,25 @@ $term_id = !empty($term) ? $term->id : '';
     setup_postdata($post);
     $img = get_the_post_thumbnail_url($post->ID, 'thumbnail');
     $img = isset($img) && !empty($img) ? $img : no_img('8151', 'thumbnail');
+    $destinations = wp_get_post_terms($post->ID, 'destinations');
     ?>
-    <article-2>
-      <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="post-normal">
-        <div class="feature-img" style="background-image: url(<?php echo $img; ?>);">
+    <article>
+      <div class="post-normal">
+        <?php
+          printf('<a title="%1$s" href="%2$s" class="feature-img d-block" style="background-image: url(%3$s);"></a>', get_the_title(), get_the_permalink(), $img);
+          ?>
+
+        <div class="entry pr-0">
+          <?php if (isset($destinations) && !empty($destinations)) {
+              printf('<a title="%1$s" href="%2$s" class="post-category d-block"><i class="fa fa-map-marker mr-1"></i>%1$s</a>', $destinations[0]->name, get_term_link($destinations[0]->term_id));
+            }
+            ?>
+          <a class="d-block" title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
+            <h3 class="entry-title"><?php the_title(); ?></h3>
+          </a>
         </div>
-        <div class="entry">
-          <p class="entry-title"><?php the_title(); ?></p>
-        </div>
-      </a>
-    </article-2>
+      </div>
+    </article>
   <?php }
   wp_reset_postdata(); ?>
 </div>
@@ -59,7 +68,7 @@ $term_id = !empty($term) ? $term->id : '';
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
-        <section class="article-content block">
+        <section class="article-content">
           <h1><?php the_title(); ?></h1>
           <div class="row">
             <div class="col-12 py-2 py-lg-3">
@@ -108,7 +117,6 @@ $term_id = !empty($term) ? $term->id : '';
             <h2 class="main-title"><?php echo pll__('Posts same topic'); ?></h2>
             <div class="row">
               <div class="col-12">
-
                 <div class="row gallery-cards sm">
                   <?php
                     while ($relate_category->have_posts()) {
@@ -116,15 +124,16 @@ $term_id = !empty($term) ? $term->id : '';
                       $img = get_the_post_thumbnail_url(get_the_ID(), 'feature-image');
                       $img = isset($img) && !empty($img) ? $img : no_img('8151', 'thumbnail');
                       $destinations = wp_get_post_terms(get_the_ID(), 'destinations');
-                      include(APP_PATH.'/template-parts/components/article_col_3.php');
-                    } wp_reset_postdata(); ?>
+                      include(APP_PATH . '/template-parts/components/article_col_3.php');
+                    }
+                    wp_reset_postdata(); ?>
                 </div>
               </div>
             </div>
           </section>
         <?php } ?>
       </div>
-      <div class="col-lg-4 pl-lg-4">
+      <div class="col-lg-4 pl-lg-4 has-border-top-sp">
         <?php get_template_part('template-parts/components/top_category_right') ?>
         <?php get_template_part('template-parts/components/survey_right') ?>
       </div>

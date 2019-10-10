@@ -35,7 +35,7 @@
               </div>
             </div>
             <div class="link-gallery-desc">
-              <h3><i class="fa fa-map-marker mr-2"></i><?php echo $v->name; ?></h3>
+              <h3><?php echo $v->name; ?></h3>
               <?php if (isset($sort_description) && !empty($sort_description)) {
                   printf("<p>%s</p>", $sort_description);
                 } ?>
