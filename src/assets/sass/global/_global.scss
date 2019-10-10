@@ -220,8 +220,8 @@ footer a {
 /*-------------------   border top sm-to-md  --------------------*/
 /*-----------------------------------------------------*/
 .has-border-top-sp {
-  section {
-    :is(:first-child) {
+  @media (max-width: 767px) {
+    > :first-child {
       border-top: 4px solid #ff1944;
     }
   }
