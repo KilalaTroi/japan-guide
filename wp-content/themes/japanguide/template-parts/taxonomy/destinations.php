@@ -51,33 +51,16 @@ $sub_image = isset($sub_image) && !empty($sub_image) ? $sub_image['url'] : '';
             setup_postdata($post);
             $img = get_the_post_thumbnail_url($post->ID, 'feature-image');
             $img = isset($img) && !empty($img) ? $img : no_img('8151', 'thumbnail');
-            $sort_excerpt = get_short_text(get_the_excerpt(), 120);
-            ?>
-            <div class="col-sm-6 col-md-4 gallery">
-              <a class="link-gallery" title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
-                <div class="link-gallery-image">
-                  <figure class="image">
-                    <div class="image-mask" style="background-image: url('<?php echo $img; ?>')">
-                    </div>
-                  </figure>
-                  <div class="link-gallery-image-text">
-                    <div class="link-gallery-image-text-content">
-                      <?php echo $sort_excerpt; ?>
-                    </div>
-                  </div>
-                </div>
-                <div class="link-gallery-desc">
-                  <h3><i class="fa fa-map-marker mr-2"></i><?php echo $current_term->name; ?></h3>
-                  <p><?php the_title(); ?></p>
-                </div>
-              </a>
-            </div>
-          <?php endforeach;
+            $destinations = array(
+              $current_term
+            );
+            include(APP_PATH.'/template-parts/components/article_col_3.php');
+           endforeach;
           wp_reset_postdata(); ?>
         </div>
       </section>
       </div>
-      <div class="col-lg-4 pl-lg-4">
+      <div class="col-lg-4 pl-lg-4 has-border-top-sp">
         <?php get_template_part('template-parts/components/top_category_right') ?>
         <?php get_template_part('template-parts/components/survey_right') ?>
       </div>

@@ -36,7 +36,7 @@ global $current_term;
           </div>
         </section>
       </div>
-      <div class="col-lg-4 pl-lg-4">
+      <div class="col-lg-4 pl-lg-4 has-border-top-sp">
         <?php get_template_part('template-parts/components/top_category_right') ?>
         <?php get_template_part('template-parts/components/survey_right') ?>
       </div>
