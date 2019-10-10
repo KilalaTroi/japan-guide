@@ -137,8 +137,8 @@ article {
       display: block;
       .feature-img,
       .entry {
-        width: auto;
-        max-width: 250px;
+        width: 100%;
+        // max-width: 250px;
       }
       .feature-img {
         height: 180px;
