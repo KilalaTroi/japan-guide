@@ -28,7 +28,7 @@ function get_destinations_top()
 {
     $destinations_topL = 'destination_top_' . LANGUAGE_SLUG;
     if (false === ($destinations_top  = get_transient($destinations_topL))) {
-        $term_id = '1238';
+        $term_id = '7';
         if (LANGUAGE_SLUG === 'ja') {
             $term_id = '1258';
         }
@@ -130,7 +130,7 @@ function get_category_type($id= NULL,$type= 'destination'){
         $id = get_the_ID();
     }
     $categories = get_the_category($id);
-
+    $arr = array();
     if($type === 'interest'){
         foreach($categories as $category){
             if(in_array($category->category_parent, array(1240,1258)) ){
@@ -139,8 +139,10 @@ function get_category_type($id= NULL,$type= 'destination'){
         }
     }else{
         foreach($categories as $category){
-            if(in_array($category->category_parent, array(1238,1260)) ){
+            if(in_array($category->category_parent, array(7,1260)) ){
                 $arr[] = $category;
+            }else{
+                return array();
             }
         }
     }

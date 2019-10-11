@@ -11,8 +11,8 @@
         <ul>
           <li><i class="fa fa-map-marker mr-2"></i>Lầu 9, tòa nhà Capital Place, <br>Số 6 Thái Văn Lung, Quận 1, TP. Hồ Chí Minh
           </li>
-          <li><i class="fa fa-phone mr-2"></i><a href="tel:+842838277722">(+84)28 3827 7722 Thứ 2 – Thứ 6 | 8:30 – 18:30</a></li>
-          <li><i class="fa fa-envelope-o mr-2"></i><a href="mailto:support@kilala.vn">support@kilala.vn</a></li>
+          <li><i class="fa fa-phone mr-2"></i><a href="tel:<?= str_replace([' ', ',', '.'], ['', '', ''], wpedu_get_option('option_phone')) ?>"><?= wpedu_get_option('option_phone') ?></a> Thứ 2 – Thứ 6 | 8:30 – 18:30</li>
+          <li><i class="fa fa-envelope-o mr-2"></i><a href="mailto:<?= wpedu_get_option('option_email') ?>"><?= wpedu_get_option('option_email') ?></a></li>
         </ul>
       </div>
       <div class="col-lg-3 col-sm-4 mt-4 mt-lg-0">

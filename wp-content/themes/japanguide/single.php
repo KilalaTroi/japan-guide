@@ -55,11 +55,6 @@ $term_color = isset($term_color) && !empty($term_color) ? 'style="color:' . $ter
 </div>
 <div id="exploreCanvasNav" class="overlaynav"></div>
 <?php echo get_breadcrumb(); ?>
-<section id="category" class="block pt-0">
-  <div class="container">
-
-  </div>
-</section>
 <section>
   <div class="container">
     <div class="row">
@@ -73,24 +68,29 @@ $term_color = isset($term_color) && !empty($term_color) ? 'style="color:' . $ter
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
-        <section class="article-content">
-          <h1><?php the_title(); ?></h1>
-          <div>
-            <?php
-            $interests = get_category_type(get_the_ID(), 'interest');
-            if (isset($interests) && !empty($interests)) {
-              foreach ($interests as $interest) {
-                $sub_image = get_field('sub_image', $interest->taxonomy . '_' . $interest->term_id);
-                $sub_image = isset($sub_image) && !empty($sub_image) ? $sub_image['sizes']['thumbnail']  : no_img('8218');
-                $arr[] = sprintf('<a title="%1$s" class="pl-1" href="%2$s"><img width="20px" style="margin-top:-5px" height="20px" class="mw-100 mr-1 d-inline mb-0" src="%3$s">%1$s</a>', $interest->name, get_term_link($interest->term_id), $sub_image);
-              }
-              printf('<strong>Chủ đề:</strong>%s', implode(', ', !empty($arr) ? $arr : ''));
-            }
-            ?>
+        <section class="article-content mt-lg-4">
+          <div class="row mb-3">
+            <div class="col">
+              <h1 class="mt-2"><?php the_title(); ?></h1>
+              <div>
+                <?php
+                $interests = get_category_type(get_the_ID(), 'interest');
+                if (isset($interests) && !empty($interests)) {
+                  foreach ($interests as $interest) {
+                    $sub_image = get_field('sub_image', $interest->taxonomy . '_' . $interest->term_id);
+                    $sub_image = isset($sub_image) && !empty($sub_image) ? $sub_image['sizes']['thumbnail']  : no_img('8218');
+                    $arr[] = sprintf('<a title="%1$s" class="pl-1" href="%2$s"><img width="20px" style="margin-top:-5px" height="20px" class="mw-100 mr-1 d-inline mb-0" src="%3$s">%1$s</a>', $interest->name, get_term_link($interest->term_id), $sub_image);
+                  }
+                  printf('<strong>Chủ đề:</strong>%s', implode(', ', !empty($arr) ? $arr : ''));
+                }
+                ?>
+              </div>
+            </div>
+            <div class="col-auto mt-3">
+              <div class="fb-like" data-href="<?php the_permalink(); ?>" data-width="" data-layout="box_count" data-action="like" data-size="large" data-show-faces="true" data-share="false"></div>
+            </div>
           </div>
-          <div class="py-2 py-lg-3">
-            <div class="fb-like" data-href="<?php the_permalink(); ?>" data-width="" data-layout="box_count" data-action="like" data-size="large" data-show-faces="true" data-share="false"></div>
-          </div>
+
           <div class="row">
 
             <div class="col-12 content">
@@ -136,29 +136,53 @@ $term_color = isset($term_color) && !empty($term_color) ? 'style="color:' . $ter
         if ($relate_category->have_posts()) { ?>
           <section class="block">
             <h2 class="main-title"><?php echo pll__('Posts same topic'); ?></h2>
-            <div class="row">
-              <div class="col-12">
-                <div class="row gallery-cards sm">
-                  <?php
-                    while ($relate_category->have_posts()) {
-                      $relate_category->the_post();
-                      $img = get_the_post_thumbnail_url(get_the_ID(), 'feature-image');
-                      $img = isset($img) && !empty($img) ? $img : no_img('8151', 'thumbnail');
-                      $taxonomy_destination = get_primary_taxonomy(get_the_ID());
-                      $color = get_field('color', $taxonomy_destination->taxonomy . '_' . $taxonomy_destination->term_id);
-                      $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
-                      include(APP_PATH . '/template-parts/components/article_col_3.php');
-                    }
-                    wp_reset_postdata(); ?>
-                </div>
-              </div>
+            <div class="row gallery-cards sm">
+              <?php
+                while ($relate_category->have_posts()) {
+                  $relate_category->the_post();
+                  $img = get_the_post_thumbnail_url(get_the_ID(), 'feature-image');
+                  $img = isset($img) && !empty($img) ? $img : no_img('8151', 'thumbnail');
+                  $taxonomy_destination = get_primary_taxonomy(get_the_ID());
+                  $color = get_field('color', $taxonomy_destination->taxonomy . '_' . $taxonomy_destination->term_id);
+                  $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
+                  include(APP_PATH . '/template-parts/components/article_col_3.php');
+                }
+                wp_reset_postdata(); ?>
             </div>
           </section>
         <?php } ?>
       </div>
       <div class="col-lg-4 pl-lg-4 has-border-top-sp">
+        <section class="block kilala-animation">
+          <h2 class="main-title kilala-animation-item" data-animate><?php echo pll__('Japan travel news'); ?></h2>
+          <div class="row">
+            <?php
+            $postRight = new WP_Query(
+              array(
+                'post_type'      => 'post',
+                'posts_per_page' => 5,
+                'post_status' => 'publish',
+                'exclude' => get_the_ID(),
+                'orderby' => 'rand',
+              )
+            );
+            ?>
+            <?php
+            if ($postRight->have_posts()) {
+              while ($postRight->have_posts()) : $postRight->the_post();
+                $thumb = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
+                $thumb = isset($thumb) && !empty($thumb) ? $thumb : no_img('8151', 'thumbnail');
+                $taxonomy_destination = get_primary_taxonomy();
+                $color = get_field('color', $taxonomy_destination->taxonomy . '_' . $taxonomy_destination->term_id);
+                $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
+                include(APP_PATH . '/template-parts/components/article_right.php');
+              endwhile;
+            } ?>
+          </div>
+        </section>
         <?php get_template_part('template-parts/components/top_category_right') ?>
-        <?php get_template_part('template-parts/components/survey_right') ?>
+        <?php // get_template_part('template-parts/components/survey_right')
+        ?>
       </div>
     </div>
   </div>

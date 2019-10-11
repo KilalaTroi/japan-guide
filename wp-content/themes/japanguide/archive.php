@@ -9,13 +9,13 @@ if (isset($current_term->taxonomy)) {
     get_template_part(sprintf('template-parts/taxonomy/%s', $current_term->taxonomy));
   } else {
     if ($current_term->category_parent !== 0) {
-      if (in_array($current_term->category_parent, array(1238, 1258)) === true) {
+      if (in_array($current_term->category_parent, array(7, 1258)) === true) {
         get_template_part('template-parts/taxonomy/destination');
       } else {
         get_template_part('template-parts/taxonomy/category');
       }
     } else {
-      if (in_array($current_term->term_id, array(1238, 1258)) === true) {
+      if (in_array($current_term->term_id, array(7, 1258)) === true) {
         get_template_part('page-templates/destination');
       } else {
         get_template_part('template-parts/taxonomy/category');

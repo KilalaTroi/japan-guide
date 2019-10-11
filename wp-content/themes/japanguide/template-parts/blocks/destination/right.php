@@ -18,24 +18,10 @@
         $taxonomy_destination = get_primary_taxonomy();
         $color = get_field('color', $taxonomy_destination->taxonomy . '_' . $taxonomy_destination->term_id);
         $color = isset($color) && !empty($color) ? 'style="color:'.$color.'"'  : '';
-        ?>
-        <article class="col-md-6 col-lg-12 kilala-animation-item" data-animate>
-          <div class="post-normal">
-            <a href="<?php echo the_permalink(); ?>" title="<?php the_title(); ?>" class="feature-img d-block" style="background-image: url(<?php echo $thumb; ?>);">
-            </a>
-            <div class="entry">
-              <?php
-                if (isset($taxonomy_destination) && !empty($taxonomy_destination)) {
-                  printf('<a class="post-category d-block" title="%1$s" href="%2$s"><i %3$s class="fa fa-map-marker mr-1"></i>%1$s</a>', $taxonomy_destination->name, get_term_link($taxonomy_destination->term_id),$color);
-                }
-                printf('<a class="entry-title d-block" title="%1$s" href="%2$s">%1$s</a>', get_the_title(), get_the_permalink());
-                ?>
-            </div>
-          </div>
-        </article>
-    <?php endwhile;
+        include(APP_PATH . '/template-parts/components/article_right.php');
+       endwhile;
     } ?>
   </div>
 </section>
 <?php get_template_part('template-parts/components/top_category_right') ?>
-<?php get_template_part('template-parts/components/survey_right') ?>
+<?php //get_template_part('template-parts/components/survey_right') ?>
