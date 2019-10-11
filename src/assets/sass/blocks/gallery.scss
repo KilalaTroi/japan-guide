@@ -1,10 +1,20 @@
 .galleries {
   &.row {
-    margin-right: -$grid-gutter-width * 0.5;
-    margin-left: -$grid-gutter-width * 0.5;
+    margin-right: -10px;
+    margin-left: -10px;
+
+    @include media-breakpoint-up(md) {
+      margin-right: -20px;
+      margin-left: -20px;
+    }
   }
   .gallery {
-    padding: $grid-gutter-width * 0.5;
+    padding: 10px;
+
+    @include media-breakpoint-up(md) {
+      padding: 20px;
+    }
+
     .link-gallery {
       &:hover {
         .image-mask {
@@ -84,11 +94,20 @@
 }
 .gallery-cards {
   &.row {
-    margin-right: -$grid-gutter-width * 0.5;
-    margin-left: -$grid-gutter-width * 0.5;
+    margin-right: -10px;
+    margin-left: -10px;
+
+    @include media-breakpoint-up(md) {
+      margin-right: -20px;
+      margin-left: -20px;
+    }
   }
   .gallery {
-    padding: $grid-gutter-width * 0.5;
+    padding: 10px;
+
+    @include media-breakpoint-up(md) {
+      padding: 20px;
+    }
     .link-gallery {
       color: #333;
       &:hover {
@@ -119,7 +138,7 @@
       &-image,
       &-desc {
         position: relative;
-        max-width: 300px;
+        //max-width: 300px;
         margin-left: auto;
         margin-right: auto;
       }
@@ -160,11 +179,15 @@
           .image-mask {
             position: relative;
             width: 100%;
-            max-width: 300px;
-            height: 400px;
+            //max-width: 300px;
+            height: 200px;
             background-size: cover !important;
             filter: brightness(90%);
             background-position: center;
+
+            @include media-breakpoint-up(sm) {
+              height: 400px;
+            }
           }
         }
         &-text {
@@ -193,13 +216,16 @@
       &-desc {
         padding: 10px 0;
         h3 {
-          font-size: 20px;
+          font-size: 16px;
           line-height: 1.3;
           font-weight: 900;
+          margin: 0;
           i {
             font-size: 20px;
           }
-          margin: 0;
+          @include media-breakpoint-up(sm) {
+            font-size: 20px;
+          }
         }
         p {
           margin: 0;
