@@ -37,10 +37,10 @@ article {
         .entry {
           padding: $grid-gutter-width * 0.5;
           .post-category {
-            font-size: 14px;
+            font-size: 16px;
           }
           .entry-title {
-            font-size: 36px;
+            font-size: 34px;
             font-weight: bolder;
           }
           .entry-desc {
@@ -54,7 +54,7 @@ article {
       .entry {
         padding: 10px;
         .post-category {
-          font-size: 13px;
+          font-size: 14px;
           margin-bottom: 5px;
           i {
             color: #ff1944;
@@ -62,7 +62,7 @@ article {
         }
         .entry-title {
           font-size: 16px;
-          font-weight: bolder;
+          font-weight: 900;
         }
         .entry-desc {
           font-size: 10px;
@@ -293,7 +293,7 @@ article {
   }
   @media (min-width: 992px) {
     h1 {
-      font-size: 36px;
+      font-size: 3px;
       margin: 25px 0 30px;
       font-weight: 900;
     }
