@@ -269,8 +269,10 @@ header {
     text-transform: uppercase;
     letter-spacing: 1.8px;
     font-weight: 600;
-    padding-left: 15px;
-    padding-right: 15px;
+    @include media-breakpoint-up(md) {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
   }
 
   ul {
@@ -290,6 +292,8 @@ header {
         }
 
         &.active,
+        &.current-category-ancestor,
+        &.current-post-ancestor,
         &:hover {
           a::after {
             width: 100%;
