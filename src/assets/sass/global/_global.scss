@@ -226,3 +226,9 @@ footer a {
     }
   }
 }
+
+
+//disable class click
+.list-inline .lang-item, .disable-click {
+  pointer-events: none!important;
+}
