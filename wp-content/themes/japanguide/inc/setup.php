@@ -13,7 +13,7 @@ function setup_scripts() {
     /* array with elements to localize in scripts */
     $script_localization = array(
         'ajax_url' => admin_url( 'admin-ajax.php' ),
-        'home_url' => get_home_url()
+        'site_url' => get_site_url()
     );
     wp_localize_script('main-script', 'script_loc', $script_localization);
 }

@@ -28,7 +28,7 @@ function default_login_logo()
 
     function default_login_logo_url()
     {
-        return home_url();
+        return site_url();
     }
     add_filter('login_headerurl', 'default_login_logo_url');
 
@@ -72,7 +72,7 @@ function default_login_logo()
                 $wpdb->query("DELETE FROM `$wpdb->options` WHERE `option_name` LIKE ('\_transient\_destination\_%') OR `option_name` LIKE ('\_transient\_timeout\_destination\_%')");
                 break;
             case "category":
-                $wpdb->query("DELETE FROM `$wpdb->options` WHERE `option_name` LIKE ('\_transient\_category\_%') OR `option_name` LIKE ('\_transient\_timeout\_category\_%')");
+                $wpdb->query("DELETE FROM `$wpdb->options` WHERE `option_name` LIKE ('\_transient\_category\_%') OR `option_name` LIKE ('\_transient\_timeout\_category\_%') OR `option_name` LIKE ('\_transient\_destination\_%') OR `option_name` LIKE ('\_transient\_timeout\_destination\_%')");;
                 break;
             default:
                 break;
@@ -95,4 +95,14 @@ function default_login_logo()
     {
         $redirect = admin_url();
         return $url . '&redirect_to=' . $redirect;
+    }
+
+
+    function get_list_category(){
+        $categories = get_categories();
+        foreach($categories as $category){
+            $arg_list[$category->term_id] = $category->term_id;
+        }
+        return $arg_list;
+
     }

@@ -26,13 +26,16 @@ global $current_term;
           global $post;
           ?>
           <div class="row gallery-cards sm">
-            <?php foreach ($posts as $post){
+            <?php foreach ($posts as $post) {
               setup_postdata($post);
               $img = get_the_post_thumbnail_url($post->ID, 'feature-image');
               $img = isset($img) && !empty($img) ? $img : no_img('8151', 'thumbnail');
-              $destinations = wp_get_post_terms($post->ID, 'destinations');
-              include(APP_PATH.'/template-parts/components/article_col_3.php');
-            } wp_reset_postdata(); ?>
+              $taxonomy_destination = get_primary_taxonomy($post->ID);
+              $color = get_field('color', $taxonomy_destination->taxonomy . '_' . $taxonomy_destination->term_id);
+              $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
+              include(APP_PATH . '/template-parts/components/article_col_3.php');
+            }
+            wp_reset_postdata(); ?>
           </div>
         </section>
       </div>

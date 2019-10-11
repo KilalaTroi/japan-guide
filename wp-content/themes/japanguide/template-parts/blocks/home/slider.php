@@ -12,7 +12,7 @@
                 <div class="carousel-inner kilala-animation-item" data-animate>
                     <?php
                     foreach ($listSlides as $k => $v) : ?>
-                        <div class="carousel-item <?php echo $k === 0 ? 'active' : ''; ?>"><?php printf('<img class="d-block w-100" src="%s" alt="%s">', $v['image'], $v['title']); ?></div>
+                        <div class="carousel-item <?php echo $k === 0 ? 'active' : ''; ?>" style="background-image: url('<?php echo $v['image']; ?>');"></div>
                     <?php endforeach; ?>
                 </div>
                 <a class="carousel-control-prev kilala-animation-item" data-animate href="#myCarousel" role="button" data-slide="prev">

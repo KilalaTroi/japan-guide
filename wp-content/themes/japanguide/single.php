@@ -1,8 +1,9 @@
 <?php get_header();
-$terms = wp_get_post_terms(get_the_ID(), 'destinations');
-$term = isset($terms) && !empty($terms) ? array_shift($terms) : '';
+$term = get_primary_taxonomy();
 $term_name = !empty($term) ? $term->name : '';
 $term_id = !empty($term) ? $term->id : '';
+$term_color = get_field('color', $term->taxonomy . '_' . $term->term_id);
+$term_color = isset($term_color) && !empty($term_color) ? 'style="color:' . $term_color . '"'  : '';
 ?>
 <div id="exploreNav" class="sidenav">
   <div class="text-center py-3 py-lg-4">
@@ -17,7 +18,7 @@ $term_id = !empty($term) ? $term->id : '';
     'exclude' => get_the_ID(),
     'tax_query' => array(
       array(
-        'taxonomy' => 'destinations',
+        'taxonomy' => 'category',
         'field' => 'term_id',
         'terms' => $term->term_id,
       )
@@ -28,7 +29,9 @@ $term_id = !empty($term) ? $term->id : '';
     setup_postdata($post);
     $img = get_the_post_thumbnail_url($post->ID, 'thumbnail');
     $img = isset($img) && !empty($img) ? $img : no_img('8151', 'thumbnail');
-    $destinations = wp_get_post_terms($post->ID, 'destinations');
+    $destinations = get_primary_taxonomy($post->ID);
+    $color = get_field('color', $destinations->taxonomy . '_' . $destinations->term_id);
+    $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
     ?>
     <article>
       <div class="post-normal">
@@ -38,7 +41,7 @@ $term_id = !empty($term) ? $term->id : '';
 
         <div class="entry pr-0">
           <?php if (isset($destinations) && !empty($destinations)) {
-              printf('<a title="%1$s" href="%2$s" class="post-category d-block"><i class="fa fa-map-marker mr-1"></i>%1$s</a>', $destinations[0]->name, get_term_link($destinations[0]->term_id));
+              printf('<a title="%1$s" href="%2$s" class="post-category d-block"><i %3$s class="fa fa-map-marker mr-1"></i>%1$s</a>', $destinations->name, get_term_link($destinations->term_id), $color);
             }
             ?>
           <a class="d-block" title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
@@ -51,15 +54,17 @@ $term_id = !empty($term) ? $term->id : '';
   wp_reset_postdata(); ?>
 </div>
 <div id="exploreCanvasNav" class="overlaynav"></div>
-
 <?php echo get_breadcrumb(); ?>
+<section id="category" class="block pt-0">
+  <div class="container">
 
+  </div>
+</section>
 <section>
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <a id="openExploreNav" href="javascript:void(0)"><i class="fa fa-map-marker mr-2"></i>
-          <?php printf('%s %s', pll__('Discover'), $term_name); ?></a>
+        <?php printf(' <a id="openExploreNav" href="javascript:void(0)"><i %s class="fa fa-map-marker mr-2"></i>%s %s</a>', $term_color, pll__('Discover'), $term_name) ?>
       </div>
     </div>
   </div>
@@ -70,10 +75,24 @@ $term_id = !empty($term) ? $term->id : '';
       <div class="col-lg-8">
         <section class="article-content">
           <h1><?php the_title(); ?></h1>
+          <div>
+            <?php
+            $interests = get_category_type(get_the_ID(), 'interest');
+            if (isset($interests) && !empty($interests)) {
+              foreach ($interests as $interest) {
+                $sub_image = get_field('sub_image', $interest->taxonomy . '_' . $interest->term_id);
+                $sub_image = isset($sub_image) && !empty($sub_image) ? $sub_image['sizes']['thumbnail']  : no_img('8218');
+                $arr[] = sprintf('<a title="%1$s" class="pl-1" href="%2$s"><img width="20px" style="margin-top:-5px" height="20px" class="mw-100 mr-1 d-inline mb-0" src="%3$s">%1$s</a>', $interest->name, get_term_link($interest->term_id), $sub_image);
+              }
+              printf('<strong>Chủ đề:</strong>%s', implode(', ', !empty($arr) ? $arr : ''));
+            }
+            ?>
+          </div>
+          <div class="py-2 py-lg-3">
+            <div class="fb-like" data-href="<?php the_permalink(); ?>" data-width="" data-layout="box_count" data-action="like" data-size="large" data-show-faces="true" data-share="false"></div>
+          </div>
           <div class="row">
-            <div class="col-12 py-2 py-lg-3">
-              <div class="fb-like pull-right fb_iframe_widget" data-href="<?php the_permalink(); ?>" data-width="" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
-            </div>
+
             <div class="col-12 content">
               <?php the_content(); ?>
             </div>
@@ -96,7 +115,9 @@ $term_id = !empty($term) ? $term->id : '';
         </section>
         <?php $categories = wp_get_post_terms(get_the_ID(), 'category');
         foreach ($categories as $category) {
-          $category_id[] =  $category->term_id;
+          if (in_array($category->parent, array(1238, 1258)) === false) {
+            $category_id[] =  $category->term_id;
+          }
         }
         $relate_category = new WP_Query(array(
           'post_type'      => 'post',
@@ -123,7 +144,9 @@ $term_id = !empty($term) ? $term->id : '';
                       $relate_category->the_post();
                       $img = get_the_post_thumbnail_url(get_the_ID(), 'feature-image');
                       $img = isset($img) && !empty($img) ? $img : no_img('8151', 'thumbnail');
-                      $destinations = wp_get_post_terms(get_the_ID(), 'destinations');
+                      $taxonomy_destination = get_primary_taxonomy(get_the_ID());
+                      $color = get_field('color', $taxonomy_destination->taxonomy . '_' . $taxonomy_destination->term_id);
+                      $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
                       include(APP_PATH . '/template-parts/components/article_col_3.php');
                     }
                     wp_reset_postdata(); ?>

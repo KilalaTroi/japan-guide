@@ -1,8 +1,9 @@
 </main>
 <footer id="footer" class="block">
   <div class="container">
-    <div class="row text-center mb-3 mb-md-5">
-      <img title="<?php bloginfo('name') ?>" alt="<?php bloginfo('name') ?>" class="mx-auto" style="max-width: 110px;" src="<?php echo wpedu_get_option('option_logo_footer')['url'] ?>">
+    <div class="row mb-3 mb-md-5">
+      <img title="<?php bloginfo('name') ?>" class="main-logo" alt="<?php bloginfo('name') ?>"
+       src="<?php echo wpedu_get_option('option_logo_footer')['url'] ?>">
     </div>
     <div class="row">
       <div class="col-lg-4 col-sm-12">
@@ -16,7 +17,7 @@
       </div>
       <div class="col-lg-3 col-sm-4 mt-4 mt-lg-0">
         <ul>
-          <li><img title="Cầu nói văn hóa Việt - Nhật" alt="Cầu nói văn hóa Việt - Nhật" class="mx-auto" style="max-width: 110px;" src="<?php echo wpedu_get_option('option_logo_kilala')['url'] ?>"></li>
+          <li><img title="Cầu nói văn hóa Việt - Nhật" alt="Cầu nói văn hóa Việt - Nhật" src="<?php echo wpedu_get_option('option_logo_kilala')['url'] ?>"></li>
           <li><a href="http://www.kilala.com.vn/jp" target="_blank">www.kilala.com.vn</a></li>
           <li><a href="http://www.kilala.vn/ja" target="_blank">www.kilala.vn</a></li>
           <li><a href="http://www.feeljapan.vn/ja" target="_blank">www.feeljapan.vn</a></li>

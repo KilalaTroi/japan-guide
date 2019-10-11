@@ -41,23 +41,23 @@
 // add_action('init', 'create_destinations');
 
 
-if (!function_exists('create_destination_taxonomies')) {
-    function create_destination_taxonomies() {
-        register_taxonomy(
-            'destinations',
-            'post',
-            array(
-                'labels' => array(
-                    'name' => 'Destinations',
-                    'add_new_item' => 'Add New Destination',
-                    'new_item_name' => "New Destination"
-                ),
-                'show_ui' => true,
-                'show_tagcloud' => false,
-                'hierarchical' => true,
-                'rewrite' => array('slug' => __('destination', DOMAIN))
-            )
-        );
-    }
-    add_action( 'init', 'create_destination_taxonomies', 0 );
-}
+// if (!function_exists('create_destination_taxonomies')) {
+//     function create_destination_taxonomies() {
+//         register_taxonomy(
+//             'destinations',
+//             'post',
+//             array(
+//                 'labels' => array(
+//                     'name' => 'Destinations',
+//                     'add_new_item' => 'Add New Destination',
+//                     'new_item_name' => "New Destination"
+//                 ),
+//                 'show_ui' => true,
+//                 'show_tagcloud' => false,
+//                 'hierarchical' => true,
+//                 'rewrite' => array('slug' => __('destination', DOMAIN))
+//             )
+//         );
+//     }
+//     add_action( 'init', 'create_destination_taxonomies', 0 );
+// }

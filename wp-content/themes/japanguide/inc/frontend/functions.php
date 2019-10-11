@@ -49,14 +49,14 @@ function get_destinations_top()
 function get_destinations_map()
 {
     $destinationsL = 'destination_' . LANGUAGE_SLUG;
+
     if (false === ($destinations  = get_transient($destinationsL))) {
-        $include_ja = array(1260, 1262, 1264, 1268, 1270, 1272, 1075, 1077);
-        $include_vi = array(1242, 1244, 1246, 1248, 1250, 1252, 1254, 1256);
+        $include = wpedu_get_option('option_map');
         $args = array(
             'hide_empty' => false,
-            'orderby' => 'term_id',
+            'orderby' => 'term_order',
             'order' => 'ASC',
-            'include'       => array_merge($include_vi, $include_ja),
+            'include'       => $include,
         );
         $destinations = get_terms('category', $args);
         set_transient($destinationsL, $destinations, 30 * DAY_IN_SECONDS);
@@ -123,6 +123,28 @@ function get_primary_taxonomy($id = NULL, $taxonomy = 'category')
         }
     }
     return get_term($primary, $taxonomy);
+}
+
+function get_category_type($id= NULL,$type= 'destination'){
+    if (NULL === $id || empty($id)) {
+        $id = get_the_ID();
+    }
+    $categories = get_the_category($id);
+
+    if($type === 'interest'){
+        foreach($categories as $category){
+            if(in_array($category->category_parent, array(1240,1258)) ){
+                $arr[] = $category;
+            }
+        }
+    }else{
+        foreach($categories as $category){
+            if(in_array($category->category_parent, array(1238,1260)) ){
+                $arr[] = $category;
+            }
+        }
+    }
+    return $arr;
 }
 
 
