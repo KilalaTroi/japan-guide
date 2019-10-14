@@ -12,7 +12,7 @@
         <ul>
           <li><i class="fa fa-map-marker mr-2"></i>Lầu 9, tòa nhà Capital Place, <br>Số 6 Thái Văn Lung, Quận 1, TP. Hồ Chí Minh
           </li>
-          <li><i class="fa fa-phone mr-2"></i><a href="tel:<?= str_replace([' ', ',', '.'], ['', '', ''], wpedu_get_option('option_phone')) ?>"><?= wpedu_get_option('option_phone') ?></a> Thứ 2 – Thứ 6 | 8:30 – 18:30</li>
+          <li><i class="fa fa-phone mr-2"></i><a href="tel:<?= str_replace([' ', ',', '.'], '', wpedu_get_option('option_phone')) ?>"><?= wpedu_get_option('option_phone') ?></a> Thứ 2 – Thứ 6 | 8:30 – 18:30</li>
           <li><i class="fa fa-envelope-o mr-2"></i><a href="mailto:<?= wpedu_get_option('option_email') ?>"><?= wpedu_get_option('option_email') ?></a></li>
         </ul>
       </div>
@@ -31,12 +31,7 @@
         <ul>
           <li>Đăng ký bản tin của Japan Guide để cập nhật những thông tin du lịch Nhật Bản mới nhất.</li>
           <li>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Địa chỉ email của bạn">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="submit"><i class="fa fa-envelope-o"></i></button>
-              </div>
-            </div>
+            <?php echo do_shortcode('[contact-form-7 id="8352" title="Sign up for the newsletter"]'); ?>
           </li>
         </ul>
       </div>

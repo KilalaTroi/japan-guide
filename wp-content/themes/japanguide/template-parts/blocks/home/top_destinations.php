@@ -30,8 +30,7 @@
                 <div class="image-mask" style="background-image: url(<?php echo $thumbnail; ?>)"></div>
               </figure>
               <div class="link-gallery-image-text">
-                <div class="link-gallery-image-text-content"><?php echo $description_cotnent; ?>
-                </div>
+                <div class="link-gallery-image-text-content"><?php echo $description_cotnent; ?></div>
               </div>
             </div>
             <div class="link-gallery-desc">

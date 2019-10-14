@@ -115,7 +115,7 @@
             </div>
         </div>
 
-        <nav id="header-menu" class="navbar navbar-light navbar-expand-md shadow-sm">
+        <nav id="header-menu" class="navbar navbar-light navbar-expand-lg shadow-sm">
             <div class="container">
                 <div>
                     <?php $urlKilala = LANGUAGE_SLUG === 'ja' ? 'http://www.kilala.vn/ja/cam-nang-nhat-ban.html' : 'http://www.kilala.vn/cam-nang-nhat-ban.html'; ?>

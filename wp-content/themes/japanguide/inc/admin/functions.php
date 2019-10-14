@@ -72,7 +72,7 @@ function default_login_logo()
                 $wpdb->query("DELETE FROM `$wpdb->options` WHERE `option_name` LIKE ('\_transient\_destination\_%') OR `option_name` LIKE ('\_transient\_timeout\_destination\_%')");
                 break;
             case "category":
-                $wpdb->query("DELETE FROM `$wpdb->options` WHERE `option_name` LIKE ('\_transient\_category\_%') OR `option_name` LIKE ('\_transient\_timeout\_category\_%') OR `option_name` LIKE ('\_transient\_destination\_%') OR `option_name` LIKE ('\_transient\_timeout\_destination\_%')");;
+                $wpdb->query("DELETE FROM `$wpdb->options` WHERE `option_name` LIKE ('\_transient\_category\_%') OR `option_name` LIKE ('\_transient\_timeout\_category\_%') OR `option_name` LIKE ('\_transient\_destination\_%') OR `option_name` LIKE ('\_transient\_timeout\_destination\_%')");
                 break;
             default:
                 break;

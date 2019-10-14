@@ -10,6 +10,7 @@ include APP_PATH.'/inc/admin/cpt.php';
 require_once APP_PATH.'/ReduxCore/framework.php';
 require_once APP_PATH.'/option.php';
 include APP_PATH.'/inc/plugins/acf/functions.php';
+include APP_PATH.'/inc/plugins/cf7/functions.php';
 include APP_PATH.'/inc/frontend/functions.php';
 include APP_PATH.'/inc/frontend/cookie.php';
 include APP_PATH.'/inc/frontend/map.php';

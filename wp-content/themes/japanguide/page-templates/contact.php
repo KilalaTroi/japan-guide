@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Template Name: Contact Page
  */
@@ -13,15 +12,14 @@ get_header();
       <div class="carousel-item active h-auto">
         <div class="container">
           <?php
-          $feature_img  = wpedu_get_option('des_feature_image');
-          $feature_img_m  = wpedu_get_option('des_feature_image_mb');
-          if (isset($feature_img['id']) && !empty($feature_img['id'])) {
-            echo wp_get_attachment_image($feature_img['id'], 'full', false, array('class' => 'img-fluid d-none d-lg-block'));
+          if ( has_post_thumbnail() ) {
+            the_post_thumbnail('full',array('class' => 'img-fluid d-none d-lg-block'));
           }
-          if (isset($feature_img_m['id']) && !empty($feature_img_m['id'])) {
+          $feature_img_m  = get_field('featured_image_mobile');
+          if (isset($feature_img_m) && !empty($feature_img_m)) {
             echo wp_get_attachment_image($feature_img_m['id'], 'large', false, array('class' => 'd-block d-lg-none img-fluid'));
-          } elseif (isset($feature_img['id']) && !empty($feature_img['id'])) {
-            echo wp_get_attachment_image($feature_img['id'], 'large', false, array('class' => 'd-block d-lg-none img-fluid'));
+          } else{
+            the_post_thumbnail('large',array('class' => 'd-block d-lg-none img-fluid'));
           }
           ?>
           <div class="carousel-caption">
@@ -35,35 +33,7 @@ get_header();
 
 <section id="contact" class="block">
   <div class="container">
-    <form action="#" method="post" class="border py-4 px-4">
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputEmail4">Họ tên</label>
-          <input type="email" class="form-control" id="inputEmail4" >
-        </div>
-        <div class="form-group col-md-6">
-          <label for="inputPassword4">Email</label>
-          <input type="password" class="form-control" id="inputPassword4">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputEmail4">Số điện thoại</label>
-          <input type="email" class="form-control" id="inputEmail4" >
-        </div>
-        <div class="form-group col-md-6">
-          <label for="inputPassword4">Địa chỉ</label>
-          <input type="password" class="form-control" id="inputPassword4">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputAddress2">Nội dung</label>
-        <textarea rows="2" class="form-control"></textarea>
-      </div>
-      <div class="form-group text-right mb-0">
-        <button type="submit" class="btn btn-primary">Xác nhận</button>
-      </div>
-    </form>
+    <?php echo do_shortcode('[contact-form-7 id="8354" html_class="border py-4 px-4" title="Contact Form VI"]') ?>
   </div>
 </section>
 <!--END  Pull HTML here-->

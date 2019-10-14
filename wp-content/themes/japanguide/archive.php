@@ -12,13 +12,13 @@ if (isset($current_term->taxonomy)) {
       if (in_array($current_term->category_parent, array(7, 1258)) === true) {
         get_template_part('template-parts/taxonomy/destination');
       } else {
-        get_template_part('template-parts/taxonomy/category');
+        get_template_part('template-parts/taxonomy/interest');
       }
     } else {
       if (in_array($current_term->term_id, array(7, 1258)) === true) {
-        get_template_part('page-templates/destination');
+        get_template_part('page-templates/destinations');
       } else {
-        get_template_part('template-parts/taxonomy/category');
+        get_template_part('page-templates/interests');
       }
     }
   }

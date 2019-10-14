@@ -92,6 +92,47 @@ function get_categories_top()
     return $categories;
 }
 
+// get post right excludes (artile detail)
+function get_post_right(){
+    $post_rightL = 'post_right_' . LANGUAGE_SLUG;
+    if (false === ($post_right  = get_transient($post_rightL))) {
+        $post_right = new WP_Query(
+            array(
+              'post_type'      => 'post',
+              'posts_per_page' => 5,
+              'post_status' => 'publish',
+            )
+          );
+        set_transient($post_rightL, $post_right, 30 * DAY_IN_SECONDS);
+    }
+    return $post_right;
+}
+
+function get_taxonomy_type($type="destination",$number = false)
+{
+    if($type="interest"){
+        $term_id = '1240';
+        if (LANGUAGE_SLUG === 'ja') {
+            $term_id = '1266';
+        }
+    }else{
+        $term_id = '7';
+        if (LANGUAGE_SLUG === 'ja') {
+            $term_id = '1260';
+        }
+    }
+    $args = array(
+        'hide_empty' => false,
+        'parent'    => $term_id,
+        'number'            => $number,
+        'orderby' => 'term_order',
+        'order' => 'ASC',
+    );
+
+    return get_terms('category', $args);
+
+}
+
 function get_breadcrumb()
 {
     if (function_exists('yoast_breadcrumb')) {
@@ -102,7 +143,8 @@ function get_breadcrumb()
 
 function get_short_text($obj, $length)
 {
-    $str = $obj;
+
+    $str = strip_tags($obj);
     if ($length < strlen($str)) {
         $count = strpos($str, ' ', $length) === false ? strlen($str) : strpos($str, ' ', $length);
         $str = substr($str, 0, $count) . '...';
@@ -141,12 +183,60 @@ function get_category_type($id= NULL,$type= 'destination'){
         foreach($categories as $category){
             if(in_array($category->category_parent, array(7,1260)) ){
                 $arr[] = $category;
-            }else{
-                return array();
             }
         }
     }
     return $arr;
+}
+
+function fellowtuts_wpbs_pagination( $pages = '', $range = 2 ) {
+	$showitems = ( $range * 2 ) + 1;
+    global $paged;
+	if ( empty( $paged ) ) {
+		$paged = 1;
+	}
+	if ( $pages == '' ) {
+		global $wp_query;
+		$pages = $wp_query->max_num_pages;
+
+		if ( ! $pages ) {
+			$pages = 1;
+		}
+	}
+
+	if ( 1 != $pages ) {
+		echo '<nav aria-label="Page navigation" role="navigation">';
+		echo '<span class="sr-only">Page navigation</span>';
+		echo '<ul class="pagination justify-content-center ft-wpbs">';
+
+		echo '<li class="page-item disabled hidden-md-down d-none d-lg-block"><span class="page-link">' . pll__('Page') .' '. $paged .' '. pll__('of') . ' ' . $pages . '</span></li>';
+
+		if ( $paged > 2 && $paged > $range + 1 && $showitems < $pages ) {
+			echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link( 1 ) . '" aria-label="First Page">&laquo;</a></li>';
+		}
+
+		if ( $paged > 1 && $showitems < $pages ) {
+			echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link( $paged - 1 ) . '" aria-label="Previous Page">&lsaquo;</a></li>';
+		}
+
+		for ( $i = 1; $i <= $pages; $i++ ) {
+			if ( 1 != $pages && ( ! ( $i >= $paged + $range + 1 || $i <= $paged - $range - 1 ) || $pages <= $showitems ) ) {
+				echo ( $paged == $i ) ? '<li class="page-item active"><span class="page-link"><span class="sr-only">Current Page </span>' . $i . '</span></li>' : '<li class="page-item"><a class="page-link" href="' . get_pagenum_link( $i ) . '"><span class="sr-only">Page </span>' . $i . '</a></li>';
+			}
+		}
+
+		if ( $paged < $pages && $showitems < $pages ) {
+			echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link( $paged + 1 ) . '" aria-label="Next Page">&rsaquo;</a></li>';
+		}
+
+		if ( $paged < $pages - 1 && $paged + $range - 1 < $pages && $showitems < $pages ) {
+			echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link( $pages ) . '" aria-label="Last Page">&raquo;</a></li>';
+		}
+
+		echo '</ul>';
+		echo '</nav>';
+		// echo '<div class="pagination-info mb-5 text-center">[ <span class="text-muted">Page</span> '.$paged.' <span class="text-muted">of</span> '.$pages.' ]</div>';
+	}
 }
 
 

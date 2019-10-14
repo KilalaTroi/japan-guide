@@ -30,12 +30,7 @@
         <ul>
           <li>Đăng ký bản tin của Japan Guide để cập nhật những thông tin du lịch Nhật Bản mới nhất.</li>
           <li>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Địa chỉ email của bạn">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="submit"><i class="fa fa-envelope-o"></i></button>
-              </div>
-            </div>
+            <?php echo do_shortcode('[contact-form-7 id="8352" title="Sign up for the newsletter"]'); ?>
           </li>
         </ul>
       </div>

@@ -6,6 +6,8 @@ if (empty($destinations) || NULL === $destinations) {
 <my-map>
     <div id="svg-map" style="min-height: 300px;" class="kilala-animation-item" data-animate></div>
     <script type="text/javascript" charset="utf-8" async defer>
+    var map = sessionStorage.getItem("svg-map");
+    if (null === map) {
       jQuery(document).ready(function($) {
         $.ajax({
           type: 'POST',
@@ -13,10 +15,13 @@ if (empty($destinations) || NULL === $destinations) {
           dataType: "html", // add data type
           data: { action : 'get_ajax_map' },
           success: function( response ) {
+            var map = sessionStorage.setItem("svg-map", response);
             $('#svg-map').append( response );
           }
         });
       });
+    }
+    jQuery('#svg-map').append( map );
     </script>
 
     <div id="map-text">
