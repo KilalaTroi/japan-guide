@@ -9,7 +9,9 @@ body {
   font-style: normal;
   font-size: 14px;
   line-height: 1.7;
-  color: #333 bolder {
+  color: #333;
+
+  bolder {
     font-weight: 900;
   }
 
@@ -45,7 +47,7 @@ body {
       margin: 0 0 35px;
     }
     &-lg {
-      font-size: 30px;
+      font-size: 20px;
       font-weight: 900;
       margin: 0 0 20px;
       @media (min-width: 768px) {
@@ -90,6 +92,20 @@ body {
       }
     }
   }
+
+  /*-----------------------------------------------------*/
+  /*-------------------   link   --------------------*/
+  /*-----------------------------------------------------*/
+
+  a {
+    transition: all 0.3s ease-in-out;
+    color: #333;
+
+    &:hover {
+      text-decoration: none;
+      color: #ff1945;
+    }
+  }
 }
 
 [data-animate] {
@@ -98,20 +114,6 @@ body {
 
 .font-default {
   font-size: 1rem !important;
-}
-
-/*-----------------------------------------------------*/
-/*-------------------   link   --------------------*/
-/*-----------------------------------------------------*/
-
-a {
-  transition: all 0.3s ease-in-out;
-  color: #333;
-
-  &:hover {
-    text-decoration: none;
-    color: #ff1945;
-  }
 }
 
 /*-----------------------------------------------------*/
@@ -235,4 +237,24 @@ footer a {
 .list-inline .lang-item, .disable-click {
   pointer-events: none!important;
   opacity: 0.7!important;
+}
+
+//wpcf7-form-control-wrap
+.wpcf7-form-control-wrap {
+  display: block;
+
+  .wpcf7-not-valid-tip {
+    position: absolute;
+  }
+}
+
+.wpcf7-response-output {
+  margin-right: 0!important;
+  margin-left: 0!important;;
+}
+
+.input-group-append {
+  i {
+    line-height: 30px;
+  }
 }

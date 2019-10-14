@@ -188,6 +188,15 @@ header {
     transition: all 0.3s ease-in-out;
   }
 
+  &.navbar-expand-lg {
+    >.container {
+      @include media-breakpoint-between(sm, md) {
+        padding-right: 20px;
+        padding-left: 20px;
+      }
+    }
+  }
+
   .navbar-brand {
     img {
       max-height: 50px;
@@ -209,13 +218,13 @@ header {
     padding-bottom: 10px;
     box-shadow: none !important;
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(lg) {
       padding-top: 30px;
       padding-bottom: 20px;
     }
 
     .container {
-      @include media-breakpoint-up(md) {
+      @include media-breakpoint-up(lg) {
         display: block;
       }
     }
@@ -225,7 +234,7 @@ header {
         max-width: 72px;
         max-height: none;
 
-        @include media-breakpoint-up(md) {
+        @include media-breakpoint-up(lg) {
           max-width: 150px;
         }
       }
@@ -239,7 +248,7 @@ header {
       justify-content: center;
       margin-top: 10px;
 
-      @include media-breakpoint-down(sm) {
+      @include media-breakpoint-down(md) {
         position: absolute;
         width: 100%;
         left: 0;
@@ -249,14 +258,20 @@ header {
         padding: 20px;
 
         > ul {
-          max-width: 540px;
+          max-width: 680px;
           margin: 0 auto;
+        }
+      }
+
+      @include media-breakpoint-down(sm) {
+        > ul {
+          max-width: 500px;
         }
       }
     }
 
     .nav-link {
-      @include media-breakpoint-up(md) {
+      @include media-breakpoint-up(lg) {
         padding-left: 20px;
         padding-right: 20px;
       }
@@ -269,15 +284,45 @@ header {
     text-transform: uppercase;
     letter-spacing: 1.8px;
     font-weight: 600;
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(lg) {
       padding-left: 15px;
       padding-right: 15px;
+    }
+
+    @include media-breakpoint-only(lg) {
+      padding-left: 10px;
+      padding-right: 10px;
+      font-size: 14px;
     }
   }
 
   ul {
     &.navbar-nav {
       >.nav-item {
+        &:first-child {
+          >a {
+            @include media-breakpoint-up(lg) {
+              font-size: 0;
+
+              &:after {
+                content: "\F015";
+                display: block;
+                font: normal normal normal 14px/1 FontAwesome;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                font-size: 24px;
+                line-height: 27px;
+
+                @include media-breakpoint-only(lg) {
+                  font-size: 22px;
+                  line-height: 23px;
+                }
+              }
+            }
+          }
+        }
+
         >a {
           position: relative;
           &:before {
@@ -290,7 +335,7 @@ header {
             position: absolute;
             display: block;
 
-            @include media-breakpoint-up(md) {
+            @include media-breakpoint-up(lg) {
               left: 20px;
             }
           }
@@ -304,7 +349,7 @@ header {
             width: 100%;
             transition: all 0.4s ease;
 
-            @include media-breakpoint-up(md) {
+            @include media-breakpoint-up(lg) {
               width: calc(100% - 40px);
             }
           }
@@ -327,7 +372,7 @@ header {
         border-radius: 0;
       }
 
-      @include media-breakpoint-down(md) {
+      @include media-breakpoint-down(lg) {
         text-align: left;
 
         .lang-item {
@@ -350,7 +395,7 @@ header {
       > .nav-item {
         > a {
           &:before {
-            @include media-breakpoint-up(md) {
+            @include media-breakpoint-up(lg) {
               left: 15px;
             }
           }
@@ -361,7 +406,7 @@ header {
         &.current-post-ancestor:not(.menu-item-8347),
         &:hover {
           > a::before {
-            @include media-breakpoint-up(md) {
+            @include media-breakpoint-up(lg) {
               width: calc(100% - 30px);
             }
           }
@@ -376,10 +421,5 @@ header {
     @include media-breakpoint-down(md) {
       float: right;
     }
-  }
-
-  @include media-breakpoint-only(sm) {
-    margin-left: -20px!important;
-    margin-right: -20px!important;;
   }
 }
