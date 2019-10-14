@@ -22,7 +22,7 @@
       $description_cotnent = get_short_text($v->description, 345);
       $sort_description = get_short_text($v->description, 70);
       ?>
-      <div class="col-sm-6 col-md-4 gallery kilala-animation-item" data-animate>
+      <div class="col-6 col-xl-4 gallery kilala-animation-item" data-animate>
         <a class="link-gallery" alt="<?php echo $v->name; ?>" title="<?php echo $v->name; ?>" href="<?php echo get_term_link($v->term_id); ?>">
           <div class="link-gallery-image">
             <figure class="image">
@@ -36,8 +36,8 @@
             </div>
           </div>
           <div class="link-gallery-desc">
-            <h3><i class="fa fa-map-marker mr-2"></i><?php echo $v->name; ?></h3>
-            <p><?php echo $sort_description; ?></p>
+            <h3><?php echo $v->name; ?></h3>
+            <p class="d-none d-sm-block"><?php echo $sort_description; ?></p>
           </div>
         </a>
       </div>
@@ -53,11 +53,13 @@
   foreach ($destinations as $destination) :
     $sub_image = get_field('sub_image', $destination->taxonomy . '_' . $destination->term_id);
     $sub_image = isset($sub_image) && !empty($sub_image) ? $sub_image['sizes']['medium']  : no_img('8151');
+    $color = get_field('color', $destination->taxonomy . '_' . $destination->term_id);
+    $color = isset($color) && !empty($color) ? 'style="color:'.$color.'"'  : '';
     ?>
     <div class="row">
       <div class="col-12 top-dest-title">
         <h2 class="main-title">
-          <i class="fa fa-map-marker mr-2"></i><?php echo $destination->name; ?></h2>
+          <?php printf('<i %s class="fa fa-map-marker mr-2"></i>%s</h2>',$color,$destination->name) ?>
       </div>
       <div class="col-md-5 top-dest-map">
         <?php printf('<img title="%1$s" alt="%1$s" src="%2$s" />', $destination->name, $sub_image) ?>
@@ -70,7 +72,7 @@
             'post_status' => 'publish',
             'tax_query' => array(
               array(
-                'taxonomy' => 'destinations',
+                'taxonomy' => 'category',
                 'field' => 'term_id',
                 'terms' => $destination->term_id,
               )

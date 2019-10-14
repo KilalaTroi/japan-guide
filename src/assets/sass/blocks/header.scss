@@ -171,7 +171,7 @@ header {
 }
 
 .sticky + .placeholder-content {
-  padding-top: 90px;
+  padding-top: 70px;
 
   @include media-breakpoint-up(md) {
     padding-top: 185px;
@@ -222,7 +222,7 @@ header {
 
     .navbar-brand {
       img {
-        max-width: 110px;
+        max-width: 72px;
         max-height: none;
 
         @include media-breakpoint-up(md) {
@@ -243,7 +243,7 @@ header {
         position: absolute;
         width: 100%;
         left: 0;
-        top: 80px;
+        top: 60px;
         background: rgb(255, 255, 255);
         z-index: 999;
         padding: 20px;
@@ -269,31 +269,44 @@ header {
     text-transform: uppercase;
     letter-spacing: 1.8px;
     font-weight: 600;
-    padding-left: 15px;
-    padding-right: 15px;
+    @include media-breakpoint-up(md) {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
   }
 
   ul {
     &.navbar-nav {
-      .nav-item {
-        a {
-          &:after {
+      >.nav-item {
+        >a {
+          position: relative;
+          &:before {
             content: "";
             border-bottom: 2px solid #ff1945;
             bottom: 0;
             width: 0;
             left: 0;
             margin: 0 auto;
-            position: relative;
+            position: absolute;
             display: block;
+
+            @include media-breakpoint-up(md) {
+              left: 20px;
+            }
           }
         }
 
         &.active,
+        &.current-category-ancestor,
+        &.current-post-ancestor:not(.menu-item-8347),
         &:hover {
-          a::after {
+          >a::before {
             width: 100%;
             transition: all 0.4s ease;
+
+            @include media-breakpoint-up(md) {
+              width: calc(100% - 40px);
+            }
           }
         }
       }
@@ -328,5 +341,45 @@ header {
 
   .navbar-toggler {
     background: #f6f6f6;
+  }
+}
+
+#header-menu.sticky {
+  ul {
+    &.navbar-nav {
+      > .nav-item {
+        > a {
+          &:before {
+            @include media-breakpoint-up(md) {
+              left: 15px;
+            }
+          }
+        }
+
+        &.active,
+        &.current-category-ancestor,
+        &.current-post-ancestor:not(.menu-item-8347),
+        &:hover {
+          > a::before {
+            @include media-breakpoint-up(md) {
+              width: calc(100% - 30px);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.top-contact {
+  li:last-child {
+    @include media-breakpoint-down(md) {
+      float: right;
+    }
+  }
+
+  @include media-breakpoint-only(sm) {
+    margin-left: -20px!important;
+    margin-right: -20px!important;;
   }
 }

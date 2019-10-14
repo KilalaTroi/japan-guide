@@ -78,6 +78,15 @@
         }
       }
     }
+    .carousel-item {
+      background-size: cover;
+      background-position: center;
+      height: 555px;
+
+      @include media-breakpoint-down(md) {
+        height: 360px;
+      }
+    }
   }
   > .container {
     @include media-breakpoint-down(sm) {

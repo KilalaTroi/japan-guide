@@ -28,13 +28,18 @@ function get_destinations_top()
 {
     $destinations_topL = 'destination_top_' . LANGUAGE_SLUG;
     if (false === ($destinations_top  = get_transient($destinations_topL))) {
+        $term_id = '7';
+        if (LANGUAGE_SLUG === 'ja') {
+            $term_id = '1258';
+        }
         $args = array(
             'hide_empty' => false,
+            'parent'    => $term_id,
             'orderby' => 'term_order',
             'order' => 'ASC',
             'number' => 8,
         );
-        $destinations_top = get_terms('destinations', $args);
+        $destinations_top = get_terms('category', $args);
         set_transient($destinations_topL, $destinations_top, 30 * DAY_IN_SECONDS);
     }
     return $destinations_top;
@@ -44,16 +49,16 @@ function get_destinations_top()
 function get_destinations_map()
 {
     $destinationsL = 'destination_' . LANGUAGE_SLUG;
+
     if (false === ($destinations  = get_transient($destinationsL))) {
-        $include_ja = array(1021, 1022, 1023, 1024, 1025, 1026, 1027, 1028);
-        $include_vi = array(1219, 1221, 1223, 1225, 1227, 1229, 1231, 1233);
+        $include = wpedu_get_option('option_map');
         $args = array(
             'hide_empty' => false,
-            'orderby' => 'term_id',
+            'orderby' => 'term_order',
             'order' => 'ASC',
-            'include'       => array_merge($include_vi, $include_ja),
+            'include'       => $include,
         );
-        $destinations = get_terms('destinations', $args);
+        $destinations = get_terms('category', $args);
         set_transient($destinationsL, $destinations, 30 * DAY_IN_SECONDS);
     }
     return $destinations;
@@ -64,8 +69,13 @@ function get_categories_top()
 {
     $categoriesL = 'category_' . LANGUAGE_SLUG;
     if (false === ($categories  = get_transient($categoriesL))) {
+        $term_id = '1240';
+        if (LANGUAGE_SLUG === 'ja') {
+            $term_id = '1266';
+        }
         $args = array(
             'hide_empty' => false,
+            'parent'    => $term_id,
             'number'            => '8',
             'orderby' => 'term_order',
             'order' => 'ASC',
@@ -99,6 +109,46 @@ function get_short_text($obj, $length)
     }
     return $str;
 }
+
+function get_primary_taxonomy($id = NULL, $taxonomy = 'category')
+{
+    if (NULL === $id || empty($id)) {
+        $id = get_the_ID();
+    }
+    $primary = get_post_meta($id, '_yoast_wpseo_primary_category', true);
+    if (NULL === $primary || empty($primary)) {
+        $taxonomies = get_the_terms(get_the_ID(), $taxonomy);
+        if (isset($taxonomies)) {
+            return get_term($taxonomies[0]->term_id, $taxonomy);
+        }
+    }
+    return get_term($primary, $taxonomy);
+}
+
+function get_category_type($id= NULL,$type= 'destination'){
+    if (NULL === $id || empty($id)) {
+        $id = get_the_ID();
+    }
+    $categories = get_the_category($id);
+    $arr = array();
+    if($type === 'interest'){
+        foreach($categories as $category){
+            if(in_array($category->category_parent, array(1240,1258)) ){
+                $arr[] = $category;
+            }
+        }
+    }else{
+        foreach($categories as $category){
+            if(in_array($category->category_parent, array(7,1260)) ){
+                $arr[] = $category;
+            }else{
+                return array();
+            }
+        }
+    }
+    return $arr;
+}
+
 
 function wpedu_translate(){
 	/**

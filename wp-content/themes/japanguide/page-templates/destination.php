@@ -11,18 +11,19 @@ get_header();
 <section id="banner" class="kilala-animation">
   <div id="myCarousel" class="carousel slide has-cap" data-ride="carousel">
     <div class="carousel-inner kilala-animation-item" data-animate>
-      <div class="carousel-item active">
+      <div class="carousel-item active h-auto">
         <div class="container">
           <?php
-          if (has_post_thumbnail(get_the_ID())) : the_post_thumbnail('full', array('class' => 'img-fluid d-none d-lg-block'));
-          endif;
-          $class_mobile = 'd-block d-lg-none img-fluid';
-          $field_featured_image_mobile = get_field('featured_image_mobile', get_the_ID());
-          $featured_image_mobile = get_the_post_thumbnail('large', array('class' => $class_mobile));
-          if (isset($field_featured_image_mobile) && !empty($field_featured_image_mobile)) {
-            $featured_image_mobile = wp_get_attachment_image($field_featured_image_mobile['id'], 'large', false, array('class' => $class_mobile));
-          }
-          echo $featured_image_mobile;
+           $feature_img  = wpedu_get_option('des_feature_image');
+           $feature_img_m  = wpedu_get_option('des_feature_image_mb');
+           if (isset($feature_img['id']) && !empty($feature_img['id'])) {
+             echo wp_get_attachment_image($feature_img['id'], 'full', false, array('class' => 'img-fluid d-none d-lg-block'));
+           }
+           if (isset($feature_img_m['id']) && !empty($feature_img_m['id'])) {
+             echo wp_get_attachment_image($feature_img_m['id'], 'large', false, array('class' => 'd-block d-lg-none img-fluid'));
+           } elseif (isset($feature_img['id']) && !empty($feature_img['id'])) {
+             echo wp_get_attachment_image($feature_img['id'], 'large', false, array('class' => 'd-block d-lg-none img-fluid'));
+           }
           ?>
           <div class="carousel-caption">
             <?php printf('<h1>%s</h1> <p class="text-uppercase">%s</p>', pll__('Japan'), pll__('Tìm điểm đến yêu thích của bạn')); ?>
@@ -41,7 +42,7 @@ get_header();
       <div class="col-lg-8">
         <?php get_template_part('template-parts/blocks/destination/left') ?>
       </div>
-      <div class="col-lg-4 pl-lg-4">
+      <div class="col-lg-4 pl-lg-4 has-border-top-sp">
         <?php get_template_part('template-parts/blocks/destination/right') ?>
       </div>
     </div>

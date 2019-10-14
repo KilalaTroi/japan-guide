@@ -56,9 +56,33 @@ $arraySetSection = array(
 			'type'  => 'text',
 			'title' => 'Footer copyright text',
 		),
+		array(
+			'id'    => 'option_map',
+			'type'  => 'select',
+			'multi'    => true,
+			'options' => get_list_category(),
+			'title' => 'Map',
+		),
 	),
 );
 Redux::setSection( $opt_name, $arraySetSection );
+
+Redux::setSection( $opt_name, array(
+	'title' => 'Destination Page',
+	'icon' => 'el el-film',
+	'fields' => array(
+		array(
+			'id'    => 'des_feature_image',
+			'type'  => 'media',
+			'title' => 'Feature Image',
+		),
+		array(
+			'id'    => 'des_feature_image_mb',
+			'type'  => 'media',
+			'title' => 'Feature Image Mobile',
+		),
+	)
+));
 
 Redux::setSection( $opt_name, array(
   'title' => 'Code',

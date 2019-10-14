@@ -3,8 +3,8 @@
     <a title="<?php the_title(); ?>" href="<?php the_permalink(); ?>" class="feature-img d-block" style="background-image: url(<?php echo $img; ?>);">
     </a>
     <div class="entry">
-    <?php if (isset($destinations) && !empty($destinations)) {
-        printf('<a title="%1$s" href="%2$s" class="post-category d-block"><i class="fa fa-map-marker mr-1"></i>%1$s</a>', $destinations[0]->name, get_term_link($destinations[0]->term_id));
+    <?php if (isset($taxonomy_destination) && !empty($taxonomy_destination)) {
+        printf('<a title="%1$s" href="%2$s" class="post-category d-block"><i %3$s class="fa fa-map-marker mr-1"></i>%1$s</a>', $taxonomy_destination->name, get_term_link($taxonomy_destination->term_id),$color);
       }
       ?>
       <a class="d-block" title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
