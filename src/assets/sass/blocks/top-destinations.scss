@@ -62,18 +62,32 @@
       }
     }
   }
-  li {
-    &:hover{
-      a{
-        border-left: 3px solid;
-        padding-left: 10px;
-      }
-    }
-  }
   .top-interest-icon {
     width: 20px;
     height: 20px;
     margin-top: -5px;
     margin-right: 15px;
   }
+}
+
+.top-interest li{
+  overflow:hidden;
+}
+.top-interest li a{
+  padding-left: 30px;
+  position: relative;
+}
+.top-interest li:hover a{
+  border:0;
+  padding-left: 30px;
+}
+.top-interest li a img{
+  position: absolute;
+  left: 0;
+  top: 8px;
+  opacity: 0.8;
+}
+.top-interest li:hover a img{
+  animation: category-right 0.7s ease-in-out alternate;
+  opacity: 1;
 }

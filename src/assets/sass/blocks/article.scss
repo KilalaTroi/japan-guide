@@ -166,6 +166,34 @@ article {
   }
 }
 
+.post-normal-custom {
+  .entry {
+    .post-category {
+      margin-bottom: 2px;
+      i {
+        color: #ff1944;
+      }
+    }
+    .entry-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 22px;
+    }
+  }
+
+  .feature-img {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+
+    img {
+      opacity: 0;
+    }
+  }
+}
+
 // article-2 {
 //   .post-normal {
 //     margin-bottom: 20px;
@@ -238,17 +266,17 @@ article {
   }
 
   h1 {
-    font-size: 24px;
-    margin: 15px 0 20px;
+    font-size: 20px;
+    margin: 15px 0 10px;
     font-weight: 600;
   }
   h2 {
-    font-size: 24px;
-    margin: 15px 0 15px;
+    font-size: 20px;
+    margin: 15px 0 10px;
     font-weight: 600;
   }
   h3 {
-    font-size: 20px;
+    font-size: 18px;
     margin: 10px 0 10px;
     font-weight: 400;
   }
@@ -258,7 +286,7 @@ article {
     font-weight: 400;
   }
   p {
-    margin-bottom: 15px;
+    //margin-bottom: 15px;
   }
   img {
     display: block;
@@ -266,7 +294,7 @@ article {
     margin-left: auto;
     margin-right: auto;
     margin-top: 0;
-    margin-bottom: 15px;
+    //margin-bottom: 15px;
   }
   .img-caption {
     display: block;
@@ -275,6 +303,19 @@ article {
     font-style: italic;
     font-size: 13px;
   }
+
+  div+.img-caption {
+    margin-top: 5px;
+  }
+
+  .content>div+div, .content>div+p {
+    margin-top: 1rem;
+  }
+
+  div+div>img {
+    margin-top: 1rem;
+  }
+
   @media (min-width: 576px) {
     h1 {
       font-size: 30px;
@@ -296,15 +337,15 @@ article {
       margin: 10px 0 10px;
       font-weight: 600;
     }
-    p {
-      margin-bottom: 20px;
-    }
-    img {
-      margin-bottom: 20px;
-    }
+    //p {
+    //  margin-bottom: 20px;
+    //}
+    //img {
+    //  margin-bottom: 20px;
+    //}
     .img-caption {
-      margin-top: -15px;
-      margin-bottom: 15px;
+      //margin-top: -15px;
+      //margin-bottom: 15px;
       font-style: italic;
       font-size: 13px;
       text-align: center;
@@ -323,7 +364,7 @@ article {
     }
     h3 {
       font-size: 20px;
-      margin: 15px 15px;
+      //margin: 15px 15px;
       font-weight: 600;
     }
     h4 {
@@ -331,16 +372,16 @@ article {
       margin: 10px 0 15px;
       font-weight: 600;
     }
-    p {
-      margin-bottom: 25px;
-    }
-    img {
-      margin-bottom: 25px;
-    }
-    .img-caption {
-      margin-top: -20px;
-      margin-bottom: 25px;
-    }
+    //p {
+    //  margin-bottom: 25px;
+    //}
+    //img {
+    //  margin-bottom: 25px;
+    //}
+    //.img-caption {
+    //  margin-top: -20px;
+    //  margin-bottom: 25px;
+    //}
   }
 }
 
