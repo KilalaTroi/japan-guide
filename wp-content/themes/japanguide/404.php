@@ -4,7 +4,7 @@
   <h2><?= pll__('Page not found') ?></h2>
   <p><?= pll__('The page you were looking for could not be found.') ?></p>
 
-  <a href="<?php site_url(); ?>" class="btn btn-go-home my-5"><?= pll__('Go back to home') ?></a>
+  <a href="<?= site_url(); ?>" class="btn btn-go-home my-5"><?= pll__('Go back to home') ?></a>
 
   <div class="help-link">
     <h4><?= pll__('Here are some helpful links') ?></h4>

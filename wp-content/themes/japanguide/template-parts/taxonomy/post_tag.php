@@ -10,20 +10,6 @@ global $current_term;
           <h1 class="main-title-lg">
             <?php printf('%s <thin>%s %s</thin>', pll__('Post'), pll__('about'), $current_term->name); ?>
           </h1>
-          <?php
-          $wp_query = new WP_Query(array(
-            'post_type'      => 'post',
-            'post_status' => 'publish',
-            'offset'         => isset($paged) && !empty($paged) ? $paged - 1 : 0,
-            'tax_query' => array(
-              array(
-                'taxonomy' => 'post_tag',
-                'field' => 'term_id',
-                'terms' => $current_term->term_id,
-              )
-            ),
-          ));
-          ?>
           <div class="row gallery-cards sm">
             <?php while (have_posts()) : the_post();
               $img = get_the_post_thumbnail_url(get_the_ID(), 'feature-image');
@@ -38,8 +24,8 @@ global $current_term;
           <div class="div-pagination ">
             <?php
             if (function_exists("fellowtuts_wpbs_pagination")) {
-              // fellowtuts_wpbs_pagination();
-              fellowtuts_wpbs_pagination($wp_query->max_num_pages);
+              fellowtuts_wpbs_pagination();
+              // fellowtuts_wpbs_pagination($wp_query->max_num_pages);
             }
             ?>
           </div>

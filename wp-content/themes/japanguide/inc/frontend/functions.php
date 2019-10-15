@@ -270,3 +270,40 @@ function wpedu_translate(){
 	}
 }
 add_action( 'after_setup_theme', 'wpedu_translate' );
+
+
+// misha_loadmore_ajax_handler
+function misha_loadmore_ajax_handler(){
+
+    $relate_category = new WP_Query(array(
+        'post_type'      => 'post',
+        'posts_per_page' => 1,
+        'lang'           => $_POST['lang'],
+        'offset' => $_POST['offset'],
+        'post_status' => 'publish',
+        'orderby' => 'rand',
+        'post__not_in' => explode(',', $_POST['postID']),
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'category',
+                'field' => 'term_id',
+                'terms' => explode(',', $_POST['categories']),
+            )
+        ),
+    ));
+
+    while ($relate_category->have_posts()) {
+        $relate_category->the_post();
+        echo '<div class="row border-top py-4"></div><div id="content-offset-'. $_POST["offset"] . '">';
+        get_template_part('template-parts/components/content');
+        echo '</div>';
+    }
+
+    wp_reset_query();
+    die; // here we exit the script and even no wp_reset_query() required!
+}
+
+
+
+add_action('wp_ajax_loadmore', 'misha_loadmore_ajax_handler'); // wp_ajax_{action}
+add_action('wp_ajax_nopriv_loadmore', 'misha_loadmore_ajax_handler'); // wp_ajax_nopriv_{action}

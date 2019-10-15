@@ -4,6 +4,7 @@ $term_name = !empty($term) ? $term->name : '';
 $term_id = !empty($term) ? $term->id : '';
 $term_color = get_field('color', $term->taxonomy . '_' . $term->term_id);
 $term_color = isset($term_color) && !empty($term_color) ? 'style="color:' . $term_color . '"'  : '';
+$exlucdes[] = get_the_ID();
 ?>
 <div id="exploreNav" class="sidenav">
   <div class="text-center py-3 py-lg-4">
@@ -69,49 +70,8 @@ $term_color = isset($term_color) && !empty($term_color) ? 'style="color:' . $ter
     <div class="row">
       <div class="col-lg-8">
         <section class="article-content mt-lg-4">
-          <div class="row mb-3">
-            <div class="col">
-              <h1 class="mt-2"><?php the_title(); ?></h1>
-              <div>
-                <?php
-                $interests = get_category_type(get_the_ID(), 'interest');
-                if (isset($interests) && !empty($interests)) {
-                  foreach ($interests as $interest) {
-                    $sub_image = get_field('sub_image', $interest->taxonomy . '_' . $interest->term_id);
-                    $sub_image = isset($sub_image) && !empty($sub_image) ? $sub_image['sizes']['thumbnail']  : no_img('8218');
-                    $arr[] = sprintf('<a title="%1$s" class="pl-1" href="%2$s"><img width="20px" style="margin-top:-5px" height="20px" class="mw-100 mr-1 d-inline mb-0" src="%3$s">%1$s</a>', $interest->name, get_term_link($interest->term_id), $sub_image);
-                  }
-                  printf('<strong>Chủ đề:</strong>%s', implode(', ', !empty($arr) ? $arr : ''));
-                }
-                ?>
-              </div>
-            </div>
-            <div class="col-auto mt-3">
-              <div class="fb-like" data-href="<?php the_permalink(); ?>" data-width="" data-layout="box_count" data-action="like" data-size="large" data-show-faces="true" data-share="false"></div>
-            </div>
-          </div>
-
-          <div class="row">
-
-            <div class="col-12 content">
-              <?php the_content(); ?>
-            </div>
-            <div class="col-12 py-2 py-lg-3 tags">
-              <ul class="d-inline">
-                <li class="main-label"><?php echo pll__('Tags'); ?></li>
-                <?php
-                $post_tags = get_the_tags();
-                if (!empty($post_tags)) {
-                  foreach ($post_tags as $tag) {
-                    printf('<li><a title="%1$s" href="%2$s">%1$s</a>', $tag->name, get_tag_link($tag->term_id));
-                  }
-                }
-                ?>
-              </ul>
-            </div>
-            <div class="col-12 py-2 py-lg-3">
-              <div class="fb-like pull-right fb_iframe_widget" data-href="<?php the_permalink(); ?>" data-width="" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
-            </div>
+          <?php get_template_part('template-parts/components/content'); ?>
+          <div id="loadmore" class="mt-3"></div>
         </section>
         <?php $categories = wp_get_post_terms(get_the_ID(), 'category');
         foreach ($categories as $category) {
@@ -122,9 +82,10 @@ $term_color = isset($term_color) && !empty($term_color) ? 'style="color:' . $ter
         $relate_category = new WP_Query(array(
           'post_type'      => 'post',
           'posts_per_page' => 3,
+          'lang'           => LANGUAGE_SLUG,
           'post_status' => 'publish',
           'orderby' => 'rand',
-          'exclude' => get_the_ID(),
+          'post__not_in' => $exlucdes,
           'tax_query' => array(
             array(
               'taxonomy' => 'category',
@@ -134,20 +95,25 @@ $term_color = isset($term_color) && !empty($term_color) ? 'style="color:' . $ter
           ),
         ));
         if ($relate_category->have_posts()) { ?>
-          <section class="block">
+          <section id="relate_category" class="block">
             <h2 class="main-title"><?php echo pll__('Posts same topic'); ?></h2>
             <div class="row gallery-cards sm">
-              <?php
-                while ($relate_category->have_posts()) {
-                  $relate_category->the_post();
-                  $img = get_the_post_thumbnail_url(get_the_ID(), 'feature-image');
-                  $img = isset($img) && !empty($img) ? $img : no_img('8151', 'thumbnail');
-                  $taxonomy_destination = get_primary_taxonomy(get_the_ID());
-                  $color = get_field('color', $taxonomy_destination->taxonomy . '_' . $taxonomy_destination->term_id);
-                  $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
-                  include(APP_PATH . '/template-parts/components/article_col_3.php');
-                }
-                wp_reset_postdata(); ?>
+              <div class="gallery">
+                <div class="row">
+                  <?php
+                    while ($relate_category->have_posts()) {
+                      $exlucdes[] = get_the_ID();
+                      $relate_category->the_post();
+                      $img = get_the_post_thumbnail_url(get_the_ID(), 'feature-image');
+                      $img = isset($img) && !empty($img) ? $img : no_img('8151', 'thumbnail');
+                      $taxonomy_destination = get_primary_taxonomy(get_the_ID());
+                      $color = get_field('color', $taxonomy_destination->taxonomy . '_' . $taxonomy_destination->term_id);
+                      $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
+                      include(APP_PATH . '/template-parts/components/article_col_3.php');
+                    }
+                    wp_reset_query(); ?>
+                </div>
+              </div>
             </div>
           </section>
         <?php } ?>
@@ -162,7 +128,8 @@ $term_color = isset($term_color) && !empty($term_color) ? 'style="color:' . $ter
                 'post_type'      => 'post',
                 'posts_per_page' => 5,
                 'post_status' => 'publish',
-                'exclude' => get_the_ID(),
+                'lang'           => LANGUAGE_SLUG,
+                'post__not_in' => $exlucdes,
                 'orderby' => 'rand',
               )
             );
@@ -177,14 +144,57 @@ $term_color = isset($term_color) && !empty($term_color) ? 'style="color:' . $ter
                 $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
                 include(APP_PATH . '/template-parts/components/article_right.php');
               endwhile;
+              wp_reset_query();
             } ?>
           </div>
         </section>
-        <?php get_template_part('template-parts/components/top_category_right') ?>
-        <?php // get_template_part('template-parts/components/survey_right')
+        <?php get_template_part('template-parts/components/sidebar_category') ?>
+        <?php // get_template_part('template-parts/components/sidebar_survey')
         ?>
       </div>
     </div>
   </div>
 </section>
+<script type="text/javascript" charset="utf-8" async defer>
+  jQuery(function($) {
+    var canBeLoaded = true, // this param allows to initiate the AJAX call only if necessary
+      offset = 0,
+      exluces = '<?= implode(',', $exlucdes); ?>',
+      category_id = '<?= implode(',', (array) $category_id); ?>',
+      bottomOffset = $('#footer').height() + $('#copyright').height() + $('#relate_category').height() + 2500; // the distance (in px) from the page bottom when you want to load more posts
+    $(window).scroll(function() {
+      var data = {
+        'action': 'loadmore',
+        'postID': exluces,
+        'offset': offset,
+        'categories': category_id,
+        'lang': '<?= LANGUAGE_SLUG ?>'
+      };
+
+      if ($(document).scrollTop() > ($(document).height() - bottomOffset) && canBeLoaded == true) {
+        if (offset < 3) {
+          $.ajax({
+            url: script_loc.ajax_url,
+            data: data,
+            type: 'POST',
+            beforeSend: function(xhr) {
+              // you can also add your own preloader here
+              // you see, the AJAX call is in process, we shouldn't run it again until complete
+              canBeLoaded = false;
+            },
+            success: function(data) {
+              if (data) {
+                $('#loadmore').append(data); // where to insert posts
+                FB.XFBML.parse(document.getElementById('content-offset-' + offset));
+                // the ajax is completed, now we can run it again
+                canBeLoaded = true;
+                offset++;
+              }
+            }
+          });
+        }
+      }
+    });
+  });
+</script>
 <?php get_footer(); ?>

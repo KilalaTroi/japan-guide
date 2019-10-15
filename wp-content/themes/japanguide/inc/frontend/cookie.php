@@ -1,12 +1,12 @@
-<?php if (! defined('APP_PATH')) die ('Bad requested!');
+<?php if (!defined('APP_PATH')) die('Bad requested!');
 
 // first_load
-add_action( 'progress_loading_script', 'progress_loading_func', 10, 3 );
+add_action('progress_loading_script', 'progress_loading_func', 10, 3);
 
-function progress_loading_func() {
-    ?>
-    <script type="text/javascript" charset="utf-8" async defer>
-        function createCookie(name,value,days) {
+function progress_loading_func()
+{
+    /*
+     function createCookie(name,value,days) {
             if (days) {
                 var date = new Date();
                 date.setTime(date.getTime()+(days*24*60*60*1000));
@@ -30,34 +30,28 @@ function progress_loading_func() {
         function eraseCookie(name) {
             createCookie(name,"",-1);
         }
-
-        var first_load = readCookie('first_load');
+    */
+    ?>
+    <script type="text/javascript" charset="utf-8" async defer>
+        var first_load = sessionStorage.getItem('first_load');
         if (first_load === null) {
             var body = jQuery('body');
             var js_progressLoading = jQuery('#js_progressLoading');
-            var preloadSVG = jQuery('#preloadSVG');
+            // var preloadSVG = jQuery('#preloadSVG');
             var svg_change = jQuery('#svg_change');
-
             body.addClass("disableScroll");
             js_progressLoading.css('display', 'block');
-
             var indexLoading = 0;
-
             js_progressLoading.removeAttr('style');
-
-            var tid = setInterval(function(){ 
+            var tid = setInterval(function() {
                 index_10 = indexLoading;
-
-                if ( indexLoading < 100 ) {
+                if (indexLoading < 100) {
                     index_10 = ('0' + indexLoading).slice(-2);
                     index_10 = ('0' + index_10).slice(-3);
                 }
-
                 svg_change.attr("xlink:href", "#frame" + index_10);
-
-                if ( indexLoading == 120 ) {
-                    clearInterval( tid );
-
+                if (indexLoading == 120) {
+                    clearInterval(tid);
                     jQuery(document).ready(function() {
                         jQuery('body').removeClass('disableScroll');
                         jQuery('#js_progressLoading').fadeOut();
@@ -66,9 +60,20 @@ function progress_loading_func() {
 
                 indexLoading++;
             }, 15);
-
-            createCookie('first_load','1',1);
+            sessionStorage.setItem("first_load", 1);
+        } else {
+            jQuery('body').addClass('loading');
+            setTimeout(function() {
+                if (jQuery('body').hasClass('loading')) {
+                    jQuery('body').removeClass('loading');
+                }
+            }, 3000);
+            jQuery(window).on("load", function() {
+                if (jQuery('body').hasClass('loading')) {
+                    jQuery('body').removeClass('loading');
+                }
+            });
         }
-        </script>
-    <?php
+    </script>
+<?php
 }

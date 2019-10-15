@@ -18,6 +18,9 @@
 <?php endif; ?>
 
 <style type="text/css" media="screen">
+    body.loading{
+        opacity: 0;
+    }
     .frame000 {
         width: 255px;
         height: 160px;

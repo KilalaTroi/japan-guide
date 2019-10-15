@@ -106,7 +106,7 @@ get_header();
               <div class="col-md-5 top-dest-map">
                 <?php printf('<img title="%1$s" alt="%1$s" src="%2$s" />', $destination->name, $sub_image) ?>
               </div>
-              <div class="col-md-7 top-dest-text">
+              <div class="col-md-7 top-dest-text mt-3 mt-md-0">
                 <?php
                   $posts = get_posts(array(
                     'post_type'      => 'post',
