@@ -74,20 +74,13 @@
   overflow:hidden;
 }
 .top-interest li a{
-  padding-left: 30px;
+  padding-left: 35px;
   position: relative;
+  background-size: 30px 46px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  transition: all .2s ease-in-out;
 }
-.top-interest li:hover a{
-  border:0;
-  padding-left: 30px;
-}
-.top-interest li a img{
-  position: absolute;
-  left: 0;
-  top: 8px;
-  opacity: 0.8;
-}
-.top-interest li:hover a img{
-  animation: category-right 0.7s ease-in-out alternate;
-  opacity: 1;
+.top-interest li:hover a {
+  background-position: 0 -23px;
 }
