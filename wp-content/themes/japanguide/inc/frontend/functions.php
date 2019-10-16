@@ -263,6 +263,7 @@ function wpedu_translate(){
         'Trở về trang chủ'              => 'Go back to home',
         'Dưới đây là một số liên kết hữu ích'   => 'Here are some helpful links',
         'Xem thêm'   => 'More',
+        'Kết quả tìm kiếm cho:'   => 'search-results',
 	);
 
 	foreach( $arr as $key => $value ) {

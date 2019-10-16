@@ -8,9 +8,9 @@
                 foreach ($interests as $interest) {
                     $sub_image = get_field('sub_image', $interest->taxonomy . '_' . $interest->term_id);
                     $sub_image = isset($sub_image) && !empty($sub_image) ? $sub_image['sizes']['thumbnail']  : no_img('8218');
-                    $arr[] = sprintf('<a title="%1$s" class="pl-1" href="%2$s"><img width="20px" style="margin-top:-5px" height="20px" class="mw-100 mr-1 d-inline mb-0" src="%3$s">%1$s</a>', $interest->name, get_term_link($interest->term_id), $sub_image);
+                    $arr[] = sprintf('<a title="%1$s" class="pl-4" style="background: url(%3$s) no-repeat 0 -20px; background-size: 20px;" href="%2$s">%1$s</a>', $interest->name, get_term_link($interest->term_id), $sub_image);
                 }
-                printf('<strong>Chủ đề:</strong>%s', implode(', ', !empty($arr) ? $arr : ''));
+                printf('<strong class="pr-1">Chủ đề:</strong>%s', implode(', ', !empty($arr) ? $arr : ''));
             }
             ?>
         </div>

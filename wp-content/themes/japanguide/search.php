@@ -8,37 +8,48 @@
  * @subpackage Twenty_Nineteen
  * @since 1.0.0
  */
-get_header();
-?>
+get_header(); ?>
+<?php echo get_breadcrumb(); ?>
+<section>
+  <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <section class="block">
+                    <h1 class="main-title-lg">
+                        <?= pll__('search-results'); ?>
+                        <thin><?php echo get_search_query(); ?></thin>
+                    </h1>
+                    <div class="row gallery-cards sm">
+                        <div class="gallery">
+                            <?php if ( have_posts() ) : ?>
+                                <div class="row">
+                                    <?php while (have_posts()) : the_post();
+                                    $img = get_the_post_thumbnail_url(get_the_ID(), 'feature-image');
+                                    $img = isset($img) && !empty($img) ? $img : no_img('8151', 'feature-image');
+                                    $taxonomy_destination = get_primary_taxonomy(get_the_ID());
+                                    $color = get_field('color', $taxonomy_destination->taxonomy . '_' . $taxonomy_destination->term_id);
+                                    $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
+                                        include(APP_PATH . '/template-parts/components/article_col_3.php');
+                                    endwhile;
+                                    ?>
+                                </div>
+                            <?php else : get_template_part( 'template-parts/content/content', 'none' ); endif; ?>
+                        </div>
+                    </div>
+                    <div class="div-pagination ">
+                        <?php
+                            if (function_exists("fellowtuts_wpbs_pagination")) {
+                                fellowtuts_wpbs_pagination();
+                            }
+                        ?>
+                    </div>
+                </section>
+            </div>
+            <div class="col-lg-4 pl-lg-4 has-border-top-sp">
+                <?php get_sidebar('right'); ?>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <div class="container">
-        <?php if ( have_posts() ) : ?>
-
-            <header class="page-header">
-                <h1 class="page-title">
-                    <?php _e( 'Search results for: ', DOMAIN ); ?>
-                    <span class="page-description"><?php echo get_search_query(); ?></span>
-                </h1>
-            </header><!-- .page-header -->
-
-            <?php
-            // Start the Loop.
-            while ( have_posts() ) :
-                the_post();
-                /*
-                 * Include the Post-Format-specific template for the content.
-                 * If you want to override this in a child theme, then include a file
-                 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-                 */
-                get_template_part( 'template-parts/content/content', 'excerpt' );
-                // End the loop.
-            endwhile;
-            // If no content, include the "No posts found" template.
-        else :
-            get_template_part( 'template-parts/content/content', 'none' );
-        endif;
-        ?>
-    </div><!-- #primary -->
-
-<?php
-get_footer();
+<?php get_footer();
