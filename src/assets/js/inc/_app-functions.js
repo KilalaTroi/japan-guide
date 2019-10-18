@@ -58,11 +58,11 @@ appFunctions = (function ($, window, undefined) {
     }
 
     function _mapHover() {
-        $(document).on('mouseenter', '#area-mask path', function (e) {
-            let _id = $(this).attr('id');
-            let _idText = _id.replace('mask', 'text');
-            $('#' + _id + ', #' + _idText).addClass('is-active').siblings().removeClass('is-active');
-        });
+        // $(document).on('mouseenter', '#area-mask path', function (e) {
+        //     let _id = $(this).attr('id');
+        //     let _idText = _id.replace('mask', 'text');
+        //     $('#' + _id + ', #' + _idText).addClass('is-active').siblings().removeClass('is-active');
+        // });
 
         $(document).on('mouseenter', '#map-text .map-spot', function (e) {
             let _id = $(this).attr('id');
@@ -70,11 +70,11 @@ appFunctions = (function ($, window, undefined) {
             $('#' + _id + ', #' + _idMask).addClass('is-active').siblings().removeClass('is-active');
         });
 
-        $(document).on('mouseleave', '#area-mask path', function (e) {
-            let _id = $(this).attr('id');
-            let _idText = _id.replace('mask', 'text');
-            $('#' + _id + ', #' + _idText).removeClass('is-active');
-        });
+        // $(document).on('mouseleave', '#area-mask path', function (e) {
+        //     let _id = $(this).attr('id');
+        //     let _idText = _id.replace('mask', 'text');
+        //     $('#' + _id + ', #' + _idText).removeClass('is-active');
+        // });
 
         $(document).on('mouseleave', '#map-text .map-spot', function (e) {
             let _id = $(this).attr('id');
@@ -82,12 +82,12 @@ appFunctions = (function ($, window, undefined) {
             $('#' + _id + ', #' + _idMask).removeClass('is-active');
         });
 
-        $(document).on('click touch', '#area-mask path', function (e) {
-            e.preventDefault();
-            let _id = $(this).attr('id');
-            let _idText = _id.replace('mask', 'text');
-            window.location.assign(jQuery('#' + _idText).attr('href'));
-        });
+        // $(document).on('click touch', '#area-mask path', function (e) {
+        //     e.preventDefault();
+        //     let _id = $(this).attr('id');
+        //     let _idText = _id.replace('mask', 'text');
+        //     window.location.assign(jQuery('#' + _idText).attr('href'));
+        // });
     }
 
     function _handleExploreNav() {
