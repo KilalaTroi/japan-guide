@@ -199,18 +199,18 @@ body {
 section.block,
 footer.block {
   padding: 2rem 0;
-  @media (min-width: 576px) {
-    padding: 2rem 0;
+}
+
+.sidebar {
+  section.block:first-child {
+    @include media-breakpoint-up(lg) {
+      padding-top: 0;
+    }
   }
-  @media (min-width: 768px) {
-    padding: 2rem 0;
-  }
-  @media (min-width: 992px) {
-    padding: 2rem 0;
-  }
-  @media (min-width: 1200px) {
-    padding: 2rem 0;
-  }
+}
+
+#breadcrumb + .no-banner {
+  margin-top: -2rem;
 }
 
 /*-----------------------------------------------------*/
