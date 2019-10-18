@@ -8,16 +8,23 @@
     <meta name="google" content="notranslate">
     <title><?php wp_title(); ?></title>
     <link rel="profile" href="http://gmpg.org/xfn/11">
-    <?php
-    $urlFavicon = wpedu_get_option('option_icon_logo')['url'];
-    if (isset($urlFavicon) && !empty($urlFavicon)) {
-        printf("<link rel='shortcut icon' type='image/x-icon' href='%s'/>", $urlFavicon);
-    } ?>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+    <!-- End Favicon -->
+
     <?php if (is_singular() && pings_open(get_queried_object())) : ?>
     <link rel="pingback" href="<?= get_bloginfo('pingback_url'); ?>">
 <?php endif; ?>
 
 <style type="text/css" media="screen">
+
     body.loading{
         opacity: 0;
     }

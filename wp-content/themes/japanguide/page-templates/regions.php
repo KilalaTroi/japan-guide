@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: Destinations Page
+ * Template Name: Regions Page
  */
 get_header();
 ?>
@@ -13,20 +13,19 @@ get_header();
     <div class="carousel-inner kilala-animation-item" data-animate>
       <div class="carousel-item active h-auto">
         <div class="container">
-          <?php
-          $feature_img  = wpedu_get_option('des_feature_image');
-          $feature_img_m  = wpedu_get_option('des_feature_image_mb');
-          if (isset($feature_img['id']) && !empty($feature_img['id'])) {
-            echo wp_get_attachment_image($feature_img['id'], 'full', false, array('class' => 'img-fluid d-none d-lg-block'));
+        <?php
+          if ( has_post_thumbnail() ) {
+            the_post_thumbnail('full',array('class' => 'img-fluid d-none d-lg-block'));
           }
-          if (isset($feature_img_m['id']) && !empty($feature_img_m['id'])) {
+          $feature_img_m  = get_field('featured_image_mobile');
+          if (isset($feature_img_m) && !empty($feature_img_m)) {
             echo wp_get_attachment_image($feature_img_m['id'], 'large', false, array('class' => 'd-block d-lg-none img-fluid'));
-          } elseif (isset($feature_img['id']) && !empty($feature_img['id'])) {
-            echo wp_get_attachment_image($feature_img['id'], 'large', false, array('class' => 'd-block d-lg-none img-fluid'));
+          } else{
+            the_post_thumbnail('large',array('class' => 'd-block d-lg-none img-fluid'));
           }
           ?>
           <div class="carousel-caption">
-            <?php printf('<h1>%s</h1> <p class="text-uppercase">%s</p>', pll__('Japan'), pll__('Find your favorite destination')); ?>
+            <?php printf('<h1>%s</h1> <p class="text-uppercase">%s</p>', pll__('Japan'), pll__('Find your favorite region')); ?>
           </div>
         </div>
       </div>
@@ -49,45 +48,7 @@ get_header();
           </div>
         </section>
 
-        <section class="block" id="stop-dest">
-          <h2 class="main-title-lg">
-            <?php printf('%s', pll__('Destinations')); ?>
-          </h2>
-          <div class="row gallery-cards kilala-animation-2">
-            <?php
-            if (empty($destinations_top) || NULL === $destinations_top) {
-              $destinations_top = get_destinations_top();
-            }
-            foreach ($destinations_top as $k => $v) :
-              $thumbnail = get_field('feature_image', $v->taxonomy . '_' . $v->term_id);
-              $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['sizes']['large']  : no_img('8151');
-              $content = get_field('content', $v->taxonomy . '_' . $v->term_id);
-              $description_cotnent = get_short_text($content, 345);
-              ?>
-              <div class="col-6 col-xl-4 gallery kilala-animation-item" data-animate>
-                <a class="link-gallery" alt="<?php echo $v->name; ?>" title="<?php echo $v->name; ?>" href="<?php echo get_term_link($v->term_id); ?>">
-                  <div class="link-gallery-image">
-                    <figure class="image">
-                      <div class="image-mask" style="background-image: url(<?php echo $thumbnail; ?>)">
-                      </div>
-                    </figure>
-                    <div class="link-gallery-image-text">
-                      <div class="link-gallery-image-text-content">
-                        <?php echo $description_cotnent; ?>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="link-gallery-desc">
-                    <h3><?php echo $v->name; ?></h3>
-                    <p class="d-none d-sm-block"><?php echo $v->description; ?></p>
-                  </div>
-                </a>
-              </div>
-            <?php endforeach; ?>
-          </div>
-        </section>
-
-        <!-- <section class="top-dest block">
+        <section class="top-dest block">
           <?php
           if (empty($maps) || NULL === $maps) {
             $maps = get_map();
@@ -156,7 +117,7 @@ get_header();
               </div>
             </div>
           <?php endforeach; ?>
-        </section> -->
+        </section>
       </div>
       <div class="col-lg-4 pl-lg-4 has-border-top-sp">
         <?php get_sidebar('taxonomy'); ?>

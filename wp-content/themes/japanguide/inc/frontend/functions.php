@@ -4,304 +4,348 @@
 add_filter('body_class', 'custom_class');
 function custom_class($classes)
 {
-    $classes[] = 'japan-guide';
-    return $classes;
+  $classes[] = 'japan-guide';
+  return $classes;
 }
 
 //Add active class to wp_nav_menu
 function special_nav_class($classes, $item)
 {
-    if (in_array('current-menu-item', $classes)) {
-        $classes[] = 'active';
-    }
-    return $classes;
+  if (in_array('current-menu-item', $classes)) {
+    $classes[] = 'active';
+  }
+  return $classes;
 }
 add_filter('nav_menu_css_class', 'special_nav_class', 10, 2);
 
 function no_img($id, $size = 'thumbnail', $icon = false, $arg = '')
 {
-    return wp_get_attachment_image_url($id, $size, $icon, $arg);
+  return wp_get_attachment_image_url($id, $size, $icon, $arg);
 }
 
 // get top desinations
 function get_destinations_top()
 {
-    $destinations_topL = 'destination_top_' . LANGUAGE_SLUG;
-    if (false === ($destinations_top  = get_transient($destinations_topL))) {
-        $term_id = '7';
-        if (LANGUAGE_SLUG === 'ja') {
-            $term_id = '1258';
-        }
-        $args = array(
-            'hide_empty' => false,
-            'parent'    => $term_id,
-            'orderby' => 'term_order',
-            'order' => 'ASC',
-            'number' => 8,
-        );
-        $destinations_top = get_terms('category', $args);
-        set_transient($destinations_topL, $destinations_top, 30 * DAY_IN_SECONDS);
-    }
-    return $destinations_top;
+  $destinations_topL = 'destination_top_' . LANGUAGE_SLUG;
+  if (false === ($destinations_top  = get_transient($destinations_topL))) {
+    $args = array(
+      'hide_empty' => false,
+      'orderby' => 'term_order',
+      'order' => 'ASC',
+      'number' => 4,
+      'meta_query' => array(
+        array(
+          'key' => 'top',
+          'value' => true,
+        )
+      )
+    );
+    $destinations_top = get_terms('category', $args);
+    set_transient($destinations_topL, $destinations_top, 30 * DAY_IN_SECONDS);
+  }
+  return $destinations_top;
 }
 
-// get map desinations
-function get_destinations_map()
+// get map
+function get_map()
 {
-    $destinationsL = 'destination_' . LANGUAGE_SLUG;
+  $mapsL = 'map_' . LANGUAGE_SLUG;
 
-    if (false === ($destinations  = get_transient($destinationsL))) {
-        $include = wpedu_get_option('option_map');
-        $args = array(
-            'hide_empty' => false,
-            'orderby' => 'term_order',
-            'order' => 'ASC',
-            'include'       => $include,
-        );
-        $destinations = get_terms('category', $args);
-        set_transient($destinationsL, $destinations, 30 * DAY_IN_SECONDS);
-    }
-    return $destinations;
-}
+  if (false === ($maps  = get_transient($mapsL))) {
 
-// get top categories
-function get_categories_top()
-{
-    $categoriesL = 'category_' . LANGUAGE_SLUG;
-    if (false === ($categories  = get_transient($categoriesL))) {
-        $term_id = '1240';
-        if (LANGUAGE_SLUG === 'ja') {
-            $term_id = '1266';
-        }
-        $args = array(
-            'hide_empty' => false,
-            'parent'    => $term_id,
-            'number'            => '8',
-            'orderby' => 'term_order',
-            'order' => 'ASC',
-            'meta_query' => array(
-                array(
-                    'key' => 'top',
-                    'value' => true,
-                )
+    $include = wpedu_get_option('option_map');
+
+    $args = array(
+      'hide_empty' => false,
+      'orderby' => 'term_order',
+      'order' => 'ASC',
+      'include'       => $include,
+    );
+    $maps = get_terms('regions', $args);
+    foreach ($maps as $key => $map) {
+      $destinations = get_field('destinations', $map->taxonomy . '_' . $map->term_id);
+      foreach ($destinations as $destination) {
+        $id = $destination;
+        $destination = get_terms('category', array(
+          'hide_empty' => false,
+          'include' =>  $id,
+          'meta_query' => array(
+            array(
+              'key' => 'top',
+              'value' => true,
             )
-        );
-        $categories = get_terms('category', $args);
-        set_transient($categoriesL, $categories, 30 * DAY_IN_SECONDS);
+          )
+        ));
+        if (isset($destination) && !empty($destination)) {
+          $maps[$key]->destinations = $destination;
+        }
+      }
     }
-    return $categories;
+    set_transient($mapsL, $maps, 30 * DAY_IN_SECONDS);
+  }
+  return $maps;
+}
+
+// get top topics
+function get_topics_top()
+{
+  $topicsL = 'topics_' . LANGUAGE_SLUG;
+  if (false === ($topics  = get_transient($topicsL))) {
+    $args = array(
+      'hide_empty' => false,
+      'number'            => '8',
+      'orderby' => 'term_order',
+      'order' => 'ASC',
+      // 'meta_query' => array(
+      //   array(
+      //     'key' => 'top',
+      //     'value' => true,
+      //   )
+      // )
+    );
+    $topics = get_terms('topics', $args);
+    set_transient($topicsL, $topics, 30 * DAY_IN_SECONDS);
+  }
+  return $topics;
 }
 
 // get post right excludes (artile detail)
-function get_post_right(){
-    $post_rightL = 'post_right_' . LANGUAGE_SLUG;
-    if (false === ($post_right  = get_transient($post_rightL))) {
-        $post_right = new WP_Query(
-            array(
-              'post_type'      => 'post',
-              'posts_per_page' => 5,
-              'post_status' => 'publish',
-            )
-          );
-        set_transient($post_rightL, $post_right, 30 * DAY_IN_SECONDS);
-    }
-    return $post_right;
+function get_post_right()
+{
+  $post_rightL = 'post_right_' . LANGUAGE_SLUG;
+  if (false === ($post_right  = get_transient($post_rightL))) {
+    $post_right = new WP_Query(
+      array(
+        'post_type'      => 'post',
+        'posts_per_page' => 5,
+        'post_status' => 'publish',
+        'cat' => '1199',
+      )
+    );
+    set_transient($post_rightL, $post_right, 30 * DAY_IN_SECONDS);
+  }
+  return $post_right;
 }
 
-function get_taxonomy_type($type="destination",$number = false)
+function get_taxonomy_type($type = "destination", $number = false)
 {
-    if($type="interest"){
-        $term_id = '1240';
-        if (LANGUAGE_SLUG === 'ja') {
-            $term_id = '1266';
-        }
-    }else{
-        $term_id = '7';
-        if (LANGUAGE_SLUG === 'ja') {
-            $term_id = '1260';
-        }
+  if ("interest" === $type) {
+    $term_id = '1240';
+    if ('ja' === LANGUAGE_SLUG) {
+      $term_id = '1266';
     }
-    $args = array(
-        'hide_empty' => false,
-        'parent'    => $term_id,
-        'number'            => $number,
-        'orderby' => 'term_order',
-        'order' => 'ASC',
-    );
+  } else {
+    $term_id = '7';
+    if ('ja' === LANGUAGE_SLUG) {
+      $term_id = '12';
+    }
+  }
+  $args = array(
+    'hide_empty' => false,
+    'parent'    => $term_id,
+    'number'            => $number,
+    'orderby' => 'term_order',
+    'order' => 'ASC',
+  );
 
-    return get_terms('category', $args);
-
+  return get_terms('category', $args);
 }
 
 function get_breadcrumb()
 {
-    if (function_exists('yoast_breadcrumb')) {
-        return yoast_breadcrumb('<section id="breadcrumb"><div class="container"><div class="row"><div class="breadcrumb" class="my-5">', '</div></div></div></section>', false);
-    }
-    return '';
+  if (function_exists('yoast_breadcrumb')) {
+    return yoast_breadcrumb('<section id="breadcrumb"><div class="container"><div class="row"><div class="breadcrumb" class="my-5">', '</div></div></div></section>', false);
+  }
+  return '';
 }
 
 function get_short_text($obj, $length)
 {
 
-    $str = strip_tags($obj);
-    if ($length < strlen($str)) {
-        $count = strpos($str, ' ', $length) === false ? strlen($str) : strpos($str, ' ', $length);
-        $str = substr($str, 0, $count) . '...';
-    }
-    return $str;
+  $str = strip_tags($obj);
+  if ($length < strlen($str)) {
+    $count = strpos($str, ' ', $length) === false ? strlen($str) : strpos($str, ' ', $length);
+    $str = substr($str, 0, $count) . '...';
+  }
+  return $str;
 }
 
 function get_primary_taxonomy($id = NULL, $taxonomy = 'category')
 {
-    if (NULL === $id || empty($id)) {
-        $id = get_the_ID();
+  if (NULL === $id || empty($id)) {
+    $id = get_the_ID();
+  }
+  $primary = get_post_meta($id, '_yoast_wpseo_primary_category', true);
+  if (NULL === $primary || empty($primary)) {
+    $taxonomies = get_the_terms($id, $taxonomy);
+    if (isset($taxonomies)) {
+      return get_term($taxonomies[0]->term_id, $taxonomy);
     }
-    $primary = get_post_meta($id, '_yoast_wpseo_primary_category', true);
-    if (NULL === $primary || empty($primary)) {
-        $taxonomies = get_the_terms(get_the_ID(), $taxonomy);
-        if (isset($taxonomies)) {
-            return get_term($taxonomies[0]->term_id, $taxonomy);
-        }
-    }
-    return get_term($primary, $taxonomy);
+  }
+  return get_term($primary, $taxonomy);
 }
 
-function get_category_type($id= NULL,$type= 'destination'){
-    if (NULL === $id || empty($id)) {
-        $id = get_the_ID();
+function get_category_type($id = NULL, $type = 'destination')
+{
+  if (NULL === $id || empty($id)) {
+    $id = get_the_ID();
+  }
+  $categories = get_the_category($id);
+  $arr = array();
+  if ('interest' === $type) {
+    foreach ($categories as $category) {
+      if (in_array($category->category_parent, array(1240, 1258))) {
+        $arr[] = $category;
+      }
     }
-    $categories = get_the_category($id);
-    $arr = array();
-    if($type === 'interest'){
-        foreach($categories as $category){
-            if(in_array($category->category_parent, array(1240,1258)) ){
-                $arr[] = $category;
-            }
-        }
-    }else{
-        foreach($categories as $category){
-            if(in_array($category->category_parent, array(7,1260)) ){
-                $arr[] = $category;
-            }
-        }
+  } else {
+    foreach ($categories as $category) {
+      if (in_array($category->category_parent, array(7, 12))) {
+        $arr[] = $category;
+      }
     }
-    return $arr;
+  }
+  return $arr;
 }
 
-function fellowtuts_wpbs_pagination( $pages = '', $range = 2 ) {
-	$showitems = ( $range * 2 ) + 1;
-    global $paged;
-	if ( empty( $paged ) ) {
-		$paged = 1;
-	}
-	if ( $pages == '' ) {
-		global $wp_query;
-		$pages = $wp_query->max_num_pages;
+function fellowtuts_wpbs_pagination($pages = '', $range = 2)
+{
+  $showitems = ($range * 2) + 1;
+  global $paged;
+  if (empty($paged)) {
+    $paged = 1;
+  }
+  if ($pages == '') {
+    global $wp_query;
+    $pages = $wp_query->max_num_pages;
 
-		if ( ! $pages ) {
-			$pages = 1;
-		}
-	}
+    if (!$pages) {
+      $pages = 1;
+    }
+  }
 
-	if ( 1 != $pages ) {
-		echo '<nav aria-label="Page navigation" role="navigation">';
-		echo '<span class="sr-only">Page navigation</span>';
-		echo '<ul class="pagination justify-content-center ft-wpbs">';
+  if (1 != $pages) {
+    echo '<nav aria-label="Page navigation" role="navigation">';
+    echo '<span class="sr-only">Page navigation</span>';
+    echo '<ul class="pagination justify-content-center ft-wpbs">';
 
-		echo '<li class="page-item disabled hidden-md-down d-none d-lg-block"><span class="page-link">' . pll__('Page') .' '. $paged .' '. pll__('of') . ' ' . $pages . '</span></li>';
+    // echo '<li class="page-item disabled hidden-md-down d-none d-lg-block"><span class="page-link">' . pll__('Page') . ' ' . $paged . ' ' . pll__('of') . ' ' . $pages . '</span></li>';
 
-		if ( $paged > 2 && $paged > $range + 1 && $showitems < $pages ) {
-			echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link( 1 ) . '" aria-label="First Page">&laquo;</a></li>';
-		}
+    if ($paged > 2 && $paged > $range + 1 && $showitems < $pages) {
+      echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link(1) . '" aria-label="First Page">&laquo;</a></li>';
+    }
 
-		if ( $paged > 1 && $showitems < $pages ) {
-			echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link( $paged - 1 ) . '" aria-label="Previous Page">&lsaquo;</a></li>';
-		}
+    if ($paged > 1 && $showitems < $pages) {
+      echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link($paged - 1) . '" aria-label="Previous Page">&lsaquo;</a></li>';
+    }
 
-		for ( $i = 1; $i <= $pages; $i++ ) {
-			if ( 1 != $pages && ( ! ( $i >= $paged + $range + 1 || $i <= $paged - $range - 1 ) || $pages <= $showitems ) ) {
-				echo ( $paged == $i ) ? '<li class="page-item active"><span class="page-link"><span class="sr-only">Current Page </span>' . $i . '</span></li>' : '<li class="page-item"><a class="page-link" href="' . get_pagenum_link( $i ) . '"><span class="sr-only">Page </span>' . $i . '</a></li>';
-			}
-		}
+    for ($i = 1; $i <= $pages; $i++) {
+      if (1 != $pages && (!($i >= $paged + $range + 1 || $i <= $paged - $range - 1) || $pages <= $showitems)) {
+        echo ($paged == $i) ? '<li class="page-item active"><span class="page-link"><span class="sr-only">Current Page </span>' . $i . '</span></li>' : '<li class="page-item"><a class="page-link" href="' . get_pagenum_link($i) . '"><span class="sr-only">Page </span>' . $i . '</a></li>';
+      }
+    }
 
-		if ( $paged < $pages && $showitems < $pages ) {
-			echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link( $paged + 1 ) . '" aria-label="Next Page">&rsaquo;</a></li>';
-		}
+    if ($paged < $pages && $showitems < $pages) {
+      echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link($paged + 1) . '" aria-label="Next Page">&rsaquo;</a></li>';
+    }
 
-		if ( $paged < $pages - 1 && $paged + $range - 1 < $pages && $showitems < $pages ) {
-			echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link( $pages ) . '" aria-label="Last Page">&raquo;</a></li>';
-		}
+    if ($paged < $pages - 1 && $paged + $range - 1 < $pages && $showitems < $pages) {
+      echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link($pages) . '" aria-label="Last Page">&raquo;</a></li>';
+    }
 
-		echo '</ul>';
-		echo '</nav>';
-		// echo '<div class="pagination-info mb-5 text-center">[ <span class="text-muted">Page</span> '.$paged.' <span class="text-muted">of</span> '.$pages.' ]</div>';
-	}
+    echo '</ul>';
+    echo '</nav>';
+    // echo '<div class="pagination-info mb-5 text-center">[ <span class="text-muted">Page</span> '.$paged.' <span class="text-muted">of</span> '.$pages.' ]</div>';
+  }
 }
 
 
-function wpedu_translate(){
-	/**
-	 * Key = Name
-	 * Value = String
-	 */
-	$arr = array(
-        'Điểm đến' 	                    => 'Destination',
-        'Các điểm đến'                  => 'Destinations',
-        'được yêu thích nhất' 	        => 'interests',
-        'Chủ đề'                        => 'Topic',
-        'phổ biến'                      => 'popular',
-        'Tin tức du lịch Nhật Bản'      => 'Japan travel news',
-        'Chủ đề phổ biến'               => 'Popular topic',
-        'Bạn yêu thích điểm đến nào ở Nhật Bản?'  => 'What is your favorite destination in Japan?',
-        'Bài viết'                      => 'Post',
-        'về'                            => 'about',
-        'Khám phá'                      => 'Discover',
-        'Bài viết cùng chủ đề'          => 'Posts same topic',
-        'Không tìm thấy trang'          => 'Page not found',
-        'Trang bạn đang tìm kiếm không thể tìm thấy.' => 'The page you were looking for could not be found.',
-        'Trở về trang chủ'              => 'Go back to home',
-        'Dưới đây là một số liên kết hữu ích'   => 'Here are some helpful links',
-        'Xem thêm'   => 'More',
-        'Kết quả tìm kiếm cho:'   => 'search-results',
-	);
+function wpedu_translate()
+{
+  /**
+   * Key = Name
+   * Value = String
+   */
+  $arr = array(
+    'Điểm đến'                         => 'Destination',
+    'Các điểm đến'                  => 'Destinations',
+    'được yêu thích nhất'             => 'interests',
+    'Chủ đề'                        => 'Topic',
+    'phổ biến'                      => 'popular',
+    'Bí kíp du lịch Nhật Bản'      => 'Japan travel news',
+    'Chủ đề phổ biến'               => 'Popular topic',
+    'Bạn yêu thích điểm đến nào ở Nhật Bản?'  => 'What is your favorite destination in Japan?',
+    'Bài viết'                      => 'Post',
+    'về'                            => 'about',
+    'Khám phá'                      => 'Discover',
+    'Bài viết cùng chủ đề'          => 'Posts same topic',
+    'Không tìm thấy trang'          => 'Page not found',
+    'Trang bạn đang tìm kiếm không thể tìm thấy.' => 'The page you were looking for could not be found.',
+    'Trở về trang chủ'              => 'Go back to home',
+    'Dưới đây là một số liên kết hữu ích'   => 'Here are some helpful links',
+    'Xem thêm'   => 'More',
+    'Kết quả tìm kiếm cho:'   => 'search-results',
+    'Các thành phố'   => 'Cities',
+    'thuộc khu vực'   => 'in the region',
+    'Tìm điểm đến yêu thích của bạn'  => 'Find your favorite destination',
+    'Tìm khu vực yêu thích của bạn'  => 'Find your favorite region'
+  );
 
-	foreach( $arr as $key => $value ) {
-		pll_register_string($key, $value, 'translate-custom');
-	}
+  $arrSlugTaxonomy = array(
+    'chu-de'                               => 'slug-taxonomy-topic',
+    'khu-vuc'                               => 'slug-taxonomy-region'
+  );
+
+  foreach ($arr as $key => $value) {
+    pll_register_string($key, $value, 'translate-custom');
+  }
+
+  foreach ($arrSlugTaxonomy as $key => $value) {
+    pll_register_string($key, $value, 'translate-slug');
+  }
 }
-add_action( 'after_setup_theme', 'wpedu_translate' );
+add_action('after_setup_theme', 'wpedu_translate');
 
 
 // misha_loadmore_ajax_handler
-function misha_loadmore_ajax_handler(){
+function misha_loadmore_ajax_handler()
+{
+  $posts_per_page = 1;
+  if ($_POST['offset'] == 1) {
+    $posts_per_page = 6;
+  }
+  $relate_category = new WP_Query(array(
+    'post_type'      => 'post',
+    'posts_per_page' => $posts_per_page,
+    'lang'           => $_POST['lang'],
+    'offset' => $_POST['offset'],
+    'post_status' => 'publish',
+    'post__not_in' => explode(',', $_POST['postID']),
+    'tag__in' => explode(',', $_POST['tags']),
+  ));
 
-    $relate_category = new WP_Query(array(
-        'post_type'      => 'post',
-        'posts_per_page' => 1,
-        'lang'           => $_POST['lang'],
-        'offset' => $_POST['offset'],
-        'post_status' => 'publish',
-        'orderby' => 'rand',
-        'post__not_in' => explode(',', $_POST['postID']),
-        'tax_query' => array(
-            array(
-                'taxonomy' => 'category',
-                'field' => 'term_id',
-                'terms' => explode(',', $_POST['categories']),
-            )
-        ),
-    ));
 
-    while ($relate_category->have_posts()) {
-        $relate_category->the_post();
-        echo '<div class="row border-top py-4"></div><div id="content-offset-'. $_POST["offset"] . '">';
-        get_template_part('template-parts/components/content');
-        echo '</div>';
+  while ($relate_category->have_posts()) {
+    $relate_category->the_post();
+    if ($relate_category->current_post == 0) {
+      echo '<div class="row border-top py-4"></div><div id="content-offset-' . $_POST["offset"] . '">';
+      get_template_part('template-parts/components/content');
+      echo '</div>';
+    } else {
+      if ($relate_category->current_post == 1) {
+        echo '<h3>Có thể bạn quan tâm:</h3><ul>';
+      };
+
+      printf('<li><a title="%1$s" href="%2$s">%1$s</a></li>', get_the_title(), get_the_permalink($post->ID));
     }
+  }
 
-    wp_reset_query();
-    die; // here we exit the script and even no wp_reset_query() required!
+  if ($relate_category->found_posts > 1) {
+    echo '</ul>';
+  };
+
+  wp_reset_query();
+  die; // here we exit the script and even no wp_reset_query() required!
 }
 
 

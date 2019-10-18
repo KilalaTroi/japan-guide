@@ -14,8 +14,8 @@ get_header();
       <div class="carousel-item active h-auto">
         <div class="container">
           <?php
-          $feature_img  = wpedu_get_option('des_feature_image');
-          $feature_img_m  = wpedu_get_option('des_feature_image_mb');
+          $feature_img  = wpedu_get_option('int_feature_image');
+          $feature_img_m  = wpedu_get_option('int_feature_image_mb');
           if (isset($feature_img['id']) && !empty($feature_img['id'])) {
             echo wp_get_attachment_image($feature_img['id'], 'full', false, array('class' => 'img-fluid d-none d-lg-block'));
           }
@@ -124,7 +124,7 @@ get_header();
         </section>
       </div>
       <div class="col-lg-4 pl-lg-4 has-border-top-sp">
-              <?php get_sidebar('right'); ?>
+              <?php get_sidebar('taxonomy'); ?>
       </div>
     </div>
   </div>

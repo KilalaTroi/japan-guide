@@ -1,39 +1,87 @@
 <?php
-if (empty($destinations) || NULL === $destinations) {
-  $destinations = get_destinations_map();
+if (empty($maps) || NULL === $maps) {
+  $maps = get_map();
 }
 ?>
+
+<style>
+  #svg-map {
+    position: relative;
+  }
+
+  .city-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .city-list a {
+    position: absolute;
+    font-weight: 700;
+    text-shadow: 0 0 5px #fff;
+    transition: all .15s ease-in-out;
+    font-size: 14px;
+  }
+
+  .city-list a:after {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    content: "";
+    background-color: #FF1945;
+    box-shadow: 0 0 5px #fff;
+    left: 0;
+    right: 0;
+    bottom: -10px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+</style>
+
 <my-map>
-    <div id="svg-map" style="min-height: 300px;" class="kilala-animation-item" data-animate></div>
-    <script type="text/javascript" charset="utf-8" async defer>
+  <div id="svg-map" style="min-height: 300px;" class="kilala-animation-item" data-animate>
+    <div id="map-text">
+      <?php
+      foreach ($maps as $map) { ?>
+        <div class="map-wrapper" data-region="<?php echo strtolower(str_replace(' ', '-', $map->name)); ?>">
+          <?php printf('<a id="%3$s-text" title="%1$s" href="%2$s" class="region map-spot %3$s">%4$s</a>', $map->name, get_term_link($map->term_id), strtolower(str_replace(' ', '-', $map->name)), strtoupper(str_replace(' ', '<br>', $map->name))); ?>
+          <ul class="city-list">
+            <?php
+              if (isset($map->destinations) && !empty($map->destinations) ) {
+                foreach ($map->destinations as $destination) {
+                  printf('<li><a href="%2$s" title="%1$s" id="%3$s" class="map-city">%4$s</a></li>', $destination->name, get_term_link($destination->term_id), strtolower(str_replace(' ', '-', $destination->name)), ucfirst(str_replace(' ', '<br>', $destination->name)));
+                }
+              } ?>
+          </ul>
+        </div>
+      <?php } ?>
+    </div>
+    <!-- <div id="city-list">
+      <a id="tokyo" class="map-city" href="<?= site_url() ?>/diem-du-lich/tokyo/">Tokyo</a>
+      <a id="osaka" class="map-city top-point" href="<?= site_url() ?>/diem-du-lich/osaka/">Osaka</a>
+      <a id="kyoto" class="map-city" href="<?= site_url() ?>/diem-du-lich/kyoto/">Kyoto</a>
+      <a id="nagasaki" class="map-city" href="<?= site_url() ?>/diem-du-lich/nagasaki/">Nagasaki</a>
+    </div> -->
+  </div>
+
+  <script type="text/javascript" charset="utf-8" async defer>
     var map = sessionStorage.getItem("svg-map");
     if (null === map) {
       jQuery(document).ready(function($) {
         $.ajax({
           type: 'POST',
-          url: '<?php echo admin_url('admin-ajax.php');?>',
+          url: '<?php echo admin_url('admin-ajax.php'); ?>',
           dataType: "html", // add data type
-          data: { action : 'get_ajax_map' },
-          success: function( response ) {
+          data: {
+            action: 'get_ajax_map'
+          },
+          success: function(response) {
             var map = sessionStorage.setItem("svg-map", response);
-            $('#svg-map').append( response );
+            $('#svg-map').prepend(response);
           }
         });
       });
     }
-    jQuery('#svg-map').append( map );
-    </script>
-
-    <div id="map-text">
-      <?php
-        printf('<a id="hokkaido-text" title="%1$s" href="%2$s" class="map-spot hokkaido">HOKKAIDO</a>', $destinations[0]->name, get_term_link($destinations[0]->term_id));
-        printf('<a id="tohoku-text" title="%1$s" href="%2$s" class="map-spot tohoku">TOHOKU</a>', $destinations[1]->name, get_term_link($destinations[1]->term_id));
-        printf('<a id="kanto-text" title="%1$s" href="%2$s" class="map-spot kanto">KANTO</a>', $destinations[3]->name, get_term_link($destinations[3]->term_id));
-        printf('<a id="chubu-text" title="%1$s" href="%2$s" class="map-spot chubu">CHUBU</a>', $destinations[2]->name, get_term_link($destinations[2]->term_id));
-        printf('<a id="chugoku-text" title="%1$s" href="%2$s" class="map-spot chugoku">CHUGOKU</a>', $destinations[5]->name, get_term_link($destinations[5]->term_id));
-        printf('<a id="kinki-text" title="%1$s" href="%2$s" class="map-spot kinki">KINKI</a>', $destinations[4]->name, get_term_link($destinations[4]->term_id));
-        printf('<a id="shikoku-text" title="%1$s" href="%2$s" class="map-spot shikoku">SHIKOKU</a>', $destinations[6]->name, get_term_link($destinations[6]->term_id));
-        printf('<a id="kyushu-okinawa-text" title="%1$s" href="%2$s" class="map-spot kyushu-okinawa">KYUSHU<br>OKINAWA</a>', $destinations[7]->name, get_term_link($destinations[7]->term_id));
-        ?>
-    </div>
-  </my-map>
+    jQuery('#svg-map').prepend(map);
+  </script>
+</my-map>

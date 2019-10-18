@@ -1,5 +1,4 @@
 <?php
-
 $opt_name = 'options_theme';
 $args     = array(
 	'display_name' => 'Theme Options',
@@ -7,7 +6,7 @@ $args     = array(
 	'page_title' => 'Theme Options',
 	'dev_mode' => false
 );
-Redux::setArgs( $opt_name, $args );
+Redux::setArgs($opt_name, $args);
 
 $arraySetSection = array(
 	'title'  => 'General',
@@ -24,12 +23,6 @@ $arraySetSection = array(
 			'id'    => 'option_logo',
 			'type'  => 'media',
 			'title' => 'Logo Japan Guide',
-		),
-
-		array(
-			'id'    => 'option_icon_logo',
-			'type'  => 'media',
-			'title' => 'Favicon Logo',
 		),
 
 		array(
@@ -57,36 +50,48 @@ $arraySetSection = array(
 			'title' => 'Footer copyright text',
 		),
 		array(
-			'id'    => 'option_map',
-			'type'  => 'select',
+			'id'        => 'option_map',
+			'type'      => 'select',
+			'data'      => 'terms',
 			'multi'    => true,
-			'options' => get_list_category(),
+			'args'      => array('taxonomies' => 'regions','hide_empty' => false),
 			'title' => 'Map',
 		),
 	),
 );
-Redux::setSection( $opt_name, $arraySetSection );
+Redux::setSection($opt_name, $arraySetSection);
 
-Redux::setSection( $opt_name, array(
-	'title' => 'Destination Page',
-	'icon' => 'el el-film',
+Redux::setSection($opt_name, array(
+	'title' => 'Banner Page',
+	'icon' => 'el el-file-edit',
 	'fields' => array(
 		array(
 			'id'    => 'des_feature_image',
 			'type'  => 'media',
-			'title' => 'Feature Image',
+			'title' => 'Feature Image Destination',
 		),
 		array(
 			'id'    => 'des_feature_image_mb',
 			'type'  => 'media',
-			'title' => 'Feature Image Mobile',
+			'title' => 'Feature Image Mobile Destination',
+		),
+
+		array(
+			'id'    => 'int_feature_image',
+			'type'  => 'media',
+			'title' => 'Feature Image Interest',
+		),
+		array(
+			'id'    => 'int_feature_image_mb',
+			'type'  => 'media',
+			'title' => 'Feature Image Mobile Interest',
 		),
 	)
 ));
 
-Redux::setSection( $opt_name, array(
-  'title' => 'Code',
-  'icon'   => 'el el-puzzle',
+Redux::setSection($opt_name, array(
+	'title' => 'Code',
+	'icon'   => 'el el-puzzle',
 	'fields' => array(
 		array(
 			'title' => 'Head Code',
@@ -109,7 +114,7 @@ Redux::setSection( $opt_name, array(
 	)
 ));
 
-Redux::setSection( $opt_name, array(
+Redux::setSection($opt_name, array(
 	'title' => 'Slider',
 	'icon' => 'el el-film',
 	'fields' => array(
@@ -121,11 +126,24 @@ Redux::setSection( $opt_name, array(
 	)
 ));
 
+Redux::setSection($opt_name, array(
+	'title' => 'Slider Mobile',
+	'icon' => 'el el-film',
+	'fields' => array(
+		array(
+			'title' => 'Slides',
+			'type' => 'slides',
+			'id' => 'option_slides_mb',
+		),
+	)
+));
 
-function wpedu_get_option( $option_name, $default_value = false ) {
-  	global $options_theme;
-	if ( isset( $options_theme[ $option_name ] ) ) {
-		return $options_theme[ $option_name ];
+
+function wpedu_get_option($option_name, $default_value = false)
+{
+	global $options_theme;
+	if (isset($options_theme[$option_name])) {
+		return $options_theme[$option_name];
 	}
 	return $default_value;
 }

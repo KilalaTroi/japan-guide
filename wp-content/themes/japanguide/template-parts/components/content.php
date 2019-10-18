@@ -2,7 +2,8 @@
     <div class="col-sm col-xs-12">
         <h1 class="mt-2"><?php the_title(); ?></h1>
         <div>
-            <?php
+            <?php 
+            if (isset($term_color) && isset($term_name)) printf('<a id="openExploreNav" class="mr-0 mr-sm-3 my-3 my-sm-0 d-block d-sm-inline" href="javascript:void(0)"><i %s class="fa fa-map-marker mr-2"></i>%s %s</a>', $term_color, pll__('Discover'), $term_name);
             $interests = get_category_type(get_the_ID(), 'interest');
             if (isset($interests) && !empty($interests)) {
                 foreach ($interests as $interest) {
