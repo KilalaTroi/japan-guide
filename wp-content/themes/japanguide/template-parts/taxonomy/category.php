@@ -9,7 +9,7 @@ $color = get_field('color', $current_term->taxonomy . '_' .  $current_term->term
 $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
 ?>
 <?php echo get_breadcrumb(); ?>
-<?php if (!empty($sub_image) && !empty($content)) { ?>
+<?php if (!empty($thumbnail) && !empty($content)) { ?>
   <section id="intro" class="kilala-animation">
     <div class="container">
       <div class="intro-wrapper pb-25 align-items-center">

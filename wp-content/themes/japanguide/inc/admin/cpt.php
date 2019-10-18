@@ -1,46 +1,5 @@
 <?php if (!defined('APP_PATH')) die ('Bad requested!');
 
-// if (!function_exists('create_destinations')) {
-
-//     function create_destinations() {
-
-//         $labels = array(
-//             'name' => __('Destinations', DOMAIN),
-//             'singular_name' => __('Destination', DOMAIN),
-//             'add_new' => __('Add New', DOMAIN),
-//             'add_new_item' => __('Add New Destination', DOMAIN),
-//             'edit_item' => __('Edit Destination', DOMAIN),
-//             'new_item' => __('New Destination', DOMAIN),
-//             'view_item' => __('View Destination', DOMAIN),
-//             'search_items' => __('Search Destination', DOMAIN),
-//             'not_found' => __('No destinations found', DOMAIN),
-//             'not_found_in_trash' => __('No destinations found in Trash', DOMAIN),
-//             'parent_item_colon' => 'Parent Destinations',
-//         );
-
-
-//         $args = array(
-//             'labels' => $labels,
-//             'public' => true,
-//             'publicly_queryable' => true,
-//             'show_ui' => true,
-//             'query_var' => true,
-//             'has_archive' => false,
-//             'capability_type' => 'post',
-//             'hierarchical' => true,
-//             'menu_position' => 5,
-//             'supports' => array('title', 'revisions', 'editor'),
-//             'menu_icon' => 'dashicons-location-alt',
-//             'rewrite' => array('slug' => __('destination', DOMAIN))
-//         );
-
-//         register_post_type('destinations', $args);
-//     }
-// }
-
-// add_action('init', 'create_destinations');
-
-
 function revcon_change_cat_object() {
     global $wp_taxonomies;
     $labels = &$wp_taxonomies['category']->labels;
@@ -75,7 +34,7 @@ if (!function_exists('create_region_taxonomies')) {
                 'show_ui' => true,
                 'show_tagcloud' => false,
                 'hierarchical' => true,
-                'rewrite'           => array('slug' => pll__('slug-taxonomy-region')),
+                'rewrite'           => array('slug' => 'region'),
             )
         );
     }
@@ -96,7 +55,7 @@ if (!function_exists('create_region_topic')) {
                 'show_ui' => true,
                 'show_tagcloud' => false,
                 'hierarchical' => true,
-                'rewrite'           => array('slug' => pll__('slug-taxonomy-topic')),
+                'rewrite'           => array('slug' => 'topic'),
             )
         );
     }
