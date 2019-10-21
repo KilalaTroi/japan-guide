@@ -282,11 +282,25 @@ div.aligncenter {
 .alignright {
   float:right;
   margin: 5px 0 20px 20px;
+
+  @include media-breakpoint-down(xs) {
+    float: none;
+    margin-left: 0;
+    width: 100%;
+    height: auto;
+  }
 }
 
 .alignleft {
   float: left;
   margin: 5px 20px 20px 0;
+
+  @include media-breakpoint-down(xs) {
+    float: none;
+    margin-right: 0;
+    width: 100%;
+    height: auto;
+  }
 }
 
 a img.alignright {
@@ -297,6 +311,7 @@ a img.alignright {
     float: none;
     margin-left: 0;
     width: 100%;
+    height: auto;
   }
 }
 
@@ -312,6 +327,7 @@ a img.alignleft {
     float: none;
     margin-right: 0;
     width: 100%;
+    height: auto;
   }
 }
 
