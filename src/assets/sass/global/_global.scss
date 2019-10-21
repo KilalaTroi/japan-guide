@@ -292,6 +292,12 @@ div.aligncenter {
 a img.alignright {
   float: right;
   margin: 5px 0 20px 20px;
+
+  @include media-breakpoint-down(xs) {
+    float: none;
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
 a img.alignnone {
@@ -301,6 +307,12 @@ a img.alignnone {
 a img.alignleft {
   float: left;
   margin: 5px 20px 20px 0;
+
+  @include media-breakpoint-down(xs) {
+    float: none;
+    margin-right: 0;
+    width: 100%;
+  }
 }
 
 a img.aligncenter {
@@ -323,10 +335,18 @@ a img.aligncenter {
 
 .wp-caption.alignleft {
   margin: 5px 20px 20px 0;
+
+  @include media-breakpoint-down(xs) {
+    margin-right: 0;
+  }
 }
 
 .wp-caption.alignright {
   margin: 5px 0 20px 20px;
+
+  @include media-breakpoint-down(xs) {
+    margin-left: 0;
+  }
 }
 
 .wp-caption img {
