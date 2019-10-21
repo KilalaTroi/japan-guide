@@ -16,49 +16,49 @@ get_header();
 
       <!-- Grid column -->
       <div class="mb-3 pics animation">
-        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg" alt="Card image cap">
+        <img class="w-100 img-fluid" src="<?= ASSETS_PATH ?>images/gallery/g1-2.png" alt="Card image cap">
       </div>
       <!-- Grid column -->
 
       <!-- Grid column -->
       <div class="mb-3 pics animation">
-        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Vertical/mountain1.jpg" alt="Card image cap">
+        <img class="w-100 img-fluid" src="<?= ASSETS_PATH ?>images/gallery/g1-1.png" alt="Card image cap">
       </div>
       <!-- Grid column -->
 
       <!-- Grid column -->
       <div class="mb-3 pics animation">
-        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Vertical/mountain2.jpg" alt="Card image cap">
+        <img class="w-100 img-fluid" src="<?= ASSETS_PATH ?>images/gallery/g2-1.png" alt="Card image cap">
       </div>
       <!-- Grid column -->
 
       <!-- Grid column -->
       <div class="mb-3 pics animation">
-        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg" alt="Card image cap">
+        <img class="w-100 img-fluid" src="<?= ASSETS_PATH ?>images/gallery/g2-2.png" alt="Card image cap">
       </div>
       <!-- Grid column -->
 
       <!-- Grid column -->
       <div class="mb-3 pics animation">
-        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg" alt="Card image cap">
+        <img class="w-100 img-fluid" src="<?= ASSETS_PATH ?>images/gallery/g3-1.png" alt="Card image cap">
       </div>
       <!-- Grid column -->
 
       <!-- Grid column -->
       <div class="mb-3 pics animation">
-        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Vertical/mountain3.jpg" alt="Card image cap">
+        <img class="w-100 img-fluid" src="<?= ASSETS_PATH ?>images/gallery/g3-2.png" alt="Card image cap">
       </div>
       <!-- Grid column -->
 
       <!-- Grid column -->
       <div class="mb-3 pics animation">
-        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Vertical/mountain2.jpg" alt="Card image cap">
+        <img class="w-100 img-fluid" src="<?= ASSETS_PATH ?>images/gallery/g4-2.png" alt="Card image cap">
       </div>
       <!-- Grid column -->
 
       <!-- Grid column -->
       <div class="mb-3 pics animation">
-        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg" alt="Card image cap">
+        <img class="w-100 img-fluid" src="<?= ASSETS_PATH ?>images/gallery/g4-1.png" alt="Card image cap">
       </div>
       <!-- Grid column -->
 
@@ -70,9 +70,9 @@ get_header();
 </section>
 <style type="text/css" media="screen">
   .gallery-photo {
--webkit-column-count: 3;
--moz-column-count: 3;
-column-count: 3;
+-webkit-column-count: 4;
+-moz-column-count: 4;
+column-count: 4;
 -webkit-column-width: 25%;
 -moz-column-width: 25%;
 column-width: 25%; }
@@ -83,6 +83,10 @@ transition: all 350ms ease; }
 -webkit-transform: scale(1);
 -ms-transform: scale(1);
 transform: scale(1); }
+
+.gallery-photo .animation img {
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
 
 @media (max-width: 767px) {
 .gallery-photo {

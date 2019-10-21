@@ -101,7 +101,7 @@ $destinations = get_field('destinations', $current_term->taxonomy . '_' . $curre
                   $img = get_the_post_thumbnail_url($post->ID, 'feature-image');
                   $img = isset($img) && !empty($img) ? $img : no_img('8151', 'feature-image');
                   $taxonomy_destination = get_primary_taxonomy($post->ID);
-                  $color = get_field('color', $taxonomy_destination->taxonomy . '_' . $taxonomy_destination->term_id);
+                  if ( $taxonomy_destination ) $color = get_field('color', $taxonomy_destination->taxonomy . '_' . $taxonomy_destination->term_id);
                   $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
                   include(APP_PATH . '/template-parts/components/article_col_3.php');
                 endwhile;
