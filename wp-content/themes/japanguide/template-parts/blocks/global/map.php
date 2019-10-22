@@ -4,40 +4,6 @@ if (empty($maps) || NULL === $maps) {
 }
 ?>
 
-<style>
-  #svg-map {
-    position: relative;
-  }
-
-  .city-list {
-    list-style: none;
-    padding: 0;
-  }
-
-  .city-list a {
-    position: absolute;
-    font-weight: 700;
-    text-shadow: 0 0 5px #fff;
-    transition: all .15s ease-in-out;
-    font-size: 14px;
-  }
-
-  .city-list a:after {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    content: "";
-    background-color: #FF1945;
-    box-shadow: 0 0 5px #fff;
-    left: 0;
-    right: 0;
-    bottom: -10px;
-    margin: 0 auto;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-  }
-</style>
-
 <my-map>
   <div id="svg-map" style="min-height: 300px;" class="kilala-animation-item" data-animate>
     <div id="map-text">

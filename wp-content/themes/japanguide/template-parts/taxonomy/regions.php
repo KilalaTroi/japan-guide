@@ -34,22 +34,22 @@ $destinations = get_field('destinations', $current_term->taxonomy . '_' . $curre
 <section class="no-banner">
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 kilala-animation">
+      <div class="col-lg-12 kilala-animation">
         <?php if (isset($destinations) && !empty($destinations)) { ?>
           <section class="block kilala-animation-item" data-animate>
             <h2 class="main-title-lg">
               <?php printf('%s <thin>%s %s</thin>', pll__('Cities'), pll__('in the region'), $current_term->name); ?>
             </h2>
-            <div class="row gallery-cards">
+            <div class="row gallery-cards justify-content-center">
               <?php
                 foreach ($destinations as $destination) {
                   $category = get_category($destination);
                   $thumbnail = get_field('feature_image', $category->taxonomy . '_' . $category->term_id);
-                  $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['sizes']['feature-image']  : no_img('8151', 'feature-image');
+                  $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['sizes']['medium']  : no_img('8151', 'medium');
                   $content = get_field('content', $category->taxonomy . '_' . $category->term_id);
                   $description_cotnent = get_short_text($content, 345);
                   ?>
-                <div class="col-6 col-xl-4 gallery kilala-animation-item" data-animate>
+                <div class="col-6 col-md-4 col-xl-3 gallery kilala-animation-item" data-animate>
                   <a class="link-gallery" alt="<?php echo $category->name; ?>" title="<?php echo $category->name; ?>" href="<?php echo get_term_link($category->term_id); ?>">
                     <div class="link-gallery-image">
                       <figure class="image">
@@ -69,14 +69,6 @@ $destinations = get_field('destinations', $current_term->taxonomy . '_' . $curre
                   </a>
                 </div>
               <?php } ?>
-            </div>
-            <div class="div-pagination ">
-              <?php
-                if (function_exists("fellowtuts_wpbs_pagination")) {
-                  fellowtuts_wpbs_pagination();
-                  // fellowtuts_wpbs_pagination($wp_query->max_num_pages);
-                }
-                ?>
             </div>
           </section>
 
@@ -100,26 +92,26 @@ $destinations = get_field('destinations', $current_term->taxonomy . '_' . $curre
                 while ($wp_query->have_posts()) : $wp_query->the_post();
                   $img = get_the_post_thumbnail_url($post->ID, 'feature-image');
                   $img = isset($img) && !empty($img) ? $img : no_img('8151', 'feature-image');
-                  $taxonomy_destination = get_primary_taxonomy($post->ID);
-                  if ( $taxonomy_destination ) $color = get_field('color', $taxonomy_destination->taxonomy . '_' . $taxonomy_destination->term_id);
+                  $taxonomies = get_the_terms($post->ID, 'category');
+                  $taxo_primary = get_primary_taxonomy($post->ID);
+                  $region_id = get_field('region_of', $taxo_primary->taxonomy . '_' . $taxo_primary->term_id);
+                  $color = get_field('color', 'regions_' . $region_id);
                   $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
-                  include(APP_PATH . '/template-parts/components/article_col_3.php');
+                  include(APP_PATH . '/template-parts/components/article_col_4.php');
                 endwhile;
+                wp_reset_postdata();
                 ?>
             </div>
-            <div class="div-pagination ">
+            <div class="div-pagination mt-4">
               <?php
                 if (function_exists("fellowtuts_wpbs_pagination")) {
-                  fellowtuts_wpbs_pagination();
-                  // fellowtuts_wpbs_pagination($wp_query->max_num_pages);
+                  $paged = get_query_var( 'paged', 1 );
+                  fellowtuts_wpbs_pagination($paged);
                 }
                 ?>
             </div>
           </section>
         <?php } ?>
-      </div>
-      <div class="col-lg-4 pl-lg-4 has-border-top-sp">
-        <?php get_sidebar('taxonomy'); ?>
       </div>
     </div>
   </div>

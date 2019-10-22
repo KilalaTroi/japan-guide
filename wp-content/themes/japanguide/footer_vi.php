@@ -19,7 +19,7 @@
       <div class="col-lg-3 col-sm-4 mt-4 mt-lg-0">
         <ul>
           <li><img title="Cầu nói văn hóa Việt - Nhật" alt="Cầu nói văn hóa Việt - Nhật" src="<?php echo wpedu_get_option('option_logo_kilala')['url'] ?>"></li>
-          <li><a href="http://www.kilala.com.vn/" target="_blank">www.kilala.com.vn</a></li>
+          <li><a href="http://kilala.com.vn/" target="_blank">kilala.com.vn</a></li>
           <li><a href="http://www.kilala.vn/" target="_blank">www.kilala.vn</a></li>
           <li><a href="http://www.feeljapan.vn/" target="_blank">www.feeljapan.vn</a></li>
           <li><a href="http://www.kilalashop.com" target="_blank">www.kilalashop.com</a></li>

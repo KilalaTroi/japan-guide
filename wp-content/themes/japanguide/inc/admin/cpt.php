@@ -34,7 +34,7 @@ if (!function_exists('create_region_taxonomies')) {
                 'show_ui' => true,
                 'show_tagcloud' => false,
                 'hierarchical' => true,
-                'rewrite'           => array('slug' => 'region'),
+                'rewrite'           => array('slug' => 'khu-vuc', 'with_front' => false),
             )
         );
     }
@@ -55,7 +55,7 @@ if (!function_exists('create_region_topic')) {
                 'show_ui' => true,
                 'show_tagcloud' => false,
                 'hierarchical' => true,
-                'rewrite'           => array('slug' => 'topic'),
+                'rewrite'           => array('slug' => 'chu-de'),
             )
         );
     }

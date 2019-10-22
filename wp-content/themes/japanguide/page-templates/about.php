@@ -64,51 +64,9 @@ get_header();
 
     </div>
     <!-- Grid row -->
-    <h2 class="main-title"><?= pll__('Liên hệ') ?></h2>
+    <h2 class="main-title"><?= pll__('Đăng ký mua sách') ?></h2>
     <?php echo do_shortcode('[contact-form-7 id="8354" html_class="border py-4 px-4" title="Contact Form VI"]') ?>
   </div>
 </section>
-<style type="text/css" media="screen">
-  .gallery-photo {
--webkit-column-count: 4;
--moz-column-count: 4;
-column-count: 4;
--webkit-column-width: 25%;
--moz-column-width: 25%;
-column-width: 25%; }
-.gallery-photo .pics {
--webkit-transition: all 350ms ease;
-transition: all 350ms ease; }
-.gallery-photo .animation {
--webkit-transform: scale(1);
--ms-transform: scale(1);
-transform: scale(1); }
-
-.gallery-photo .animation img {
-  box-shadow: 0 0 5px rgba(0,0,0,0.5);
-}
-
-@media (max-width: 767px) {
-.gallery-photo {
--webkit-column-count: 2;
--moz-column-count: 2;
-column-count: 2;
--webkit-column-width: 50%;
--moz-column-width: 50%;
-column-width: 50%;
-}
-}
-
-@media (max-width: 450px) {
-.gallery-photo {
--webkit-column-count: 1;
--moz-column-count: 1;
-column-count: 1;
--webkit-column-width: 100%;
--moz-column-width: 100%;
-column-width: 100%;
-}
-}
-</style>
 <!--END  Pull HTML here-->
 <?php get_footer();

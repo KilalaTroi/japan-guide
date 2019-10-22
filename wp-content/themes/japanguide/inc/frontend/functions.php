@@ -64,21 +64,19 @@ function get_map()
     $maps = get_terms('regions', $args);
     foreach ($maps as $key => $map) {
       $destinations = get_field('destinations', $map->taxonomy . '_' . $map->term_id);
-      foreach ($destinations as $destination) {
-        $id = $destination;
-        $destination = get_terms('category', array(
-          'hide_empty' => false,
-          'include' =>  $id,
-          'meta_query' => array(
-            array(
-              'key' => 'top',
-              'value' => true,
-            )
+      $destination = get_terms('category', array(
+        'hide_empty' => false,
+        'include' =>  $destinations,
+        'meta_query' => array(
+          array(
+            'key' => 'top',
+            'value' => true,
           )
-        ));
-        if (isset($destination) && !empty($destination)) {
-          $maps[$key]->destinations = $destination;
-        }
+        )
+      ));
+
+      if (isset($destination) && !empty($destination)) {
+        $maps[$key]->destinations = $destination;
       }
     }
     set_transient($mapsL, $maps, 30 * DAY_IN_SECONDS);
@@ -229,8 +227,6 @@ function fellowtuts_wpbs_pagination($pages = '', $range = 2)
     echo '<span class="sr-only">Page navigation</span>';
     echo '<ul class="pagination justify-content-center ft-wpbs">';
 
-    // echo '<li class="page-item disabled hidden-md-down d-none d-lg-block"><span class="page-link">' . pll__('Page') . ' ' . $paged . ' ' . pll__('of') . ' ' . $pages . '</span></li>';
-
     if ($paged > 2 && $paged > $range + 1 && $showitems < $pages) {
       echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link(1) . '" aria-label="First Page">&laquo;</a></li>';
     }
@@ -255,7 +251,6 @@ function fellowtuts_wpbs_pagination($pages = '', $range = 2)
 
     echo '</ul>';
     echo '</nav>';
-    // echo '<div class="pagination-info mb-5 text-center">[ <span class="text-muted">Page</span> '.$paged.' <span class="text-muted">of</span> '.$pages.' ]</div>';
   }
 }
 

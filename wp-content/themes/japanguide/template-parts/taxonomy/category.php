@@ -1,11 +1,12 @@
 <?php
 global $current_term;
+$region_id = get_field('region_of', $current_term->taxonomy . '_' . $current_term->term_id);
 $content = get_field('content', $current_term->taxonomy . '_' . $current_term->term_id);
 $thumbnail = get_field('feature_image', $current_term->taxonomy . '_' . $current_term->term_id);
 $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['url'] : no_img('8151');
 $sub_image = get_field('bg_map', $current_term->taxonomy . '_' . $current_term->term_id);
 $sub_image = isset($sub_image) && !empty($sub_image) ? $sub_image['url'] : '';
-$color = get_field('color', $current_term->taxonomy . '_' .  $current_term->term_id);
+$color = get_field('color', 'regions_' . $region_id);
 $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
 ?>
 <?php echo get_breadcrumb(); ?>
@@ -33,38 +34,33 @@ $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
 <section class="no-banner">
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 kilala-animation">
+      <div class="col-lg-12 kilala-animation">
         <section class="block kilala-animation-item" data-animate>
           <h2 class="main-title-lg">
             <?php printf('%s <thin>%s %s</thin>', pll__('Post'), pll__('about'), $current_term->name); ?>
           </h2>
           <div class="row gallery-cards sm">
-            <!-- <div class="gallery"> -->
-            <!-- <div class="row align-items-stretch"> -->
-            <?php while (have_posts()) : the_post();
+            <?php 
+            while ($wp_query->have_posts()) : $wp_query->the_post();
               $img = get_the_post_thumbnail_url($post->ID, 'feature-image');
               $img = isset($img) && !empty($img) ? $img : no_img('8151', 'feature-image');
-              $taxonomy_destination = get_term($current_term->term_id,'category');
-              $color = get_field('color', $taxonomy_destination->taxonomy . '_' . $taxonomy_destination->term_id);
+              $taxonomies = get_the_terms($post->ID, 'category');
+              $taxo_primary = get_primary_taxonomy($post->ID);
+              $region_id = get_field('region_of', $taxo_primary->taxonomy . '_' . $taxo_primary->term_id);
+              $color = get_field('color', 'regions_' . $region_id);
               $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
-              include(APP_PATH . '/template-parts/components/article_col_3.php');
+              include(APP_PATH . '/template-parts/components/article_col_4.php');
             endwhile;
             ?>
-            <!-- </div> -->
-            <!-- </div> -->
           </div>
-          <div class="div-pagination ">
+          <div class="div-pagination mt-4">
             <?php
             if (function_exists("fellowtuts_wpbs_pagination")) {
               fellowtuts_wpbs_pagination();
-              // fellowtuts_wpbs_pagination($wp_query->max_num_pages);
             }
             ?>
           </div>
         </section>
-      </div>
-      <div class="col-lg-4 pl-lg-4 has-border-top-sp">
-        <?php get_sidebar('taxonomy'); ?>
       </div>
     </div>
   </div>
