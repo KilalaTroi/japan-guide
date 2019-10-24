@@ -413,3 +413,7 @@ a img.aligncenter {
   z-index: 100000;
   /* Above WP toolbar. */
 }
+
+.content iframe {
+  min-height: 360px;
+}

@@ -446,3 +446,28 @@ article {
     font-size: 16px;
   }
 }
+
+// page-template-videos
+.page-template-videos {
+  .feature-img {
+    position: relative;
+
+    &:before {
+      content: "";
+      border-left: 30px solid rgba(255,25,69, 0.7);
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      width: 0;
+      margin: -20px auto 0;
+      transition: all .3s ease-in-out;
+    }
+
+    &:hover:before {
+      border-left: 30px solid rgba(255,25,69, 1);
+    }
+  }
+}

@@ -36,68 +36,51 @@
       transition-duration: 0.3s;
       text-shadow: 2px 0 1px rgba(255, 255, 255, 0.3);
       position: absolute;
+      top: 50%;
+      margin-top: -13px;
+
       &.is-active {
         transform: scale(1.1);
       }
       &.hokkaido {
         color: #c16e82;
-        top: 10%;
-        left: 50%;
-        @media (min-width: 576px) {
-          left: 59%;
-        }
+        right: 90%;
       }
       &.tohoku {
         color: #6bb6c3;
-        top: 40%;
-        left: 77%;
+        left: calc(100% + 20%);
       }
       &.kanto {
         color: #9dc9ab;
-        top: 60%;
-        left: 71%;
-        @media (min-width: 768px) {
-          left: 73%;
-        }
+        left: calc(100% + 20%);
       }
       &.chubu {
         color: #e4ab31;
-        top: 50%;
-        left: 36%;
-        @media (min-width: 576px) {
-          left: 40%;
-        }
-        @media (min-width: 768px) {
-          left: 46%;
-          top: 47%;
-        }
+        right: 90%;
+        margin-top: -30%;
       }
       &.shikoku {
         color: #688cae;
-        top: 75%;
-        left: 35%;
+        top: 100%;
+        left: 50%;
       }
       &.kinki {
         color: #ca4918;
-        top: 69%;
-        left: 50%;
+        left: 90%;
+        top: 90%;
       }
       &.chugoku {
         color: #c07aab;
-        top: 57%;
-        left: 14%;
-        @media (min-width: 576px) {
-          top: 59%;
-          left: 18%;
-        }
+        right: 70%;
+        top: 0;
       }
       &.kyushu-okinawa {
         color: #80c2ed;
-        bottom: 4%;
-        left: 6%;
-        @media (min-width: 576px) {
-          bottom: 12%;
-          left: 4%;
+        right: 120%;
+
+        @include media-breakpoint-down(xs) {
+          right: 52%;
+          top: 100%;
         }
       }
     }
@@ -105,6 +88,10 @@
 }
 
 .city-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
   a {
     position: absolute;
     font-weight: 700;
@@ -113,23 +100,23 @@
 
     &:after {
       position: absolute;
+      content: "\f041";
       width: 10px;
-      height: 10px;
-      content: "";
-      background-color: #FF1945;
-      box-shadow: 0 0 5px #fff;
+      color: #FF1945;
       left: 0;
       right: 0;
       bottom: -10px;
       margin: 0 auto;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      display: inline-block;
+      font: normal normal normal 14px/1 FontAwesome;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-size: 16px;
     }
 
     &:hover {
       &:after {
-        height: 12px;
-        width: 12px;
         bottom: -11px;
       }
     }
@@ -149,23 +136,48 @@
   }
 
   #tokyo {
-    top: 57%;
-    left: 63%;
+    right: 12%;
+    bottom: 50%;
   }
 
   #osaka {
-    left: 42%;
-    top: 67%;
+    top: 35%;
+    left: 25%;
   }
 
   #kyoto {
-    left: 44%;
-    top: 61%;
+    //left: -10px;
+    //top: -45px;
   }
 
   #nagasaki {
-    bottom: 23%;
-    left: 11%;
+    top: 30%;
+    left: 3%;
+  }
+
+  #nagoya {
+    //top: 0;
+    //right: -5px;
+  }
+
+  #kobe {
+    //left: -50px;
+    //bottom: 25px;
+
+    &:after {
+      //right: -20px;
+      //bottom: -10px;
+    }
+  }
+
+  #fukuoka {
+    left: 25%;
+    top: 8%;
+  }
+
+  #sapporo {
+    //left: -95px;
+    //top: -20px;
   }
 }
 
@@ -173,30 +185,62 @@
   position: relative;
 }
 
-.city-list {
-  list-style: none;
-  padding: 0;
-}
-
-.city-list a {
+.map-wrapper {
   position: absolute;
-  font-weight: 700;
-  text-shadow: 0 0 5px #fff;
-  transition: all .15s ease-in-out;
-  font-size: 14px;
-}
 
-.city-list a:after {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  content: "";
-  background-color: #FF1945;
-  box-shadow: 0 0 5px #fff;
-  left: 0;
-  right: 0;
-  bottom: -10px;
-  margin: 0 auto;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  &[data-region="hokkaido"] {
+    top: 3%;
+    right: 4%;
+    width: 33%;
+    height: 26%;
+  }
+
+  &[data-region="tohoku"] {
+    top: 28%;
+    right: 22%;
+    width: 15%;
+    height: 27%;
+  }
+
+  &[data-region="kanto"] {
+    bottom: 34%;
+    right: 28%;
+    width: 14%;
+    height: 13%;
+  }
+
+  &[data-region="chubu"] {
+    bottom: 32%;
+    right: 34%;
+    height: 23%;
+    width: 22%;
+  }
+
+  &[data-region="kinki"] {
+    bottom: 26%;
+    left: 38%;
+    width: 14%;
+    height: 13%;
+  }
+
+  &[data-region="chugoku"] {
+    bottom: 28%;
+    left: 21%;
+    width: 18%;
+    height: 10%;
+  }
+
+  &[data-region="shikoku"] {
+    bottom: 22%;
+    left: 27%;
+    width: 14%;
+    height: 11%;
+  }
+
+  &[data-region="kyushu-okinawa"] {
+    bottom: 9%;
+    left: 10%;
+    height: 25%;
+    width: 17%;
+  }
 }
