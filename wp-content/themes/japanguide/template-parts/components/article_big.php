@@ -4,7 +4,8 @@ $img = isset($img) && !empty($img) ? $img : no_img('8151', 'medium');
 $img_feature = get_the_post_thumbnail_url($post->ID, 'feature-image');
 $img_feature = isset($img_feature) && !empty($img_feature) ? $img_feature : no_img('8151', 'feature-image');
 $taxonomy_destination = get_primary_taxonomy($post->ID);
-$color = get_field('color', $taxonomy_destination->taxonomy . '_' . $taxonomy_destination->term_id);
+$region_id = get_field('region_of', $taxonomy_destination->taxonomy . '_' . $taxonomy_destination->term_id);
+$color = get_field('color', 'regions_' . $region_id);
 $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
 ?>
 <article class="d-none d-sm-block">

@@ -3,7 +3,8 @@
 $term = get_primary_taxonomy();
 $term_name = !empty($term) ? $term->name : '';
 $term_id = !empty($term) ? $term->id : '';
-$term_color = get_field('color', $term->taxonomy . '_' . $term->term_id);
+$region_id = get_field('region_of', $term->taxonomy . '_' . $term->term_id);
+$term_color = get_field('color', 'regions_' . $region_id);
 $term_color = isset($term_color) && !empty($term_color) ? 'style="color:' . $term_color . '"'  : '';
 $exlucdes[] = get_the_ID();
 

@@ -36,7 +36,7 @@ get_header(); ?>
                             <?php else : get_template_part( 'template-parts/content/content', 'none' ); endif; ?>
                         </div>
                     </div>
-                    <div class="div-pagination ">
+                    <div class="div-pagination mt-4">
                         <?php
                             if (function_exists("fellowtuts_wpbs_pagination")) {
                                 fellowtuts_wpbs_pagination();
