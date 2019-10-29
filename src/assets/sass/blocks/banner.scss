@@ -79,7 +79,7 @@
       }
     }
     .carousel-item {
-      @include media-breakpoint-down(sm) {
+      @include media-breakpoint-down(xs) {
         background-size: cover;
         background-position: center;
         height: 360px;
@@ -110,4 +110,36 @@
     margin-top: -25px;
     height: 50px;
   }
+}
+
+//btn-discover
+@keyframes play18 {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -6840px 0px;
+  }
+}
+#btn-discover {
+  animation-duration: 1800ms;
+  animation-timing-function: steps(18);
+  animation-iteration-count:infinite;
+  width: 380px;
+  height: 40px;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 40px;
+  bottom: 70px;
+  background-color: transparent;
+  border: none;
+  font-size: 0;
+
+  @include media-breakpoint-up(xl) {
+    left: 70px;
+    bottom: 155px;
+  }
+}
+#btn-discover.play {
+  animation-name: play18;
 }

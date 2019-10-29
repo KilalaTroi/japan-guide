@@ -293,8 +293,9 @@ article {
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 0;
-    //margin-bottom: 15px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+
   }
   .img-caption {
     display: block;
@@ -353,12 +354,12 @@ article {
   }
   @media (min-width: 992px) {
     h1 {
-      font-size: 36px;
+      font-size: 34px;
       margin: 25px 0 30px;
-      font-weight: 900;
+      font-weight: 600;
     }
     h2 {
-      font-size: 24px;
+      font-size: 26px;
       margin: 20px 0 15px;
       font-weight: 600;
     }
@@ -453,21 +454,50 @@ article {
     position: relative;
 
     &:before {
+       content: "";
+       border-left: 18px solid rgba(255,25,69, 0.7);
+       border-top: 12px solid transparent;
+       border-bottom: 12px solid transparent;
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       margin-left: -6px;
+       width: 0;
+       margin-top: -12px;
+       transition: all .3s ease-in-out;
+       z-index: 1;
+     }
+
+    &:after {
       content: "";
-      border-left: 30px solid rgba(255,25,69, 0.7);
-      border-top: 20px solid transparent;
-      border-bottom: 20px solid transparent;
+      background: rgba(255,255,255, 0.5);
       position: absolute;
       top: 50%;
-      left: 0;
-      right: 0;
-      width: 0;
-      margin: -20px auto 0;
+      left: 50%;
+      width: 54px;
+      height: 54px;
+      margin-top: -27px;
+      margin-left: -27px;
       transition: all .3s ease-in-out;
+      border-radius: 50%;
     }
 
     &:hover:before {
-      border-left: 30px solid rgba(255,25,69, 1);
+      border-left: 18px solid rgba(255,25,69, 1);
+    }
+
+    &:hover:after {
+      background: rgba(255,255,255, 0.8);
     }
   }
+}
+
+#sidebar{
+  will-change: min-height;
+}
+
+.inner-wrapper-sticky {
+  transform: translate(0, 0); /* For browsers don't support translate3d. */
+  transform: translate3d(0, 0, 0);
+  will-change: position, transform;
 }

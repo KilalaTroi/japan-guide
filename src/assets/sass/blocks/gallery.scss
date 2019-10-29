@@ -9,6 +9,7 @@
     }
   }
   .gallery {
+    width: 100%;
     padding: 10px;
 
     @include media-breakpoint-up(md) {
@@ -239,6 +240,8 @@
   }
   &.sm {
     .gallery {
+      width: 100%;
+
       .link-gallery {
         &-image,
         &-desc {

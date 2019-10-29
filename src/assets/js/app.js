@@ -4,9 +4,6 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-/* Global variables and functions */
-let appFunctions;
-
 require('./bootstrap');
 
 // animation functions

@@ -1,4 +1,7 @@
-appFunctions = (function ($, window, undefined) {
+require('resize-sensor');
+import StickySidebar from 'sticky-sidebar';
+
+const appFunctions = (function ($, window, undefined) {
     'use strict';
     let $win = $(window);
     const mybutton = $("#back-to-top");
@@ -8,17 +11,31 @@ appFunctions = (function ($, window, undefined) {
     /*-----------------------------------------------------*/
 
     function _initFunction() {
-        _handleNav2();
+        _handleNav();
         _mapHover();
         _handleExploreNav();
         _clickScrollToTop();
+        _sticky();
 
         $(window).scroll(function () {
             _scrollToTop();
         });
     }
 
-    function _handleNav2() {
+    function _sticky() {
+        if ( $('#sidebar').length > 0 ) {
+            let sidebar = document.getElementById('sidebar');
+
+            let stickySidebar = new StickySidebar(sidebar, {
+                topSpacing: 100,
+                containerSelector: '.sticky-container',
+                resizeSensor: true,
+                minWidth: 991
+            });
+        }
+    }
+
+    function _handleNav() {
         let navbar = $("#header-menu");
         let sticky = navbar.offset().top;
 
@@ -47,47 +64,18 @@ appFunctions = (function ($, window, undefined) {
         })
     }
 
-    function _handleNav() {
-        let scroll = $(window).scrollTop();
-        if (scroll == 0) {
-            $("header").removeClass("sticky");
-        }
-        if (scroll >= 30) {
-            $("header").addClass("sticky");
-        }
-    }
-
     function _mapHover() {
-        // $(document).on('mouseenter', '#area-mask path', function (e) {
-        //     let _id = $(this).attr('id');
-        //     let _idText = _id.replace('mask', 'text');
-        //     $('#' + _id + ', #' + _idText).addClass('is-active').siblings().removeClass('is-active');
-        // });
-
         $(document).on('mouseenter', '#map-text .map-spot', function (e) {
             let _id = $(this).attr('id');
             let _idMask = _id.replace('text', 'mask');
             $('#' + _id + ', #' + _idMask).addClass('is-active').siblings().removeClass('is-active');
         });
 
-        // $(document).on('mouseleave', '#area-mask path', function (e) {
-        //     let _id = $(this).attr('id');
-        //     let _idText = _id.replace('mask', 'text');
-        //     $('#' + _id + ', #' + _idText).removeClass('is-active');
-        // });
-
         $(document).on('mouseleave', '#map-text .map-spot', function (e) {
             let _id = $(this).attr('id');
             let _idMask = _id.replace('text', 'mask');
             $('#' + _id + ', #' + _idMask).removeClass('is-active');
         });
-
-        // $(document).on('click touch', '#area-mask path', function (e) {
-        //     e.preventDefault();
-        //     let _id = $(this).attr('id');
-        //     let _idText = _id.replace('mask', 'text');
-        //     window.location.assign(jQuery('#' + _idText).attr('href'));
-        // });
     }
 
     function _handleExploreNav() {
