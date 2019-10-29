@@ -63,14 +63,16 @@ function get_map()
     );
     $maps = get_terms('regions', $args);
     foreach ($maps as $key => $map) {
-      $destinations = get_field('destinations', $map->taxonomy . '_' . $map->term_id);
       $destination = get_terms('category', array(
         'hide_empty' => false,
-        'include' =>  $destinations,
         'meta_query' => array(
           array(
             'key' => 'top',
             'value' => true,
+          ),
+           array(
+            'key' => 'region_of',
+            'value' => $map->term_id,
           )
         )
       ));
@@ -328,7 +330,7 @@ function misha_loadmore_ajax_handler()
       echo '</div>';
     } else {
       if ($relate_category->current_post == 1) {
-        echo '<h3>Có thể bạn quan tâm:</h3><ul>';
+        echo '<h3 class="mt-0">Có thể bạn quan tâm:</h3><ul class="pl-4">';
       };
 
       printf('<li><a title="%1$s" href="%2$s">%1$s</a></li>', get_the_title(), get_the_permalink($post->ID));
@@ -347,3 +349,79 @@ function misha_loadmore_ajax_handler()
 
 add_action('wp_ajax_loadmore', 'misha_loadmore_ajax_handler'); // wp_ajax_{action}
 add_action('wp_ajax_nopriv_loadmore', 'misha_loadmore_ajax_handler'); // wp_ajax_nopriv_{action}
+
+function customize_customtaxonomy_archive_display ( $query ) {
+  if (($query->is_main_query()) && (is_tax('regions'))) {
+    $current_term = get_queried_object();
+    $args = array(
+      'hide_empty' => false,
+      'order' => 'ASC',
+      'meta_query' => array(
+        array(
+          'key' => 'region_of',
+          'value' => $current_term->term_id,
+        )
+      )
+    );
+    $child_of_rigion = get_terms('category', $args);
+    $child_of_rigion_arr = array();
+
+    foreach ($child_of_rigion as $key => $value) {
+      $child_of_rigion_arr[] = $value->term_id;
+    };
+
+    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+
+    // $query->init();
+    // unset everything
+    unset( $query->query['regions'] );
+    unset( $query->query['lang'] );
+    unset( $query->tax_query );
+    $query->set( 'post_type', 'post' );                 
+    $query->set( 'post_status', 'publish' );
+    $query->set( 'paged', $paged );
+    $query->set( 'tax_query',  array(
+      'relation' => 'OR',
+      array(
+        'taxonomy' => 'category',
+        'field'    => 'term_id',
+        'terms'    => $child_of_rigion_arr,
+      ),
+    ));
+    // $query->parse_query();
+
+    // echo '<pre>';
+    // var_dump($query);
+    // echo '</pre>';
+    // die();
+  }
+}
+
+add_action( 'pre_get_posts', 'customize_customtaxonomy_archive_display' );
+
+function WPTime_add_custom_class_to_all_images($content){
+  //* Has lazy images
+  if ( strpos( $content, '-image' ) === true ) {
+    return $content;
+  }
+
+  //* Replace images src to data-src
+  return preg_replace_callback( '/(?P<all> (?# ) <img(?P<before>[^>]*) (?# ) ( (?# ) src=["\'](?P<src1>[^>"\']*)["\'] ) (?P<after>[^>]*) (?# ) (?P<closing>\/?)> (?# ) )/x', 
+    function ( $matches ) {
+      //* Image Placeholder
+      $placeholder_image = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+      
+      //* Disable lazy load for specific images
+      if ( false !== strpos( $matches['all'], 'data-lazy="1"' ) ) {
+        return $matches['all'];
+      } else {
+              return '<img ' . $matches['before']
+                     . ' class="lazy" src="' . $placeholder_image . '" '
+                     . ' data-src="' . $matches['src1'] . '" '
+                     . $matches['after']
+                     . $matches['closing'] . '><noscript>' . $matches['all'] . '</noscript>';
+      }
+    }
+    , $content );
+}
+add_filter('the_content', 'WPTime_add_custom_class_to_all_images', 13);

@@ -21,20 +21,18 @@ if ( ! empty( $postTags ) ) {
 <?php echo get_breadcrumb(); ?>
 
 <section class="pb-0 pb-lg-5 no-banner block">
-  <div class="container">
+  <div class="container sticky-container">
     <div class="row">
       <div class="col-lg-8">
         <section class="article-content">
           <?php include(APP_PATH . '/template-parts/components/content.php'); ?>
-          <div id="loadmore" class="mt-3"></div>
+          <div id="loadmore"></div>
         </section>
         <?php // include(APP_PATH . '/template-parts/blocks/global/post_same_topic.php'); ?>
       </div>
-      <div class="col-lg-4 pl-lg-4 has-border-top-sp sidebar">
+      <div class="col-lg-4 pl-lg-4 has-border-top-sp sidebar align-self-start" id="sidebar">
         <?php include(APP_PATH . '/template-parts/components/sidebar_tips.php'); ?>
         <?php get_template_part('template-parts/components/sidebar_topic') ?>
-        <?php // get_template_part('template-parts/components/sidebar_survey')
-        ?>
       </div>
     </div>
   </div>

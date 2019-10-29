@@ -21,7 +21,7 @@ $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
   <div class="row">
     <div class="col-5">
       <a href="<?= get_the_permalink() ?>">
-        <img class="img-fluid" src="<?php echo $img; ?>" alt="<?php the_title(); ?>">
+        <img class="lazy img-fluid" data-src="<?php echo $img; ?>" alt="<?php the_title(); ?>">
       </a>
     </div>
     <div class="col-7 pl-0">

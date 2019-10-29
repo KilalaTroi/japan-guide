@@ -18,7 +18,7 @@ if (empty($topics) || NULL === $topics) {
       <a class="link-gallery" title="<?php echo $topic->name; ?>" href="<?php echo get_term_link($topic->term_id); ?>">
             <div class="link-gallery-image">
               <figure class="image">
-                <div class="image-mask"><?php printf('<img class="img-fluid" alt="%1$s" title="%1$s" src="%2$s">', $topic->name, $thumbnail); ?></div>
+                <div class="image-mask"><?php printf('<img class="lazy img-fluid" alt="%1$s" title="%1$s" data-src="%2$s">', $topic->name, $thumbnail); ?></div>
               </figure>
             </div>
             <div class="link-gallery-text">

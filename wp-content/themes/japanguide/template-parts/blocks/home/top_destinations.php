@@ -3,7 +3,7 @@
     <h2 class="main-title-lg kilala-animation-item mb-2" data-animate>
       <?php printf('%s', pll__('Destination')); ?>
     </h2>
-    <h2 class="main-title-lg kilala-animation-item" data-animate><thin><?= pll__('8 vùng địa lý Nhật Bản') ?></thin></h2>
+    <h2 class="main-title-lg kilala-animation-item" data-animate><thin><?= pll__('8 khu vực địa lý Nhật Bản') ?></thin></h2>
     <div class="row">
       <div class="col-12 col-md-8 col-lg-7 mx-auto">
         <!-- map -->
@@ -17,7 +17,7 @@
     ?>
 
     <h2 class="main-title-lg kilala-animation-item my-3" data-animate>
-      <?= pll__('Thành phố') ?>
+      <?= pll__('Điểm đến') ?>
       <thin><?= pll__('được yêu thích nhất') ?></thin>
     </h2>
     <div class="row gallery-cards">

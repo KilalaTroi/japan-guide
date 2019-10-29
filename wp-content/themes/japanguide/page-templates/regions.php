@@ -65,7 +65,7 @@ get_header();
                   <?php printf('<i %s class="fa fa-map-marker mr-2"></i>%s</h2>', $color, $map->name) ?>
               </div>
               <div class="col-md-5 top-dest-map">
-                <?php printf('<img title="%1$s" alt="%1$s" src="%2$s" />', $map->name, $sub_image) ?>
+                <?php printf('<img class="img-fluid lazy" title="%1$s" alt="%1$s" data-src="%2$s" />', $map->name, $sub_image) ?>
               </div>
               <div class="col-md-7 top-dest-text mt-3 mt-md-0">
                 <?php

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: Interests Page
+ * Template Name: Topics Page
  */
 get_header();
 ?>
@@ -43,20 +43,27 @@ get_header();
           </h2>
           <div class="row galleries">
             <?php
-            $categories = get_taxonomy_type('interest');
-            foreach ($categories as $category) :
-              $thumbnail = get_field('feature_image', $category->taxonomy . '_' . $category->term_id);
+            $args = array(
+              'hide_empty' => false,
+              'parent'    => $term_id,
+              'number'            => $number,
+              'orderby' => 'term_order',
+              'order' => 'ASC',
+            );
+            $topics = get_terms('topics',$args);
+            foreach ($topics as $topic) :
+              $thumbnail = get_field('feature_image', $topic->taxonomy . '_' . $topic->term_id);
               $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['sizes']['feature-image']  : no_img('8151', 'feature-image');
               ?>
               <div class="col-6 col-md-3 gallery kilala-animation-item" data-animate>
-                <a class="link-gallery" title="<?php echo $category->name; ?>" href="<?php echo get_term_link($category->term_id); ?>">
+                <a class="link-gallery" title="<?php echo $topic->name; ?>" href="<?php echo get_term_link($topic->term_id); ?>">
                   <div class="link-gallery-image">
                     <figure class="image">
-                      <div class="image-mask"><?php printf('<img class="img-fluid" alt="%1$s" title="%1$s" src="%2$s">', $category->name, $thumbnail); ?></div>
+                      <div class="image-mask"><?php printf('<img class="img-fluid" alt="%1$s" title="%1$s" src="%2$s">', $topic->name, $thumbnail); ?></div>
                     </figure>
                   </div>
                   <div class="link-gallery-text">
-                    <div class="link-gallery-label"><?php echo $category->name ?></div>
+                    <div class="link-gallery-label"><?php echo $topic->name ?></div>
                   </div>
                 </a>
               </div>

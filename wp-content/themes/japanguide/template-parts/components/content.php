@@ -2,9 +2,9 @@
     <div class="col-sm col-xs-12">
         <h1 class="mt-2"><?php the_title(); ?></h1>
         <div>
-            <?php 
+            <?php
             if (isset($term_color) && isset($term_name)) printf('<a id="openExploreNav" class="mr-0 mr-sm-3 my-3 my-sm-0 d-block d-sm-inline" href="javascript:void(0)"><i %s class="fa fa-map-marker mr-2"></i>%s %s</a>', $term_color, pll__('Discover'), $term_name);
-            $interests = get_category_type(get_the_ID(), 'interest');
+            $interests = get_the_terms(get_the_ID(),'topics');
             if (isset($interests) && !empty($interests)) {
                 foreach ($interests as $interest) {
                     $sub_image = get_field('sub_image', $interest->taxonomy . '_' . $interest->term_id);
@@ -42,6 +42,6 @@
 
     </div>
     <div class="col-12 py-2 py-lg-3">
-        <div class="fb-like pull-right fb_iframe_widget" data-href="<?php the_permalink(); ?>" data-width="" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+        <!-- <div class="fb-like pull-right fb_iframe_widget" data-href="<?php // the_permalink(); ?>" data-width="" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div> -->
     </div>
 </div>
