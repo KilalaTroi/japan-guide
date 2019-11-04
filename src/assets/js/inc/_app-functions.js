@@ -3,7 +3,8 @@ import StickySidebar from 'sticky-sidebar';
 
 const appFunctions = (function ($, window, undefined) {
     'use strict';
-    let $win = $(window);
+    const $win = $(window);
+    const _windowWidth = $win.width();
     const mybutton = $("#back-to-top");
 
     /*-----------------------------------------------------*/
@@ -16,10 +17,41 @@ const appFunctions = (function ($, window, undefined) {
         _handleExploreNav();
         _clickScrollToTop();
         _sticky();
+        _breadcrumbsScroll();
 
-        $(window).scroll(function () {
+        $win.scroll(function () {
             _scrollToTop();
         });
+
+        $win.resize(function () {
+            let _newWidth = $win.width();
+            if ( _windowWidth !== _newWidth ) {
+                _breadcrumbsScroll();
+            }
+        });
+    }
+
+    function _breadcrumbsScroll() {
+        let _brb = $('.breadcrumb>span');
+        let _brb_inner = $('.breadcrumb>span>span');
+
+        if(_windowWidth < 576) {
+            _brb_inner.css('white-space', 'nowrap');
+            let breadcrumbsWidth = _brb.outerWidth() + 40;
+            if(breadcrumbsWidth > _windowWidth) {
+                _brb.css('overflow-x','scroll');
+                _brb.css('width',_windowWidth - 40);
+                _brb_inner.css('white-space', 'nowrap');
+            } else {
+                _brb.css('overflow-x','');
+                _brb.css('width','');
+                _brb_inner.css('white-space', 'normal');
+            }
+        } else {
+            _brb.css('overflow-x','');
+            _brb.css('width','');
+            _brb_inner.css('white-space', 'normal');
+        }
     }
 
     function _sticky() {
@@ -79,13 +111,15 @@ const appFunctions = (function ($, window, undefined) {
     }
 
     function _handleExploreNav() {
-        $("#openExploreNav").click(function () {
-            $("#exploreNav").addClass("show");
-            $("#exploreCanvasNav").addClass("show");
-        })
-        $("#closeExploreNav, #exploreCanvasNav").click(function () {
-            $("#exploreNav").removeClass("show");
-            $("#exploreCanvasNav").removeClass("show");
+        $(document).on('click', '[id^="openExploreNav"], [id^="openTopic"]', function (e) {
+            e.preventDefault();
+            $($(this).attr('data-sidebar')).addClass("show");
+            $($(this).attr('data-overlay')).addClass("show");
+        });
+        $(document).on('click', '[id^="closeExploreNav"], [id^="exploreCanvasNav"], [id^="closeTopic"], [id^="exploreTopicOV"]', function (e) {
+            e.preventDefault();
+            $($(this).attr('data-sidebar')).removeClass("show");
+            $($(this).attr('data-overlay')).removeClass("show");
         })
     }
 

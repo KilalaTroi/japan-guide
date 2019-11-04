@@ -266,17 +266,17 @@ article {
   }
 
   h1 {
-    font-size: 20px;
+    font-size: 22px;
     margin: 15px 0 10px;
     font-weight: 600;
   }
   h2 {
-    font-size: 20px;
+    font-size: 18px;
     margin: 15px 0 10px;
     font-weight: 600;
   }
   h3 {
-    font-size: 18px;
+    font-size: 16px;
     margin: 10px 0 10px;
     font-weight: 400;
   }
@@ -320,7 +320,7 @@ article {
   @media (min-width: 576px) {
     h1 {
       font-size: 30px;
-      margin: 20px 0 25px;
+      margin: 20px 0 15px;
       font-weight: 700;
     }
     h2 {
@@ -355,7 +355,7 @@ article {
   @media (min-width: 992px) {
     h1 {
       font-size: 34px;
-      margin: 25px 0 30px;
+      margin: 25px 0 20px;
       font-weight: 600;
     }
     h2 {

@@ -2,6 +2,7 @@
   height: 100%;
   width: 320px;
   margin-left: -320px;
+  max-width: 66.66%;
   position: fixed;
   z-index: 10001;
   top: 0;
@@ -64,7 +65,7 @@
   }
 }
 
-#openExploreNav {
+[id^="openExploreNav"] {
   i {
     font-size: 18px;
     line-height: 18px;
