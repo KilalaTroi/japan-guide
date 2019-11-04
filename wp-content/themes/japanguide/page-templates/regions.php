@@ -36,7 +36,7 @@ get_header();
 </section>
 
 <section>
-  <div class="container">
+  <div class="container sticky-container">
     <div class="row">
       <div class="col-lg-8">
         <section class="block kilala-animation-1">
@@ -119,7 +119,7 @@ get_header();
           <?php endforeach; ?>
         </section>
       </div>
-      <div class="col-lg-4 pl-lg-4 has-border-top-sp">
+      <div class="col-lg-4 pl-lg-4 has-border-top-sp" id="sidebar">
         <?php get_sidebar('taxonomy'); ?>
       </div>
     </div>

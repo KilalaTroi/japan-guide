@@ -66,7 +66,7 @@ function save_taxonomy_delete_cache($term_id)
 {
     $term = get_term($term_id);
     global $wpdb;
-    $wpdb->query("DELETE FROM `$wpdb->options` WHERE `option_name` LIKE ('\_transient\_map\_%') OR `option_name` LIKE ('\_transient\_timeout\_map\_%') OR `option_name` LIKE ('\_transient\_{$term->taxonomy}_\%') OR `option_name` LIKE ('\_transient\_timeout\_{$term->taxonomy}_\%')");
+    $wpdb->query("DELETE FROM `$wpdb->options` WHERE `option_name` LIKE ('\_transient\_destination\_top\_%') OR `option_name` LIKE ('\_transient\_map\_%') OR `option_name` LIKE ('\_transient\_timeout\_map\_%') OR `option_name` LIKE ('\_transient\_{$term->taxonomy}_\%') OR `option_name` LIKE ('\_transient\_timeout\_{$term->taxonomy}_\%')");
     return;
 }
 add_action('edit_term', 'save_taxonomy_delete_cache');

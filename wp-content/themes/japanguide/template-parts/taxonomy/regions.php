@@ -93,39 +93,39 @@ $destinations = get_field('destinations', $current_term->taxonomy . '_' . $curre
               <div class="gallery">
                 <div class="row">
                   <?php
-                    $args = array(
-                      'hide_empty' => false,
-                      'order' => 'ASC',
-                      'meta_query' => array(
-                        array(
-                          'key' => 'region_of',
-                          'value' => $current_term->term_id,
-                        )
-                      )
-                    );
-                    $child_of_rigion = get_terms('category', $args);
-                    $child_of_rigion_arr = array();
+                    // $args = array(
+                    //   'hide_empty' => false,
+                    //   'order' => 'ASC',
+                    //   'meta_query' => array(
+                    //     array(
+                    //       'key' => 'region_of',
+                    //       'value' => $current_term->term_id,
+                    //     )
+                    //   )
+                    // );
+                    // $child_of_rigion = get_terms('category', $args);
+                    // $child_of_rigion_arr = array();
 
-                    foreach ($child_of_rigion as $key => $value) {
-                      $child_of_rigion_arr[] = $value->term_id;
-                    }
+                    // foreach ($child_of_rigion as $key => $value) {
+                    //   $child_of_rigion_arr[] = $value->term_id;
+                    // }
 
-                    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+                    // $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
-                    $args = array(
-                      'post_type' => 'post',
-                      'post_status' => 'publish',
-                      'paged' => $paged,
-                      'tax_query' => array(
-                        array(
-                          'taxonomy' => 'category',
-                          'field'    => 'term_id',
-                          'terms'    => $child_of_rigion_arr,
-                        ),
-                      ),
-                    );
+                    // $args = array(
+                    //   'post_type' => 'post',
+                    //   'post_status' => 'publish',
+                    //   'paged' => $paged,
+                    //   'tax_query' => array(
+                    //     array(
+                    //       'taxonomy' => 'category',
+                    //       'field'    => 'term_id',
+                    //       'terms'    => $child_of_rigion_arr,
+                    //     ),
+                    //   ),
+                    // );
 
-                    $wp_query = new WP_Query($args);
+                    // $wp_query = new WP_Query($args);
                     while ($wp_query->have_posts()) : $wp_query->the_post();
                       $img = get_the_post_thumbnail_url($post->ID, 'feature-image');
                       $img = isset($img) && !empty($img) ? $img : no_img('8151', 'feature-image');

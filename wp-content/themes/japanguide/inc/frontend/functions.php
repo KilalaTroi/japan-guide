@@ -32,7 +32,7 @@ function get_destinations_top()
       'hide_empty' => false,
       'orderby' => 'term_order',
       'order' => 'ASC',
-      'number' => 4,
+      'number' => 8,
       'meta_query' => array(
         array(
           'key' => 'top',
@@ -67,7 +67,7 @@ function get_map()
         'hide_empty' => false,
         'meta_query' => array(
           array(
-            'key' => 'top',
+            'key' => 'show_on_map',
             'value' => true,
           ),
            array(
@@ -325,8 +325,25 @@ function misha_loadmore_ajax_handler()
   while ($relate_category->have_posts()) {
     $relate_category->the_post();
     if ($relate_category->current_post == 0) {
-      echo '<div class="row border-top py-4"></div><div id="content-offset-' . $_POST["offset"] . '">';
-      get_template_part('template-parts/components/content');
+      global $post;
+      $term = get_primary_taxonomy();
+      $term_name = !empty($term) ? $term->name : '';
+      $term_id = !empty($term) ? $term->id : '';
+      $region_id = get_field('region_of', $term->taxonomy . '_' . $term->term_id);
+      $term_color = get_field('color', 'regions_' . $region_id);
+      $term_color = isset($term_color) && !empty($term_color) ? 'style="color:' . $term_color . '"'  : '';
+      $single_id = $post->ID;
+      $interests = get_the_terms($single_id,'topics');
+
+      if ( is_array($interests) && count($interests) > 0 ) { 
+        foreach ( $interests as $key => $value ) {
+          $topic_term = get_term($value, 'topics');
+          include(APP_PATH . '/template-parts/blocks/global/explore_topic.php');
+        }
+      }
+      include(APP_PATH . '/template-parts/blocks/global/explore_destination.php');
+      echo '<div class="row border-top py-2 py-sm-3"></div><div id="content-offset-' . $_POST["offset"] . '">';
+      include(APP_PATH . '/template-parts/components/content.php');
       echo '</div>';
     } else {
       if ($relate_category->current_post == 1) {
@@ -345,11 +362,10 @@ function misha_loadmore_ajax_handler()
   die; // here we exit the script and even no wp_reset_query() required!
 }
 
-
-
 add_action('wp_ajax_loadmore', 'misha_loadmore_ajax_handler'); // wp_ajax_{action}
 add_action('wp_ajax_nopriv_loadmore', 'misha_loadmore_ajax_handler'); // wp_ajax_nopriv_{action}
 
+// overide regions taxonomy query
 function customize_customtaxonomy_archive_display ( $query ) {
   if (($query->is_main_query()) && (is_tax('regions'))) {
     $current_term = get_queried_object();
@@ -377,7 +393,8 @@ function customize_customtaxonomy_archive_display ( $query ) {
     unset( $query->query['regions'] );
     unset( $query->query['lang'] );
     unset( $query->tax_query );
-    $query->set( 'post_type', 'post' );                 
+    $query->set( 'post_type', 'post' );       
+
     $query->set( 'post_status', 'publish' );
     $query->set( 'paged', $paged );
     $query->set( 'tax_query',  array(
@@ -388,16 +405,25 @@ function customize_customtaxonomy_archive_display ( $query ) {
         'terms'    => $child_of_rigion_arr,
       ),
     ));
-    // $query->parse_query();
-
-    // echo '<pre>';
-    // var_dump($query);
-    // echo '</pre>';
-    // die();
   }
 }
 
 add_action( 'pre_get_posts', 'customize_customtaxonomy_archive_display' );
+
+function wpse_286813_omit_all( $query_vars ){
+
+  // triggered also in admin pages
+  if ( is_admin() )
+    return $query_vars;
+
+  if( !empty($query_vars['regions']) ) {
+    $query_vars['lang'] = '';
+  }
+  return $query_vars;
+
+}
+add_filter( 'request', 'wpse_286813_omit_all' );
+// End overide region taxonomy query
 
 function WPTime_add_custom_class_to_all_images($content){
   //* Has lazy images

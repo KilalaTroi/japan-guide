@@ -22,14 +22,14 @@
     </h2>
     <div class="row gallery-cards">
       <?php foreach ($destinations_top as $k => $v) :
-        if (3 < $k) break;
+        if (7 < $k) break;
         $thumbnail = get_field('feature_image', $v->taxonomy . '_' . $v->term_id);
         $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['url']  : no_img('8151');
         $content = get_field('content', $v->taxonomy . '_' . $v->term_id);
         $description_cotnent = get_short_text($content, 345);
 
         ?>
-        <div class="col-6 col-lg-3 gallery kilala-animation-item" data-animate>
+        <div class="col-6 col-lg-3 gallery kilala-animation-item<?= (3 < $k) ? ' d-none d-sm-block' : '' ?>" data-animate>
           <a class="link-gallery" title="<?php echo $v->name ?>" href="<?php echo get_term_link($v->term_id) ?>">
             <div class="link-gallery-image">
               <figure class="image">

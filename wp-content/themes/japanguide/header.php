@@ -61,26 +61,25 @@
     }
 </style>
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Be+Vietnam:100,100i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i&display=fallback&subset=latin-ext,vietnamese">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <?php wp_head(); ?>
 <?= wpedu_get_option('option_head_code') ?>
 </head>
 
 <body <?php body_class(); ?>>
     <?= wpedu_get_option('option_body_code') ?>
+    
+    <!-- Is home page -->
+    <?php if ( is_front_page() ) { ?>
+        <div id="preloadSVG" style="display: none;"></div>
+        <div id="js_progressLoading" style="display: none;">
+            <svg role="img" class="frame000">
+                <use id="svg_change" xlink:href="#frame000"></use>
+            </svg>
+        </div>
 
-    <div id="preloadSVG" style="display: none;">
-        <?php get_template_part('template-parts/svgs/logo-animation') ?>
-    </div>
-    <div id="js_progressLoading" style="display: none; background-image: url('<?= get_template_directory_uri() ?>/logo.png'); background-position: center; background-repeat: no-repeat;">
-        <svg role="img" class="frame000">
-            <use id="svg_change" xlink:href="#frame000"></use>
-        </svg>
-    </div>
-
-    <?php do_action('progress_loading_script'); ?>
+        <?php do_action('progress_loading_script'); ?>
+    <?php } ?>
+    <!-- End Is home page -->
 
     <header id="header">
         <div id="header-top">

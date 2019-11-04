@@ -1,8 +1,8 @@
-<div id="exploreNav_<?= $single_id ?>" class="sidenav">
+<div id="exploreTopic_<?= $topic_term->slug ?>_<?= $single_id ?>" class="sidenav">
   <div class="text-center py-3 py-lg-4">
-    <a id="closeExploreNav_<?= $single_id ?>" href="javascript:void(0)" class="closebtn" data-sidebar="#exploreNav_<?= $single_id ?>" data-overlay="#exploreCanvasNav_<?= $single_id ?>"><i class="fa fa-times"></i></a>
+    <a id="closeTopic_<?= $topic_term->slug ?>_<?= $single_id ?>" href="javascript:void(0)" class="closebtn" data-sidebar="#exploreTopic_<?= $topic_term->slug ?>_<?= $single_id ?>" data-overlay="#exploreTopicOV_<?= $topic_term->slug ?>_<?= $single_id ?>"><i class="fa fa-times"></i></a>
   </div>
-  <h2 class="main-title"><?php echo $term_name; ?></h2>
+  <h2 class="main-title"><?php echo $topic_term->name; ?></h2>
   <?php
   if ( !isset($exlucdes) ) {
     $exlucdes[] = $single_id;
@@ -18,9 +18,9 @@
     'post__not_in' => $exlucdes,
     'tax_query' => array(
       array(
-        'taxonomy' => 'category',
+        'taxonomy' => 'topics',
         'field' => 'term_id',
-        'terms' => $term->term_id,
+        'terms' => $topic_term->term_id,
       )
     ),
   ));
@@ -55,10 +55,10 @@
 
   <div class="border-top pt-3"></div>
   <?php if ( $posts->found_posts === 0 ) : ?>
-    <p><?= pll__('Hiện tại chưa có thêm bài viết về điểm đến này.') ?></p>
+    <p><?= pll__('Hiện tại chưa có thêm bài viết về chủ đề này.') ?></p>
   <?php endif; ?>
   <?php if ( $posts->found_posts > 5 ) : ?>
-    <a href="<?= get_term_link($term->term_id) ?>" class="btn btn-primary"><?= pll__('Khám phá thêm') ?></a>
+    <a href="<?= get_term_link($topic_term->term_id) ?>" class="btn btn-primary"><?= pll__('Khám phá thêm') ?></a>
   <?php endif; ?>
 </div>
-<div id="exploreCanvasNav_<?= $single_id ?>" data-sidebar="#exploreNav_<?= $single_id ?>" data-overlay="#exploreCanvasNav_<?= $single_id ?>" class="overlaynav"></div>
+<div id="exploreTopicOV_<?= $topic_term->slug ?>_<?= $single_id ?>" data-sidebar="#exploreTopic_<?= $topic_term->slug ?>_<?= $single_id ?>" data-overlay="#exploreTopicOV_<?= $topic_term->slug ?>_<?= $single_id ?>" class="overlaynav"></div>

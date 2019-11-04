@@ -91,7 +91,7 @@ get_header();
     </div>
     <!-- Grid row -->
     <h2 class="main-title"><?= pll__('Đăng ký mua sách') ?></h2>
-    <?php echo do_shortcode('[contact-form-7 id="8354" html_class="border py-4 px-4" title="Contact Form VI"]') ?>
+    <?php echo do_shortcode('[contact-form-7 id="9053" html_class="border py-4 px-4" title="Đăng ký mua sách"]') ?>
   </div>
 </section>
 <!--END  Pull HTML here-->

@@ -15,19 +15,21 @@ if (empty($maps) || NULL === $maps) {
             <?php
               if (isset($map->destinations) && !empty($map->destinations) ) {
                 foreach ($map->destinations as $destination) {
-                  printf('<li><a href="%2$s" title="%1$s" id="%3$s" class="map-city">%4$s</a></li>', $destination->name, get_term_link($destination->term_id), strtolower(str_replace(' ', '-', $destination->name)), ucfirst(str_replace(' ', '<br>', $destination->name)));
+                  $position = get_field('position', $destination->taxonomy . '_' . $destination->term_id);
+                  $style_position = '';
+                  if ( $position ) {
+                    $style_position .= isset($position['top']) && $position['top'] ? 'top:'.$position['top'].'%;' : '';
+                    $style_position .= isset($position['right']) && $position['right'] ? 'right:'.$position['right'].'%;' : '';
+                    $style_position .= isset($position['bottom']) && $position['bottom'] ? 'bottom:'.$position['bottom'].'%;' : '';
+                    $style_position .= isset($position['left']) && $position['left'] ? 'left:'.$position['left'].'%;' : '';
+                  }
+                  printf('<li><a href="%2$s" title="%1$s" id="%3$s" class="map-city" style="%5$s">%4$s</a></li>', $destination->name, get_term_link($destination->term_id), strtolower(str_replace(' ', '-', $destination->name)), ucfirst(str_replace(' ', '<br>', $destination->name)), $style_position);
                 }
               } ?>
           </ul>
         </div>
       <?php } ?>
     </div>
-    <!-- <div id="city-list">
-      <a id="tokyo" class="map-city" href="<?= site_url() ?>/diem-du-lich/tokyo/">Tokyo</a>
-      <a id="osaka" class="map-city top-point" href="<?= site_url() ?>/diem-du-lich/osaka/">Osaka</a>
-      <a id="kyoto" class="map-city" href="<?= site_url() ?>/diem-du-lich/kyoto/">Kyoto</a>
-      <a id="nagasaki" class="map-city" href="<?= site_url() ?>/diem-du-lich/nagasaki/">Nagasaki</a>
-    </div> -->
   </div>
 
   <script type="text/javascript" charset="utf-8" async defer>
@@ -47,7 +49,8 @@ if (empty($maps) || NULL === $maps) {
           }
         });
       });
+    } else {
+      jQuery('#svg-map').prepend(map);
     }
-    jQuery('#svg-map').prepend(map);
   </script>
 </my-map>

@@ -13,7 +13,7 @@ get_header(); ?>
 <section>
   <div class="container">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <section class="block">
                     <h1 class="main-title-lg">
                         <?= pll__('search-results'); ?>
@@ -24,12 +24,10 @@ get_header(); ?>
                             <?php if ( have_posts() ) : ?>
                                 <div class="row">
                                     <?php while (have_posts()) : the_post();
-                                    $img = get_the_post_thumbnail_url(get_the_ID(), 'feature-image');
-                                    $img = isset($img) && !empty($img) ? $img : no_img('8151', 'feature-image');
-                                    $taxonomy_destination = get_primary_taxonomy(get_the_ID());
-                                    $color = get_field('color', $taxonomy_destination->taxonomy . '_' . $taxonomy_destination->term_id);
-                                    $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
-                                        include(APP_PATH . '/template-parts/components/article_col_3.php');
+                                        $img = get_the_post_thumbnail_url($post->ID, 'feature-image');
+                                        $img = isset($img) && !empty($img) ? $img : no_img('8151', 'feature-image');
+                                        $taxonomies = get_the_terms($post->ID, 'category');
+                                        include(APP_PATH . '/template-parts/components/article_col_4.php');
                                     endwhile;
                                     ?>
                                 </div>
@@ -45,9 +43,9 @@ get_header(); ?>
                     </div>
                 </section>
             </div>
-            <div class="col-lg-4 pl-lg-4 has-border-top-sp">
-                <?php get_sidebar('right'); ?>
-            </div>
+            <!-- <div class="col-lg-4 pl-lg-4 has-border-top-sp">
+                <?php // get_sidebar('right'); ?>
+            </div> -->
         </div>
     </div>
 </section>

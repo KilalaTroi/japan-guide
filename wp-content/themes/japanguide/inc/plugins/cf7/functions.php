@@ -11,7 +11,7 @@ function email_already_in_db ( $result, $tags ) {
         // if already in database, invalidate
         if( !empty($entry) )
             $result->invalidate('your-email', 'Your email exists in our database');
-        // return the filtered value
-        return $result;
     }
+
+    return $result;
 }
