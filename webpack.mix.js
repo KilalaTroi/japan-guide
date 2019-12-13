@@ -43,9 +43,8 @@ if ( mix.config.production ) {
 
     // production
     mix.js(mix.config.resourceRoot + '/assets/js/app.js', public_path + 'assets/js');
-    // mix.js(mix.config.resourceRoot + '/assets/js/landing.js', public_path + 'assets/js');
     mix.sass(mix.config.resourceRoot + '/assets/sass/app.scss', public_path + 'assets/css');
-    // mix.sass(mix.config.resourceRoot + '/assets/sass/landing.scss', public_path + 'assets/css');
+    mix.sass(mix.config.resourceRoot + '/assets/sass/preload.scss', public_path + 'assets/css');
 
 } else {
     // development
@@ -53,8 +52,6 @@ if ( mix.config.production ) {
 
     // ------------------- JS ----------------------//
     mix.js(mix.config.resourceRoot + '/assets/js/app.js', public_path + 'assets/js');
-    // mix.js(mix.config.resourceRoot + '/assets/js/landing.js', public_path + 'assets/js');
-    // mix.extract(['vue']);
     // ------------------- End JS ----------------------//
 
     // ------------------- CSS ---------------------//
@@ -65,7 +62,11 @@ if ( mix.config.production ) {
         outputStyle: 'expanded',
         sourceMap: true,
     });
-    // mix.sass(mix.config.resourceRoot + '/assets/sass/landing.scss', public_path + 'assets/css');
+    mix.sass(mix.config.resourceRoot + '/assets/sass/preload.scss', public_path + 'assets/css', {
+        implementation: require('node-sass'),
+        outputStyle: 'expanded',
+        sourceMap: true,
+    });
     // ------------------- End CSS ---------------------//
     
     // ------------------- Coppy -----------------------//

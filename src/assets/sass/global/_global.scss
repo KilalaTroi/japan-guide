@@ -245,6 +245,7 @@ footer a {
 
   .wpcf7-not-valid-tip {
     position: absolute;
+    bottom: 0;
   }
 }
 
@@ -265,6 +266,22 @@ footer a {
 
 div.wpcf7 .ajax-loader {
   position: absolute;
+}
+
+.wpcf7-form-control-wrap {
+  overflow: hidden;
+}
+
+.invalid {
+  .input-group-append {
+    margin-bottom: 20px;
+  }
+
+  .wpcf7-not-valid {
+    border: 1px solid #ff1945;
+    margin-bottom: 20px;
+    display: block;
+  }
 }
 
 /* =WordPress Core
