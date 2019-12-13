@@ -21,48 +21,12 @@
 
     <?php if (is_singular() && pings_open(get_queried_object())) : ?>
     <link rel="pingback" href="<?= get_bloginfo('pingback_url'); ?>">
-<?php endif; ?>
+    <?php endif; ?>
 
-<style type="text/css" media="screen">
+    <link rel="stylesheet" type="text/css" href="<?= ASSETS_PATH ?>css/preload.css">
 
-    body.loading{
-        opacity: 0;
-    }
-    .frame000 {
-        width: 255px;
-        height: 160px;
-    }
-
-    @media (min-width: 768px) {
-        .frame000 {
-            width: 510px;
-            height: 320px;
-        }
-    }
-
-    #js_progressLoading {
-        background: #fff;
-        width: 100vw;
-        height: 100vh;
-        top: 0;
-        left: 0;
-        z-index: 99;
-        position: fixed;
-        z-index: 999999;
-    }
-
-    #js_progressLoading svg {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -webkit-transform: translate(-50%,-50%);
-        -ms-transform: translate(-50%,-50%);
-        transform: translate(-50%,-50%);
-    }
-</style>
-
-<?php wp_head(); ?>
-<?= wpedu_get_option('option_head_code') ?>
+    <?php wp_head(); ?>
+    <?= wpedu_get_option('option_head_code') ?>
 </head>
 
 <body <?php body_class(); ?>>
@@ -84,99 +48,20 @@
     <header id="header">
         <div id="header-top">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-auto col-12">
-                        <ul class="list-inline top-contact">
-                            <li class="list-inline-item mr-4">
-                                <i class="fa fa-phone" aria-hidden="true"></i>
-                                <a href="tel:<?= str_replace([' ', ',', '.'], ['', '', ''], wpedu_get_option('option_phone')) ?>">
-                                    <?= wpedu_get_option('option_phone') ?>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                                <a href="mailto:<?= wpedu_get_option('option_email') ?>"><?= wpedu_get_option('option_email') ?></a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="col-auto ml-auto d-none d-md-block">
-                        <ul class="list-inline">
-                        <!--list-inline-item mr-4 -->
-                            <li class="list-inline-item mr-4">
-                                <div class="search-container">
-                                    <form action="<?= esc_url(site_url('/')) ?>" method="get">
-                                        <input type="text" name="s" placeholder="Tìm kiếm..." name="search">
-                                        <button type="submit"><i class="fa fa-search"></i></button>
-                                    </form>
-                                </div>
-                            </li>
-                            <?php
-                            pll_the_languages(array(
-                                'hide_current' => 1,
-                                'show_flags' => 1,
-                            ));
-
-                            ?>
-                        </ul>
-                    </div>
-                </div>
+                <?php get_template_part('template-parts/components/header_top') ?>
             </div>
         </div>
 
         <nav id="header-menu" class="navbar navbar-light navbar-expand-lg shadow-sm">
             <div class="container">
-                <div>
-                    <?php $urlKilala = LANGUAGE_SLUG === 'ja' ? 'http://www.kilala.vn/ja/cam-nang-nhat-ban.html' : 'http://www.kilala.vn/cam-nang-nhat-ban.html'; ?>
-                    <a target="_blank" class="navbar-brand mr-0" href="<?php echo $urlKilala ?>">
-                        <img alt="Cầu nối Văn hóa Việt - Nhật" title="Cầu nối Văn hóa Việt - Nhật" src="<?php echo wpedu_get_option('option_logo_kilala')['url']; ?>">
-                    </a>
-                    <a class="navbar-brand mr-0" href="<?php echo site_url(); ?>">
-                        <?php if (is_home() && is_front_page()) { ?><h1 class="d-none"><?php bloginfo('name'); ?></h1><?php } ?>
-                        <img src="<?php echo wpedu_get_option('option_logo')['url'] ?>" title="<?php bloginfo('name') ?>" alt="<?php bloginfo('name') ?>">
-                    </a>
-                </div>
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <?php
-                    wp_nav_menu(array(
-                    'theme_location'  => 'default_main_menu',
-                    'depth'           => 2, // 1 = no dropdowns, 2 = with dropdowns.
-                    'container'       => '',
-                    'container_class' => '',
-                    'container_id'    => '',
-                    'menu_class'      => 'navbar-nav',
-                    'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
-                    'walker'          => new WP_Bootstrap_Navwalker(),
-                ));
-                ?>
-
-                <ul class="navbar-nav d-block d-md-none my-2">
-                    <li class="nav-item mb-3">
-                        <div class="search-container">
-                            <form action="<?= esc_url(site_url('/')) ?>" method="get" class="d-flex">
-                                <input type="text" name="s" placeholder="Tìm kiếm..." name="search">
-                                <button type="submit" class="ml-auto"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div>
-                    </li>
-                    <?php
-                    pll_the_languages(array(
-                        'hide_current' => 1,
-                        'show_flags' => 1,
-                    ));
-
-                    ?>
-                </ul>
+                <?php get_template_part('template-parts/components/header_logo') ?>
+                <?php get_template_part('template-parts/components/header_main_menu') ?>
             </div>
+        </nav>
+        <div class="placeholder-content"></div>
+        <div class="container">
+            <hr class="header-border m-0">
         </div>
-    </nav>
-    <div class="placeholder-content"></div>
-    <div class="container">
-        <hr class="header-border m-0">
-    </div>
-</header>
-<main role="main" id="main-content">
+    </header>
+
+    <main role="main" id="main-content">

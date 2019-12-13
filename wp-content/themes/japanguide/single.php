@@ -25,7 +25,7 @@ if ( ! empty( $postTags ) ) {
     <div class="row">
       <div class="col-lg-8">
         <section class="article-content">
-          <?php if ( is_array($interests) && count($interests) > 0 ) { 
+          <?php if ( is_array($interests) && count($interests) > 0 ) {
             foreach ( $interests as $key => $value ) {
               $topic_term = get_term($value, 'topics');
               include(APP_PATH . '/template-parts/blocks/global/explore_topic.php');

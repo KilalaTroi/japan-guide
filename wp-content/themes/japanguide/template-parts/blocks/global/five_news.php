@@ -6,13 +6,16 @@ if (false === ($postHome  = get_transient($postHomeL))) {
             'post_type'      => 'post',
             'posts_per_page' => 5,
             'post_status' => 'publish',
-            'meta_query'    => array(
-                array(
-                    'key'         => 'top',
-                    'value'          => true,
-                    'compare'     => '=',
-                ),
-            ),
+            'meta_query' => array(array('key' => '_thumbnail_id')),
+            'category__not_in' => array( 1397 ),
+            'orderby' => 'rand',
+            // 'meta_query'    => array(
+            //     array(
+            //         'key'         => 'top',
+            //         'value'          => true,
+            //         'compare'     => '=',
+            //     ),
+            // ),
         )
     );
     set_transient($postHomeL, $postHome, 30 * DAY_IN_SECONDS);
@@ -25,21 +28,21 @@ global $post;
             <div class="row">
                 <div class="col-lg-6 kilala-animation-item" data-animate>
                     <?php
-                        $post = array_shift($postHome);
-                        setup_postdata($post);
-                        get_template_part('template-parts/components/article_big');
-                        wp_reset_postdata();
-                        ?>
+                    $post = array_shift($postHome);
+                    setup_postdata($post);
+                    get_template_part('template-parts/components/article_big');
+                    wp_reset_postdata();
+                    ?>
                 </div>
                 <div class="col-lg-6">
                     <div class="row">
                         <?php foreach ($postHome as $post) {
-                                setup_postdata($post); ?>
+                            setup_postdata($post); ?>
                             <div class="col-sm-6 kilala-animation-item" data-animate>
                                 <?php get_template_part('template-parts/components/article'); ?>
                             </div>
                         <?php }
-                            wp_reset_postdata(); ?>
+                        wp_reset_postdata(); ?>
                     </div>
                 </div>
             </div>
