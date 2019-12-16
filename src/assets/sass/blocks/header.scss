@@ -161,6 +161,20 @@ header {
       color: #cccccc;
     }
   }
+
+  .top-contact {
+    overflow: hidden;
+
+    .fancy-button span {
+      margin-top: 0;
+      font-size: 12px;
+      padding: 5px 10px;
+    }
+
+    li {
+      vertical-align: middle;
+    }
+  }
 }
 
 .sticky {
