@@ -110,14 +110,14 @@ get_header(); ?>
       fee = 20000;
     } 
     var totalnotship = quantity * book_price;
-    if(quantity == 1){
-      totalnotship = totalnotship - (totalnotship * 0.1);
-    }
-    else if(quantity == 2){
-      totalnotship = totalnotship - (totalnotship * 0.2);
-    }else if(quantity > 2){
-      totalnotship = totalnotship - (totalnotship * 0.3);
-    }
+    // if(quantity == 1){
+    //   totalnotship = totalnotship - (totalnotship * 0.1);
+    // }
+    // else if(quantity == 2){
+    //   totalnotship = totalnotship - (totalnotship * 0.2);
+    // }else if(quantity > 2){
+    //   totalnotship = totalnotship - (totalnotship * 0.3);
+    // }
     jQuery('[name="total"]').val(formatNumber(totalnotship + fee) + ' vnđ');
   }
 
