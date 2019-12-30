@@ -91,6 +91,7 @@ get_header(); ?>
 </section>
 <!--END  Pull HTML here-->
 <script type="text/javascript">
+  var saleOff = <?php echo get_field('sale_off') ? get_field('sale_off') : 0;  ?>;
   jQuery('[name="total"]').attr('readonly', true).val(0);
 
   function formatNumber(num) {
@@ -110,6 +111,7 @@ get_header(); ?>
       fee = 20000;
     } 
     var totalnotship = quantity * book_price;
+    totalnotship = totalnotship - (totalnotship * (saleOff/100));
     // if(quantity == 1){
     //   totalnotship = totalnotship - (totalnotship * 0.1);
     // }

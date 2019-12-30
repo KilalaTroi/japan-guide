@@ -13,7 +13,7 @@
             </li>
             <?php if ( get_page_template_slug() != 'page-templates/about.php' ) : ?>
                 <li class="list-inline-item">
-                    <a href="<?= home_url('gioi-thieu'); ?>#datmuasach" class="fancy-button pop-onhover bg-gradient3">
+                    <a href="<?= get_permalink( get_page_by_title( 'Giới Thiệu' ) ); ?>#datmuasach" class="fancy-button bg-gradient3">
                         <span>Đặt Mua Sách</span>
                     </a>
                 </li>
