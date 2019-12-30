@@ -18,6 +18,7 @@ const appFunctions = (function ($, window, undefined) {
         _clickScrollToTop();
         _sticky();
         _breadcrumbsScroll();
+        _addNewsletterToKilala();
 
         $win.scroll(function () {
             _scrollToTop();
@@ -121,6 +122,21 @@ const appFunctions = (function ($, window, undefined) {
             $($(this).attr('data-sidebar')).removeClass("show");
             $($(this).attr('data-overlay')).removeClass("show");
         })
+    }
+
+    function _addNewsletterToKilala() {
+        document.addEventListener( 'wpcf7mailsent', function( event ) {
+            if ( '8352' == event.detail.contactFormId ) {
+                $.ajax({
+                    url : "https://kilala.vn/api/add_newsletter.php",
+                    type : "post", 
+                    data : {
+                         email : $('#footer .wpcf7-email').val()
+                    },
+                    success : function (result){}
+                });
+            }
+        }, false );
     }
 
     /*-----------------------------------------------------*/
