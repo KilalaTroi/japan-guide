@@ -221,7 +221,7 @@ article {
 
 .article-content {
   overflow: hidden;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
 
   @include media-breakpoint-up(lg) {
@@ -240,7 +240,7 @@ article {
         &.main-label {
           background: #ff1945;
           color: #fff;
-          font-size: 12px;
+          font-size: 14px;
           font-weight: 600;
           border-radius: 3px;
           padding: 3px 15px;
@@ -248,7 +248,7 @@ article {
         }
         a {
           display: inline-block;
-          font-size: 11px;
+          font-size: 12px;
           padding: 3px 5px;
           background: #ebebeb;
           color: #555;
@@ -302,7 +302,7 @@ article {
     margin-top: -10px;
     margin-bottom: 10px;
     font-style: italic;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   div+.img-caption {
@@ -348,7 +348,7 @@ article {
       //margin-top: -15px;
       //margin-bottom: 15px;
       font-style: italic;
-      font-size: 13px;
+      font-size: 14px;
       text-align: center;
     }
   }
