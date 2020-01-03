@@ -349,6 +349,7 @@ function misha_loadmore_ajax_handler()
             include(APP_PATH . '/template-parts/blocks/global/explore_destination.php');
             echo '<div class="row border-top py-2 py-sm-3"></div><div id="content-offset-' . $_POST["offset"] . '">';
             include(APP_PATH . '/template-parts/components/content.php');
+            include(APP_PATH . '/template-parts/components/layzy-script.php');
             echo '</div>';
         } else {
             if ($relate_category->current_post == 1) {
