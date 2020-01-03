@@ -58,9 +58,10 @@ const appFunctions = (function ($, window, undefined) {
     function _sticky() {
         if ( $('#sidebar').length > 0 ) {
             let sidebar = document.getElementById('sidebar');
+            let banner = $('#banner').lenth > 0 ? $('#banner').height() : 0;
 
             let stickySidebar = new StickySidebar(sidebar, {
-                topSpacing: 100,
+                topSpacing: 100 + banner,
                 containerSelector: '.sticky-container',
                 resizeSensor: true,
                 minWidth: 991
