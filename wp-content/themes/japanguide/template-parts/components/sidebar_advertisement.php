@@ -1,5 +1,5 @@
 <section class="block">
-  <a href="<?= get_permalink( get_page_by_title( 'Giới Thiệu' ) ); ?>#datmuasach">
+  <a href="<?= get_permalink( get_page_by_title( 'Giá»›i Thiá»‡u' ) ); ?>#datmuasach">
     <img class="img-fluid w-100" src="<?= ASSETS_PATH ?>images/advertisement/book.jpg" alt="Japan Guide book">
   </a>
 </section>
@@ -14,6 +14,7 @@
 	      dataType: "JSON",
 	      data: {
 				'url' : "https://kilala.vn/",
+				'category_id': 2
 			},
 	      success: function(data)
 	      {

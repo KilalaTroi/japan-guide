@@ -1,3 +1,4 @@
+<?php global $post; setup_postdata( $single_id ); ?>
 <div class="row mb-3">
     <div class="col-sm col-xs-12">
         <h1 class="mt-2"><?= get_the_title($single_id); ?></h1>
@@ -44,3 +45,4 @@
     </div>
     <div class="col-12 py-2 py-lg-3"></div>
 </div>
+<?php wp_reset_postdata(); ?>

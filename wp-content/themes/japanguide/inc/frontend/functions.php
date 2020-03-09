@@ -458,3 +458,10 @@ function WPTime_add_custom_class_to_all_images($content){
 }
 add_filter('the_content', 'WPTime_add_custom_class_to_all_images', 13);
 //------------End Override/Filter/Hook Functions-------------//
+
+// Disable Yoast Generated Schema Data
+function disable_yoast_schema_data($data){
+    $data = array();
+    return $data;
+}
+add_filter('wpseo_json_ld_output', 'disable_yoast_schema_data', 10, 1);

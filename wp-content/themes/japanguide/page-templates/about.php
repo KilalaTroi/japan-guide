@@ -9,6 +9,7 @@ get_header(); ?>
   <div class="container about-page">
     <div class="content pb-3 pt-5 px-4 pb-md-5 overflow-hidden">
       <?php the_content() ?>
+      <p><a href="#datmuasach" class="fancy-button pop-onhover bg-gradient3"><span><?= pll__('Đặt Mua Ngay') ?></span></a></p>
     </div>
 
     <div class="pb-5">
@@ -17,13 +18,19 @@ get_header(); ?>
           <img data-src="<?= ASSETS_PATH ?>images/img-phat-hanh.png" alt="phat-hanh" class="lazy img-fluid">
         </div>
         <div class="col-12 col-md-3 my-3 col-xl-auto">
-          <img data-src="<?= ASSETS_PATH ?>images/fahasa.jpg" alt="fahasa" class="lazy img-fluid">
+          <a href="https://www.fahasa.com/kilala-sach-huong-dan-du-lich-nhat-ban-japan-guide.html" target="_blank">
+            <img data-src="<?= ASSETS_PATH ?>images/fahasa.jpg" alt="fahasa" class="lazy img-fluid">
+          </a>
         </div>
         <div class="col-12 col-md-3 my-3 col-xl-auto">
-          <img data-src="<?= ASSETS_PATH ?>images/phuong-nam.png" alt="phuong-nam" class="lazy img-fluid">
+          <a href="http://nhasachphuongnam.com/kilala-travel-book-series-book-1-japan-guide-p117909.html" target="_blank">
+            <img data-src="<?= ASSETS_PATH ?>images/phuong-nam.png" alt="phuong-nam" class="lazy img-fluid">
+          </a>
         </div>
         <div class="col-12 col-md-3 my-3 col-xl-auto">
-          <img data-src="<?= ASSETS_PATH ?>images/tiki.png" alt="tiki" class="lazy img-fluid">
+          <a href="https://tiki.vn/kilala-sach-huong-dan-du-lich-nhat-ban-japan-guide-p38212813.html" target="_blank">
+            <img data-src="<?= ASSETS_PATH ?>images/tiki.png" alt="tiki" class="lazy img-fluid">
+          </a>
         </div>
       </div>
     </div>
@@ -83,6 +90,11 @@ get_header(); ?>
     <!-- Grid row -->
     <hr id="datmuasach" class="mb-5 mt-0">
     <h2 class="main-title"><?= pll__('Đặt mua sách') ?></h2>
+    <?php if ( get_field('form_content') ) : ?>
+      <div class="form-content">
+        <?php echo get_field('form_content'); ?>
+      </div>
+    <?php endif; ?>
     <?php 
     $form = get_field('book_form');
     echo do_shortcode('[contact-form-7 id="' . $form->id . '" html_class="border py-4 px-4" title="' . $form->post_title . '"]'); 
@@ -104,7 +116,7 @@ get_header(); ?>
     var book_series = jQuery('[name="book_type"] option:selected').val();
     var book_price = 0;
     var fee = 0;
-    if ( book_series === 'Japan Guide (Giá: 105.000 đồng/ quyển)' ) {
+    if ( book_series === 'Japan Guide (Giá bìa: 105.000 đồng/ quyển)' ) {
       book_price = 105000;
     } 
     if ( province === 'Khác (20.000 đồng / đơn hàng)' ) {

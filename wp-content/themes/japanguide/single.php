@@ -38,9 +38,11 @@ if ( ! empty( $postTags ) ) {
         <?php // include(APP_PATH . '/template-parts/blocks/global/post_same_topic.php'); ?>
       </div>
       <div class="col-lg-4 pl-lg-4 has-border-top-sp sidebar align-self-start" id="sidebar">
-        <?php get_template_part('template-parts/components/sidebar_advertisement'); ?>
-        <?php include(APP_PATH . '/template-parts/components/sidebar_tips.php'); ?>
-        <?php get_template_part('template-parts/components/sidebar_topic') ?>
+        <div id="stk-sidebar">
+          <?php get_template_part('template-parts/components/sidebar_advertisement'); ?>
+          <?php include(APP_PATH . '/template-parts/components/sidebar_tips.php'); ?>
+          <?php get_template_part('template-parts/components/sidebar_topic') ?>
+        </div>
       </div>
     </div>
   </div>
