@@ -1,5 +1,4 @@
 require('resize-sensor');
-import StickySidebar from 'sticky-sidebar';
 
 const appFunctions = (function ($, window, undefined) {
     'use strict';
@@ -16,7 +15,6 @@ const appFunctions = (function ($, window, undefined) {
         _mapHover();
         _handleExploreNav();
         _clickScrollToTop();
-        _sticky();
         _breadcrumbsScroll();
         _addNewsletterToKilala();
 
@@ -52,19 +50,6 @@ const appFunctions = (function ($, window, undefined) {
             _brb.css('overflow-x','');
             _brb.css('width','');
             _brb_inner.css('white-space', 'normal');
-        }
-    }
-
-    function _sticky() {
-        if ( $('#stk-sidebar').length > 0 ) {
-            let sidebar = document.getElementById('stk-sidebar');
-
-            let stickySidebar = new StickySidebar(sidebar, {
-                topSpacing: 100,
-                containerSelector: '.sticky-container',
-                resizeSensor: true,
-                minWidth: 991
-            });
         }
     }
 
