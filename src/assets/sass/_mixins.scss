@@ -70,3 +70,17 @@
 	opacity: 0;
 	visibility: hidden;
 }
+
+// IE-hack
+@mixin ie-hack {
+	// IE10,IE11
+	@media all and (-ms-high-contrast: none){
+		@content;
+	}
+}	
+@mixin edge-hack {
+	// Edge
+	@supports (-ms-ime-align: auto) {
+		@content;
+	}
+}	

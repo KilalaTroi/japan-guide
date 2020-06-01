@@ -1,15 +1,15 @@
 <?php
-$img = get_the_post_thumbnail_url($post->ID, 'medium');
-$img = isset($img) && !empty($img) ? $img : no_img('8151', 'medium');
-$img_feature = get_the_post_thumbnail_url($post->ID, 'feature-image');
-$img_feature = isset($img_feature) && !empty($img_feature) ? $img_feature : no_img('8151', 'feature-image');
+$img = get_the_post_thumbnail_url($post->ID, 'full');
+$img = isset($img) && !empty($img) ? $img : no_img('8151', 'full');
+$img_feature = get_the_post_thumbnail_url($post->ID, 'full');
+$img_feature = isset($img_feature) && !empty($img_feature) ? $img_feature : no_img('8151', 'full');
 $taxonomy_destination = get_primary_taxonomy($post->ID);
 $region_id = get_field('region_of', $taxonomy_destination->taxonomy . '_' . $taxonomy_destination->term_id);
 $color = get_field('color', 'regions_' . $region_id);
 $color = isset($color) && !empty($color) ? 'style="color:' . $color . '"'  : '';
 ?>
 <article class="d-none d-sm-block">
-  <div class="post-top post-top-lg feature-img" style="background-image: url(<?php echo $img; ?>)">
+  <div class="post-top post-top-lg feature-img js-bg-img" data-img="<?php echo $img; ?>">
     <div class="entry">
       <?php if (isset($taxonomy_destination) && !empty($taxonomy_destination)) {
         printf('<a title="%1$s" href="%2$s" class="post-category"><i %3$s class="fa fa-map-marker mr-1"></i>%1$s</a>', $taxonomy_destination->name, get_term_link($taxonomy_destination->term_id), $color);

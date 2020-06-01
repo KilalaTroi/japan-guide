@@ -35,8 +35,8 @@ if (empty($maps) || NULL === $maps) {
   <script type="text/javascript" charset="utf-8" async defer>
     var map = sessionStorage.getItem("svg-map");
     if (null === map) {
-      jQuery(document).ready(function($) {
-        $.ajax({
+      jQuery(window).load(function() {
+        jQuery.ajax({
           type: 'POST',
           url: '<?php echo admin_url('admin-ajax.php'); ?>',
           dataType: "html", // add data type
@@ -45,7 +45,7 @@ if (empty($maps) || NULL === $maps) {
           },
           success: function(response) {
             var map = sessionStorage.setItem("svg-map", response);
-            $('#svg-map').prepend(response);
+            jQuery('#svg-map').prepend(response);
           }
         });
       });

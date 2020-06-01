@@ -8,6 +8,10 @@ function setup_scripts() {
     wp_enqueue_style('main-style', ASSETS_PATH.'css/app.css', array(), null);
 
     // Scripts
+    wp_enqueue_script('TweenMax', ASSETS_PATH.'js/TweenMax.min.js', array('jquery'), null, true);
+    wp_enqueue_script('ScrollMagic', ASSETS_PATH.'js/ScrollMagic.min.js', array('jquery'), null, true);
+    wp_enqueue_script('animationGsap', ASSETS_PATH.'js/animation.gsap.min.js', array('jquery'), null, true);
+    wp_enqueue_script('debugScrollMagic', ASSETS_PATH.'js/debug.addIndicators.min.js', array('jquery'), null, true);
     wp_enqueue_script('main-script', ASSETS_PATH.'js/app.js', array('jquery'), null, true);
 
     /* array with elements to localize in scripts */

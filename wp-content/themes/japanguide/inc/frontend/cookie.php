@@ -32,18 +32,21 @@ function progress_loading_func()
                 jQuery('body').removeClass('disableScroll');
                 jQuery('#js_progressLoading').fadeOut();
 
-                jQuery.ajax({
-                    type: 'POST',
-                    url: '<?php echo admin_url('admin-ajax.php'); ?>',
-                    dataType: "html", // add data type
-                    data: {
-                        action: 'get_ajax_logo'
-                    },
-                    success: function(response) {
-                        var map = localStorage.setItem("logo-animation", response);
-                        preloadSVG.append(response);
-                    }
+                jQuery(window).load(function(){
+                    jQuery.ajax({
+                        type: 'POST',
+                        url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                        dataType: "html", // add data type
+                        data: {
+                            action: 'get_ajax_logo'
+                        },
+                        success: function(response) {
+                            var map = localStorage.setItem("logo-animation", response);
+                            preloadSVG.append(response);
+                        }
+                    });
                 });
+                    
             } else {
                 preloadSVG.append(logoAnimation);
 

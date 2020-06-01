@@ -3,7 +3,7 @@
     <div class="row post-normal-custom">
       <div class="col-5 col-md-12">
         <a class="feature-img" style="background-image: url(<?php echo $img; ?>);" title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
-          <img src="<?php echo no_img('8151', 'feature-image'); ?>" alt="<?php the_title(); ?>" class="w-100 img-fluid">
+          <img src="<?php echo no_img('8151', 'feature-image'); ?>" alt="<?php the_title(); ?>" class="w-100 img-fluid lazy">
         </a>
       </div>
 

@@ -1,6 +1,6 @@
 <section class="block">
-  <a href="<?= get_permalink( get_page_by_title( 'Giá»›i Thiá»‡u' ) ); ?>#datmuasach">
-    <img class="img-fluid w-100" src="<?= ASSETS_PATH ?>images/advertisement/book.jpg" alt="Japan Guide book">
+  <a href="/gioi-thieu.html/#datmuasach">
+    <img class="img-fluid w-100 lazy" src="<?= ASSETS_PATH ?>images/advertisement/book.jpg" alt="Japan Guide book">
   </a>
 </section>
 <section id="ads">

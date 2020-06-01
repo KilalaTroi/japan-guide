@@ -18,7 +18,7 @@ if (false === ($postHome  = get_transient($postHomeL))) {
             // ),
         )
     );
-    set_transient($postHomeL, $postHome, 30 * DAY_IN_SECONDS);
+    set_transient($postHomeL, $postHome, 1 * HOUR_IN_SECONDS);
 }
 global $post;
 ?>

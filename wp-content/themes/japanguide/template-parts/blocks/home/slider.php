@@ -14,11 +14,7 @@
                     foreach ($listSlides as $k => $v) : ?>
                         <div class="carousel-item <?php echo $k === 0 ? 'active' : ''; ?>" data-interval="10000">
                             <a href="<?php echo $v['url']; ?>" class="carousel-link">
-                                <?php if ($k === 0) { ?>
-                                    <img class="img-fluid" src="<?= $v['image'] ?>" alt="<?php echo $v['title']; ?>">
-                                <?php } else { ?>
-                                    <img class="lazy img-fluid" data-src="<?= $v['image'] ?>" alt="<?php echo $v['title']; ?>">
-                                <?php } ?>
+                                <img class="<?php echo $k === 0 ? 'lazy' : 'lazy-custom'; ?> img-fluid" data-src="<?= $v['image'] ?>" alt="<?php echo $v['title']; ?>">
                             </a>
                             <?php if ($k === 0) { ?>
                                 <a class="btn play" href="<?php echo $v['url']; ?>" id="btn-discover" style="background-image: url(<?= ASSETS_PATH ?>images/svg/arrow-animation.svg)"></a>
@@ -44,7 +40,7 @@
                 <div class="carousel-inner kilala-animation-item" data-animate>
                     <?php
                     foreach ($listSlides as $k => $v) : ?>
-                        <div class="carousel-item <?php echo $k === 0 ? 'active' : ''; ?>" style="background-image: url('<?php echo $v['image']; ?>');">
+                        <div class="carousel-item  js-bg-img <?php echo $k === 0 ? 'active' : ''; ?>" data-img="<?php echo $v['image']; ?>">
                             <a href="<?php echo $v['url']; ?>" class="carousel-link"><?php echo $v['title']; ?></a>
                         </div>
                     <?php endforeach; ?>

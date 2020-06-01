@@ -434,3 +434,19 @@ a img.aligncenter {
 .content iframe {
   min-height: 360px;
 }
+
+.js-bg-img {
+  background-size: cover!important;
+}
+
+#svg-map {
+  @include ie-hack() {
+    svg {
+      height: 910px;
+
+      .home & {
+        height: 790px;
+      }
+    }
+  }
+}

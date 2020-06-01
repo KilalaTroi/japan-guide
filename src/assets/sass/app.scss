@@ -5,18 +5,30 @@
 @import 'mixins';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import 'lib/bootstrap/scss/bootstrap';
 
 // slick-carousel
-@import '~slick-carousel/slick/slick';
+@import 'lib/slick-carousel/slick/slick';
 
-@import 'global/**/*';
+@import 'global/global';
+@import 'global/layout';
 
-@import 'components/**/*';
+@import 'components/link-buton';
+@import 'components/list';
+@import 'components/menu';
 
-@import 'blocks/**/*';
+@import 'blocks/_header.scss';
+@import 'blocks/_footer.scss';
+@import 'blocks/_banner.scss';
+@import 'blocks/_top-destinations.scss';
+@import 'blocks/_map.scss';
+@import 'blocks/_gallery.scss';
+@import 'blocks/_sidenav.scss';
+@import 'blocks/_survey.scss';
+@import 'blocks/_article.scss';
+@import 'blocks/_404.scss';
 
-@import 'pages/**/*';
+@import 'pages/_about.scss';
 
 //@import 'templates/**/*';
 
