@@ -27,6 +27,29 @@
 
     <?php wp_head(); ?>
     <?= wpedu_get_option('option_head_code') ?>
+
+    <style>
+    #myCarousel .slick-arrow, #myCarouselMb .slick-arrow {
+        position: absolute;
+        top: 50%;
+        margin-top: -15px;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3e%3c/svg%3e");
+        border: none;
+        outline: none;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        font-size: 0;
+        height: 20px;
+        width: 50px;
+        background-position: center;
+        z-index: 1;
+    }
+
+    #myCarousel .slick-next, #myCarouselMb .slick-next {
+        right: 0;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3e%3c/svg%3e");
+    }
+    </style>
 </head>
 
 <body <?php body_class(); ?>>

@@ -370,6 +370,72 @@ die; // here we exit the script and even no wp_reset_query() required!
 
 add_action('wp_ajax_loadmore', 'misha_loadmore_ajax_handler'); // wp_ajax_{action}
 add_action('wp_ajax_nopriv_loadmore', 'misha_loadmore_ajax_handler'); // wp_ajax_nopriv_{action}
+
+// get_five_articles
+function get_five_articles() {
+    $data = array();
+    $postHomeL = 'post_home_' . LANGUAGE_SLUG;
+    if (false === ($postHome  = get_transient($postHomeL))) {
+        $postHome = get_posts(
+            array(
+                'post_type'      => 'post',
+                'posts_per_page' => 5,
+                'post_status' => 'publish',
+                'meta_query' => array(array('key' => '_thumbnail_id')),
+                'category__not_in' => array( 1397 ),
+                'orderby' => 'rand'
+            )
+        );
+        set_transient($postHomeL, $postHome, 1 * HOUR_IN_SECONDS);
+    }
+    global $post;
+
+    $post = array_shift($postHome);
+    setup_postdata($post);
+    $img = get_the_post_thumbnail_url($post->ID, 'feature-image');
+    $img = isset($img) && !empty($img) ? $img : no_img('8151', 'feature-image');
+    $img_feature = get_the_post_thumbnail_url($post->ID, 'full');
+    $img_feature = isset($img_feature) && !empty($img_feature) ? $img_feature : no_img('8151', 'full');
+    $taxonomy_destination = get_primary_taxonomy($post->ID);
+    $region_id = get_field('region_of', $taxonomy_destination->taxonomy . '_' . $taxonomy_destination->term_id);
+    $color = get_field('color', 'regions_' . $region_id);
+    $color = isset($color) && !empty($color) ? 'color:' . $color : '';
+    $data['first_article'] = array(
+        'title' => get_the_title(),
+        'excerpt' => get_the_excerpt(),
+        'url' => get_the_permalink(),
+        'img_url' => $img_feature,
+        'img_sp_url' => $img,
+        'taxonomy' => $taxonomy_destination,
+        'taxonomy_link' => get_term_link($taxonomy_destination->term_id),
+        'color' => $color
+    );
+    wp_reset_postdata();
+
+    foreach ($postHome as $post) {
+        setup_postdata($post);
+        $img = get_the_post_thumbnail_url($post->ID, 'feature-image');
+        $img = isset($img) && !empty($img) ? $img : no_img('8151', 'feature-image');
+        $taxonomy_destination = get_primary_taxonomy($post->ID);
+        $region_id = get_field('region_of', $taxonomy_destination->taxonomy . '_' . $taxonomy_destination->term_id);
+        $color = get_field('color', 'regions_' . $region_id);
+        $color = isset($color) && !empty($color) ? 'color:' . $color : '';
+        $data['articles'][] = array(
+            'title' => get_the_title(),
+            'url' => get_the_permalink(),
+            'img_url' => $img,
+            'taxonomy' => $taxonomy_destination,
+            'taxonomy_link' => get_term_link($taxonomy_destination->term_id),
+            'color' => $color
+        );
+        wp_reset_postdata();
+    }
+
+    echo json_encode($data);
+    die();
+}
+add_action('wp_ajax_get_five_articles', 'get_five_articles'); // wp_ajax_{action}
+add_action('wp_ajax_nopriv_get_five_articles', 'get_five_articles'); // wp_ajax_nopriv_{action}
 //------------End Ajax Functions-------------//
 
 
