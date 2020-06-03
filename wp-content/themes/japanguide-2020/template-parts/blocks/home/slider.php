@@ -14,7 +14,7 @@
 
             <div v-if="slidersMB && screenW < 576" id="myCarouselMb">
                 <div class="carousel-inner">
-                    <div v-for="(item, index) in slidersMB" :key="index" :class="index === 0 ? 'active carousel-item js-bg-img' : 'carousel-item js-bg-img'" :data-img="item.image">
+                    <div v-for="(item, index) in slidersMB" :key="index" :class="index === 0 ? 'active carousel-item' : 'carousel-item'" :style="setBackground(item.image)">
                         <a :href="item.url" class="carousel-link">
                             {{ item.title }}
                         </a>

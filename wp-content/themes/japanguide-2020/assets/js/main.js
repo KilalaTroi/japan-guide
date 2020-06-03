@@ -1,8 +1,6 @@
 Vue.component('back-to-top', {
     data () {
-        return {
-            screenW: window.screen.width
-        }
+        return {}
     },
     mounted() {
         let _this = this;
@@ -20,28 +18,5 @@ Vue.component('back-to-top', {
                 jQuery('#back-to-top').fadeOut();
             }
         });
-
-        jQuery(window).resize(function(){
-            _this.screenW = window.screen.width;
-        });
-
-        jQuery(window).load(function () {
-            _this.jsBgImg();
-        });
-    },
-    methods: {
-        jsBgImg() {
-            let jsBgImg = jQuery('.js-bg-img'); 
-            if ( jsBgImg.length > 0 ) {
-                jsBgImg.each(function() {
-                    jQuery(this).css('background', 'url("'+ jQuery(this).attr('data-img') +'") no-repeat center');
-                });
-            }
-        }
-    },
-    watch: {
-        screenW: [{
-            handler: 'jsBgImg'
-        }],
     }
 })

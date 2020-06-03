@@ -21,6 +21,13 @@ Vue.component('vue-banner', {
         jQuery(window).resize(function(){
             _this.screenW = window.screen.width;
         });
+    },
+    methods: {
+        setBackground(url) {
+            return {
+                background: 'url("'+ url +'") no-repeat center/cover'
+            };
+        }
     }
 });
 
