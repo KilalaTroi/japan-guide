@@ -15,8 +15,8 @@ function setup_scripts() {
     // wp_enqueue_script('main-script', ASSETS_PATH.'js/app.js', array('jquery'), null, true);
 
     wp_enqueue_script('lib-script', ASSETS_PATH.'js/lib.js', array('jquery'), null, true);
-    wp_enqueue_script('vue-script', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', array('jquery'), null, true);
-    // wp_enqueue_script('vue-script', 'https://cdn.jsdelivr.net/npm/vue@2.6.11', array('jquery'), null, true);
+    // wp_enqueue_script('vue-script', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js', array('jquery'), null, true);
+    wp_enqueue_script('vue-script', 'https://cdn.jsdelivr.net/npm/vue@2.6.11', array('jquery'), null, true);
     wp_enqueue_script('main-script', ASSETS_PATH.'js/main.js', array('jquery'), null, true);
 
     /* array with elements to localize in scripts */

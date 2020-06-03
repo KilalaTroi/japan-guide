@@ -436,6 +436,158 @@ function get_five_articles() {
 }
 add_action('wp_ajax_get_five_articles', 'get_five_articles'); // wp_ajax_{action}
 add_action('wp_ajax_nopriv_get_five_articles', 'get_five_articles'); // wp_ajax_nopriv_{action}
+
+// get top topics
+function get_topics_top_ajax()
+{
+    $data = array();
+    $topicsL = 'topics_' . LANGUAGE_SLUG;
+    if (false === ($topics  = get_transient($topicsL))) {
+        $args = array(
+            'hide_empty' => false,
+            'number'            => '8',
+            'orderby' => 'term_order',
+            'order' => 'ASC',
+        );
+        $topics = get_terms('topics', $args);
+        set_transient($topicsL, $topics, 30 * DAY_IN_SECONDS);
+    }
+
+    foreach ($topics as $topic) :
+        $thumbnail = get_field('bg_map', $topic->taxonomy . '_' . $topic->term_id);
+        $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['sizes']['feature-image']  : no_img('8151', 'feature-image');
+        $data[] = array(
+            'name' => $topic->name,
+            'url' => get_term_link($topic->term_id),
+            'img_url' => $thumbnail
+        );
+    endforeach;
+    
+    echo json_encode($data);
+    die();
+}
+add_action('wp_ajax_get_topics_top_ajax', 'get_topics_top_ajax'); // wp_ajax_{action}
+add_action('wp_ajax_nopriv_get_topics_top_ajax', 'get_topics_top_ajax'); // wp_ajax_nopriv_{action}
+
+// get top desinations
+function get_destinations_top_ajax()
+{
+    $data = array();
+    $destinations_topL = 'destination_top_' . LANGUAGE_SLUG;
+    if (false === ($destinations_top  = get_transient($destinations_topL))) {
+        $args = array(
+            'hide_empty' => false,
+            'orderby' => 'term_order',
+            'order' => 'ASC',
+            'number' => 8,
+            'meta_query' => array(
+                array(
+                    'key' => 'top',
+                    'value' => true,
+                )
+            )
+        );
+
+        $destinations_top = get_terms('category', $args);
+        set_transient($destinations_topL, $destinations_top, 30 * DAY_IN_SECONDS);
+    }
+
+    foreach ($destinations_top as $destination) :
+        $thumbnail = get_field('feature_image', $destination->taxonomy . '_' . $destination->term_id);
+        $thumbnail = isset($thumbnail) && !empty($thumbnail) ? $thumbnail['url']  : no_img('8151');
+        $content = get_field('content', $destination->taxonomy . '_' . $destination->term_id);
+        $description = get_short_text($content, 345);
+        $data[] = array(
+            'name' => $destination->name,
+            'url' => get_term_link($destination->term_id),
+            'img_url' => $thumbnail,
+            'description' => $description,
+            'short_description' => $destination->description
+        );
+    endforeach;
+
+    echo json_encode($data);
+    die();
+}
+add_action('wp_ajax_get_destinations_top_ajax', 'get_destinations_top_ajax'); // wp_ajax_{action}
+add_action('wp_ajax_nopriv_get_destinations_top_ajax', 'get_destinations_top_ajax'); // wp_ajax_nopriv_{action}
+
+// get map
+function get_map_ajax()
+{
+    $data = array();
+    $mapsL = 'map_' . LANGUAGE_SLUG;
+    if (false === ($maps  = get_transient($mapsL))) {
+
+        $include = wpedu_get_option('option_map');
+
+        $args = array(
+            'hide_empty' => false,
+            'orderby' => 'term_order',
+            'order' => 'ASC',
+            'include'       => $include,
+        );
+
+        $maps = get_terms('regions', $args);
+        foreach ($maps as $key => $map) {
+            $destination = get_terms('category', array(
+                'hide_empty' => false,
+                'meta_query' => array(
+                    array(
+                        'key' => 'show_on_map',
+                        'value' => true,
+                    ),
+                    array(
+                        'key' => 'region_of',
+                        'value' => $map->term_id,
+                    )
+                )
+            ));
+
+            if (isset($destination) && !empty($destination)) {
+                $maps[$key]->destinations = $destination;
+            }
+        }
+        set_transient($mapsL, $maps, 30 * DAY_IN_SECONDS);
+    }
+
+    $i = 0;
+    foreach ($maps as $map) :
+        $data_region = strtolower(str_replace(' ', '-', $map->name));
+        $data[$i] = array(
+            'name' => $map->name,
+            'slug' => $data_region,
+            'url' => get_term_link($map->term_id),
+        );
+
+        if (isset($map->destinations) && !empty($map->destinations) ) {
+            foreach ($map->destinations as $destination) {
+                $position = get_field('position', $destination->taxonomy . '_' . $destination->term_id);
+                $style_position = '';
+                if ( $position ) {
+                    $style_position .= isset($position['top']) && $position['top'] ? 'top:'.$position['top'].'%;' : '';
+                    $style_position .= isset($position['right']) && $position['right'] ? 'right:'.$position['right'].'%;' : '';
+                    $style_position .= isset($position['bottom']) && $position['bottom'] ? 'bottom:'.$position['bottom'].'%;' : '';
+                    $style_position .= isset($position['left']) && $position['left'] ? 'left:'.$position['left'].'%;' : '';
+                }
+
+                $data[$i]['destinations'][] = array(
+                    'name' => $destination->name,
+                    'uname' => ucfirst(str_replace(' ', '<br>', $destination->name)),
+                    'slug' => strtolower(str_replace(' ', '-', $destination->name)),
+                    'url' => get_term_link($destination->term_id),
+                    'style' => $style_position,
+                );
+            }
+        }
+        $i++;
+    endforeach;
+    
+    echo json_encode($data);
+    die();
+}
+add_action('wp_ajax_get_map_ajax', 'get_map_ajax'); // wp_ajax_{action}
+add_action('wp_ajax_nopriv_get_map_ajax', 'get_map_ajax'); // wp_ajax_nopriv_{action}
 //------------End Ajax Functions-------------//
 
 
