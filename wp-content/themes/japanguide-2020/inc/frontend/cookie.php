@@ -11,7 +11,8 @@ add_action('wp_ajax_get_ajax_logo', 'get_ajax_logo');
 add_action('wp_ajax_nopriv_get_ajax_logo', 'get_ajax_logo');
 
 // first_load
-add_action('progress_loading_script', 'progress_loading_func', 10, 3);
+// add_action('progress_loading_script', 'progress_loading_func', 10, 3);
+add_action('wp_footer', 'progress_loading_func', 10);
 
 function progress_loading_func()
 { ?>

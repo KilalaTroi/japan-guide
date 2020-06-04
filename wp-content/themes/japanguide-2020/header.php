@@ -64,7 +64,7 @@
             </svg>
         </div>
 
-        <?php do_action('progress_loading_script'); ?>
+        <?php // do_action('progress_loading_script'); ?>
     <?php } ?>
     <!-- End Is home page -->
 
